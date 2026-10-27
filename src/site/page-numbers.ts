@@ -1,0 +1,45 @@
+// Where every page is. A page is keyed in decimal and numbered by the
+// server in hex: the page keyed 1 0 1 is 0x101. Each area has a magazine
+// of its own, its menu on N00 (the services' on 110, under the index):
+// services 1, interactive 2, games 3, adventure 4, audio 5, gallery 6.
+
+export const PAGES = {
+  index: 0x100,
+  news: 0x101,
+  weather: 0x102,
+  markets: 0x103,
+  guide: 0x104,
+  calendar: 0x105,
+  clocks: 0x106,
+  longRead: 0x107,
+  behind: 0x108,
+  about: 0x109,
+  /** The services menu, then the news stories, a page each: 111, 112, ... */
+  services: 0x110,
+  firstStory: 0x111,
+  interactive: 0x200,
+  calculator: 0x201,
+  form: 0x202,
+  guestbook: 0x203,
+  poll: 0x204,
+  quiz: 0x205,
+  paint: 0x206,
+  games: 0x300,
+  snake: 0x301,
+  breakout: 0x302,
+  invaders: 0x303,
+  cave: 0x304,
+  luckyDip: 0x305,
+  hall: 0x306,
+  adventure: 0x400,
+  station: 0x401,
+  crown: 0x402,
+  audio: 0x500,
+  piano: 0x501,
+  drums: 0x502,
+  synth: 0x503,
+  tracker: 0x504,
+  radio: 0x505,
+  gallery: 0x600,
+  picture: 0x601,
+} as const;

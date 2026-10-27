@@ -1,0 +1,20 @@
+# Scratch work, local sessions and backups: never part of the code.
+tmp/
+.claude/
+*.bak*
+
+# Secrets: they live in ~/devel/credentials, never here.
+.env*
+*.pem
+*.key
+
+# Editors and the operating system.
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# The tools' install, rebuilt from the lockfile.
+node_modules/
+npm-debug.log*
