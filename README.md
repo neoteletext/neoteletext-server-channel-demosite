@@ -16,7 +16,8 @@ released into `vendor/`:
 
 ## Running it
 
-It needs Node 22.18 or later, which runs the `.ts` files as they are.
+It needs Node 22.18 or later, which runs the `.ts` files as they are, and
+ffmpeg with libopus on the `PATH`, which encodes its sounds as Opus.
 
     npm ci --ignore-scripts --no-audit --no-fund
     node src/main.ts [--pictures FOLDER]

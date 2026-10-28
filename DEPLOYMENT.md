@@ -7,6 +7,10 @@ neoteletext-server-channels' `channels.json`. teletext-server's
 ## What the host needs
 
 - **Node 22.18 or later**, on the service's `PATH`.
+- **ffmpeg with libopus**, on the service's `PATH`: every sound and stream
+  is encoded as Opus with it (the component library's 4.0.0).
+  `foundintelquiet4060` has it (`/usr/bin/ffmpeg`, checked on 28 October
+  2026).
 - **The pictures**, in neoteletext-server-channels' `tmp/pictures` beside
   this repository on the host, which the deploy fills.
 

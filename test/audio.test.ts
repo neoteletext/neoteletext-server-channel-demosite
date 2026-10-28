@@ -30,8 +30,9 @@ test("Enter on a radio tune streams it, and the player says what plays", () => {
   harness.join(1, PAGES.radio);
   harness.press(1, Key.Enter);
   harness.runUntil(harness.now + 2_000);
-  // A live sound's blocks go to the viewer as the stream plays.
-  assert.ok(harness.sounds(1).some((message) => "blocks" in message));
+  // A live sound's Opus packets go to the viewer as the stream plays: the
+  // desktop receivers play Opus alone (the component library's 4.0.0).
+  assert.ok(harness.sounds(1).some((message) => "opus_packets" in message));
   assert.ok(shows(harness.seen(1, PAGES.radio).rows, "Playing: Test card"));
   assert.deepEqual(harness.errors, []);
 });

@@ -7,6 +7,10 @@ what runs. Every command below is run from the repository's root.
 ## What is needed
 
 - **Node 22.18 or later.** `scripts/check.sh` refuses an older one.
+- **ffmpeg with libopus**, on the `PATH`, to run the channel: the component
+  library's 4.0.0 encodes every sound and stream as Opus with it, the one
+  format the desktop receivers play. The tests need none: they give the
+  protocol's `fakeOpus()`.
 - **TypeScript 7.0.2**, the latest release, pinned in `package-lock.json`
   with the other tools and installed by `npm ci`.
 - **The kits**, neoteletext-server-ts-protocol and neoteletext-server-ts-ui-components:
