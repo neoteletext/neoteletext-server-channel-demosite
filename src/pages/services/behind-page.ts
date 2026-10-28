@@ -1,8 +1,8 @@
 // Page 108, behind the scenes: the server's own figures, which it sends
 // every ten seconds, as they arrive.
 
-import { Colour, figuresIn, type Figures, type ServerStats } from "neottx-server-ts-protocol";
-import { BarChart, type Child, Component, h, type PageSpec, Paragraph, Table, Text } from "neottx-server-ts-ui-components";
+import { Colour, figuresIn, type Figures, type ServerStats } from "neoteletext-server-ts-protocol";
+import { BarChart, type Child, Component, h, type PageSpec, Paragraph, Table, Text } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";

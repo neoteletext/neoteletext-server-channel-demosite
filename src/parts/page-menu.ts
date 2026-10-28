@@ -1,7 +1,7 @@
 // A menu of pages: each a link a click follows, with a few words under it.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { type Child, Component, h, PageLink, Rows, Text } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { type Child, Component, h, PageLink, Rows, Text } from "neoteletext-server-ts-ui-components";
 
 /** One entry: its page, its name, and what is there. */
 export interface MenuEntry {

@@ -1,7 +1,7 @@
 // A text adventure's world: its rooms, their pictures in mosaic, the ways
 // out of each, the things lying in them, and what wins it.
 
-import type { Bitmap } from "neottx-server-ts-ui-components";
+import type { Bitmap } from "neoteletext-server-ts-ui-components";
 
 export const DIRECTIONS = ["north", "south", "east", "west", "up", "down"] as const;
 export type Direction = (typeof DIRECTIONS)[number];

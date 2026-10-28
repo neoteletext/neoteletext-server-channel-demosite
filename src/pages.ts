@@ -1,6 +1,6 @@
 // Every page of the site: the index, then each area's menu and pages.
 
-import type { PageSpec } from "neottx-server-ts-ui-components";
+import type { PageSpec } from "neoteletext-server-ts-ui-components";
 import { areaMenuPage } from "./pages/home/area-menu-page.ts";
 import { indexPage } from "./pages/home/index-page.ts";
 import { AREAS } from "./site/areas.ts";

@@ -1,6 +1,6 @@
 // Page 301, Snake: the library's own game.
 
-import { h, type PageSpec, Snake } from "neottx-server-ts-ui-components";
+import { h, type PageSpec, Snake } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { SOUNDS } from "../../parts/sounds.ts";
 import { LOOKS } from "../../site/looks.ts";

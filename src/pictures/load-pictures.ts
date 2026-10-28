@@ -6,7 +6,7 @@
 
 import { join } from "node:path";
 
-import { readTti } from "neottx-server-ts-protocol";
+import { readTti } from "neoteletext-server-ts-protocol";
 import { isGroup } from "./groups.ts";
 import { LEVELS, type Picture } from "./picture.ts";
 import { readSmall } from "./read-small.ts";

@@ -1,7 +1,7 @@
 // Page 100, the index: what this is, and every area.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { Clock, Columns, DoubleHeight, Gap, h, PageLink, type PageSpec, Ticker } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { Clock, Columns, DoubleHeight, Gap, h, PageLink, type PageSpec, Ticker } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { PageMenu } from "../../parts/page-menu.ts";
 import type { Area } from "../../site/area.ts";

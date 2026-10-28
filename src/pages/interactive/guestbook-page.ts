@@ -1,7 +1,7 @@
 // Page 203, the guestbook: every viewer's signatures, and a field to sign.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { type Child, Component, h, type PageSpec, Text, TextField } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { type Child, Component, h, type PageSpec, Text, TextField } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import type { Unlisten } from "../../parts/listeners.ts";
 import { LOOKS } from "../../site/looks.ts";

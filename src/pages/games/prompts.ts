@@ -1,6 +1,6 @@
 // The games' Fastext: their menu, the index, and two of their own.
 
-import type { Prompts } from "neottx-server-ts-ui-components";
+import type { Prompts } from "neoteletext-server-ts-ui-components";
 import { areaPrompts } from "../../site/area.ts";
 import { PAGES } from "../../site/page-numbers.ts";
 

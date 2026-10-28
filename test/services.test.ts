@@ -3,7 +3,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { shows } from "neottx-server-ts-protocol/testing";
+import { shows } from "neoteletext-server-ts-protocol/testing";
 import { PAGES } from "../src/site/page-numbers.ts";
 import { site } from "./site.ts";
 

@@ -1,6 +1,6 @@
 // The form's third step: their service, how much they read, subtitles.
 
-import { type Child, Component, h, Select, Slider, Switch } from "neottx-server-ts-ui-components";
+import { type Child, Component, h, Select, Slider, Switch } from "neoteletext-server-ts-ui-components";
 import { SERVICES, type StepProps } from "./form-answers.ts";
 
 /** Pages a day: the slider's range and step. */

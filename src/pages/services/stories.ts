@@ -1,7 +1,7 @@
 // The news: made-up stories, as a teletext service carried them, each on
 // a page of its own from 111.
 
-import type { Block } from "neottx-server-ts-ui-components";
+import type { Block } from "neoteletext-server-ts-ui-components";
 
 export interface Story {
   readonly headline: string;

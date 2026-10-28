@@ -1,7 +1,7 @@
 // Page 102, the weather: today's for six towns, and the week's outlook.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { BarChart, type Child, Columns, Component, h, Icon, type IconName, LineChart, type PageSpec, Rows, Text } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { BarChart, type Child, Columns, Component, h, Icon, type IconName, LineChart, type PageSpec, Rows, Text } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";

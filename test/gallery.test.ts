@@ -4,8 +4,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { Key } from "neottx-server-ts-protocol";
-import { shows } from "neottx-server-ts-protocol/testing";
+import { Key } from "neoteletext-server-ts-protocol";
+import { shows } from "neoteletext-server-ts-protocol/testing";
 import { LEVELS } from "../src/pictures/picture.ts";
 import { PAGES } from "../src/site/page-numbers.ts";
 import { site } from "./site.ts";

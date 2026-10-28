@@ -1,6 +1,6 @@
 // The frame every page is in, in its area's look; Index goes to page 100.
 
-import { type Child, type Element, Frame, h, type Prompts } from "neottx-server-ts-ui-components";
+import { type Child, type Element, Frame, h, type Prompts } from "neoteletext-server-ts-ui-components";
 import type { Look } from "../site/looks.ts";
 import { PAGES } from "../site/page-numbers.ts";
 

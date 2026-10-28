@@ -2,7 +2,7 @@
 // with a few words for the menu. The index lists the areas and each menu
 // its pages, from here.
 
-import type { PageSpec, Prompts } from "neottx-server-ts-ui-components";
+import type { PageSpec, Prompts } from "neoteletext-server-ts-ui-components";
 import type { Look } from "./looks.ts";
 import { PAGES } from "./page-numbers.ts";
 import type { Site } from "./site.ts";

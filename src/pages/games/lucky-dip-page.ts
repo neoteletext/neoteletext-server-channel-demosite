@@ -1,6 +1,6 @@
 // Page 305, the lucky dip: a wheel that spins to one of the news stories.
 
-import { type Article, h, type PageSpec, Roulette } from "neottx-server-ts-ui-components";
+import { type Article, h, type PageSpec, Roulette } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { SOUNDS } from "../../parts/sounds.ts";
 import { LOOKS } from "../../site/looks.ts";

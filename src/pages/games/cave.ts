@@ -1,8 +1,8 @@
 // Cave flyer: hold Up to climb, let go to fall, and fly as far as you can
 // through a cave that narrows as it goes.
 
-import { Colour, Key, type Sixels } from "neottx-server-ts-protocol";
-import { isPress, type KeyEvent } from "neottx-server-ts-ui-components";
+import { Colour, Key, type Sixels } from "neoteletext-server-ts-protocol";
+import { isPress, type KeyEvent } from "neoteletext-server-ts-ui-components";
 import { ArcadeGame, FIELD_ACROSS, type Play, SPACE_KEY } from "./arcade-game.ts";
 
 interface CaveState extends Play {

@@ -1,8 +1,8 @@
 // A calculator: its display in large digits and a keypad of buttons; the
 // digits and + - * / = . on the keyboard work as well.
 
-import { Colour, Key } from "neottx-server-ts-protocol";
-import { BigDigits, Button, type Child, Component, Grid, h, type KeyEvent, type PageNeeds, Text, typedText } from "neottx-server-ts-ui-components";
+import { Colour, Key } from "neoteletext-server-ts-protocol";
+import { BigDigits, Button, type Child, Component, Grid, h, type KeyEvent, type PageNeeds, Text, typedText } from "neoteletext-server-ts-ui-components";
 import { type Calculation, CLEAR, press } from "./calculation.ts";
 
 const KEYPAD = ["7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+", "C"] as const;

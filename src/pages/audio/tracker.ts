@@ -2,7 +2,7 @@
 // or a click puts a note on a step or takes it off, and P plays the
 // pattern through.
 
-import { Colour, Key } from "neottx-server-ts-protocol";
+import { Colour, Key } from "neoteletext-server-ts-protocol";
 import {
   type Canvas,
   choosing,
@@ -10,10 +10,11 @@ import {
   type ControlProps,
   isPress,
   type KeyEvent,
+  type KeyHelpEntry,
   type PointerEvent,
   type Size,
   typedText,
-} from "neottx-server-ts-ui-components";
+} from "neoteletext-server-ts-ui-components";
 import { nameOf } from "./notes.ts";
 import { patternSound } from "./pattern-sound.ts";
 import { SCALE } from "./scale.ts";
@@ -66,8 +67,12 @@ function cellColour(set: boolean, here: boolean): Colour {
 export class Tracker extends Control<ControlProps, TrackerState> {
   override state: TrackerState = { steps: START, cursor: { step: 0, row: 0 } };
 
-  protected override keysHint(): string {
-    return "Arrows move, Enter sets a note, P plays";
+  override keyBindings(): readonly KeyHelpEntry[] {
+    return [
+      ["Arrows", "move"],
+      ["Enter", "sets a note"],
+      ["P", "plays"],
+    ];
   }
 
   #toggle(cursor: Cursor): void {

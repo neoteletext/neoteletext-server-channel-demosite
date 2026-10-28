@@ -1,6 +1,6 @@
 // Page 205, a quiz answered with the coloured keys.
 
-import { h, type PageSpec, Quiz } from "neottx-server-ts-ui-components";
+import { h, type PageSpec, Quiz } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { SOUNDS } from "../../parts/sounds.ts";
 import { LOOKS } from "../../site/looks.ts";

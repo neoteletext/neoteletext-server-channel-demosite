@@ -1,6 +1,6 @@
 // The drum machine's kit: each drum a sound made of tones and noise.
 
-import { noise, sequence, sound, type Sound, tone } from "neottx-server-ts-ui-components";
+import { noise, sequence, sound, type Sound, tone } from "neoteletext-server-ts-ui-components";
 
 /** Each drum's pitch in Hz, length in milliseconds and loudness, as tuned by ear. */
 const KICK_HZ = 55;

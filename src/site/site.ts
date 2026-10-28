@@ -2,7 +2,7 @@
 // records viewers add to (the poll, the guestbook, the hall of fame),
 // which the site keeps rather than any one viewer's copy of a page.
 
-import { Tally } from "neottx-server-ts-ui-components";
+import { Tally } from "neoteletext-server-ts-ui-components";
 import { Guestbook } from "../pages/interactive/guestbook.ts";
 import { HallOfFame } from "../pages/games/hall-of-fame.ts";
 import type { Picture } from "../pictures/picture.ts";

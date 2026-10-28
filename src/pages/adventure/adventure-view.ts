@@ -1,8 +1,8 @@
 // An adventure as it is played: the room's picture and name, what was
 // last said, and a line to type commands on.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { type Child, Columns, Component, DoubleHeight, Gap, h, Mosaic, Paragraph, Rows, Text, TextField } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { type Child, Columns, Component, DoubleHeight, Gap, h, Mosaic, Paragraph, Rows, Text, TextField } from "neoteletext-server-ts-ui-components";
 import { act, type Adventure, begin } from "./play.ts";
 import type { World } from "./world.ts";
 

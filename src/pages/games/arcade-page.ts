@@ -1,6 +1,6 @@
 // The page of one of the arcade's own games: its field over the body's rows.
 
-import { h, type PageSpec } from "neottx-server-ts-ui-components";
+import { h, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { SOUNDS } from "../../parts/sounds.ts";
 import { LOOKS } from "../../site/looks.ts";

@@ -1,8 +1,19 @@
 // Page 105, the calendar: this month, with what is on, and what is on the
 // day a viewer chooses.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { Calendar, type CalendarDate, type Child, Component, DATE_FORMATS, formatDate, Gap, h, type PageSpec, Paragraph } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import {
+  Calendar,
+  type CalendarDate,
+  type Child,
+  Component,
+  DATE_FORMATS,
+  formatDate,
+  Gap,
+  h,
+  type PageSpec,
+  Paragraph,
+} from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";

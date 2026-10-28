@@ -1,7 +1,7 @@
 // The form's first step: a name, and where they watch.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { type Child, Component, Field, h, Paragraph, RadioGroup, TextField } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { type Child, Component, Field, h, Paragraph, RadioGroup, TextField } from "neoteletext-server-ts-ui-components";
 import { LABEL_CELLS, REGIONS, type StepProps } from "./form-answers.ts";
 
 const LONGEST_NAME = 20;

@@ -1,7 +1,7 @@
 // Page 106, the clocks: the time in large digits, the world's cities, and
 // a countdown to the new year.
 
-import { Gap, h, type PageSpec } from "neottx-server-ts-ui-components";
+import { Gap, h, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";

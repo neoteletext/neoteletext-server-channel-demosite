@@ -2,19 +2,20 @@
 // keys and the row above the black, as on a tracker's keyboard; a click
 // on a key plays it as well.
 
-import { Colour } from "neottx-server-ts-protocol";
+import { Colour } from "neoteletext-server-ts-protocol";
 import {
   type Canvas,
   Control,
   type ControlProps,
   type KeyEvent,
+  type KeyHelpEntry,
   type PointerEvent,
   type Size,
   sound,
   type Sound,
   tone,
   typedText,
-} from "neottx-server-ts-ui-components";
+} from "neoteletext-server-ts-ui-components";
 import { frequencyOf, MIDDLE_C, nameOf } from "./notes.ts";
 
 /** The keys of the octave, C to C, by their letters: white then black, as they lie on the keyboard. */
@@ -59,8 +60,11 @@ interface PianoState {
 export class Piano extends Control<ControlProps, PianoState> {
   override state: PianoState = { played: null };
 
-  protected override keysHint(): string {
-    return "Play with A to K and W E T Y U, or click";
+  override keyBindings(): readonly KeyHelpEntry[] {
+    return [
+      ["A to K, W E T Y U", "play"],
+      ["Click", "plays"],
+    ];
   }
 
   #play(index: number, session: number): void {

@@ -1,8 +1,8 @@
 // Page 601, a picture at its three levels, a sub-page each, as the
 // converter made them, and a sub-page that says what it is.
 
-import { Colour, type FastextLinks } from "neottx-server-ts-protocol";
-import { type Child, Component, Gap, h, type PageSpec, Paragraph, Placeholder, RawSubPage, Text } from "neottx-server-ts-ui-components";
+import { Colour, type FastextLinks } from "neoteletext-server-ts-protocol";
+import { type Child, Component, Gap, h, type PageSpec, Paragraph, Placeholder, RawSubPage, Text } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LEVELS, type Picture } from "../../pictures/picture.ts";
 import { areaPrompts } from "../../site/area.ts";

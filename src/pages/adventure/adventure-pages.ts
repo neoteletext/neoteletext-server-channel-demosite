@@ -1,6 +1,6 @@
 // The adventures' pages: one world each.
 
-import { h, type PageSpec } from "neottx-server-ts-ui-components";
+import { h, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { areaPrompts } from "../../site/area.ts";
 import { LOOKS } from "../../site/looks.ts";

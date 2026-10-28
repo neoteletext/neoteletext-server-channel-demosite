@@ -1,6 +1,6 @@
 // An area's menu, on its N00 page: each of its pages and what is there.
 
-import { h, type PageSpec } from "neottx-server-ts-ui-components";
+import { h, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { PageMenu } from "../../parts/page-menu.ts";
 import type { Area, AreaPage } from "../../site/area.ts";

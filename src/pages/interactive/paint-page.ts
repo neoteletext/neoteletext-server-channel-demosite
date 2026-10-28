@@ -1,7 +1,7 @@
 // Page 206, painting in mosaic: a canvas of the page's sixels.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { h, type PageSpec, PaintCanvas } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { h, type PageSpec, PaintCanvas } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";

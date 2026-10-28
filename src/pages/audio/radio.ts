@@ -1,8 +1,8 @@
 // The radio: its tunes to choose from, each played as a live stream, and
 // the library's player, which shows what plays and works it.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { AudioPlayer, type Child, ChoiceList, Component, Gap, h, Text } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { AudioPlayer, type Child, ChoiceList, Component, Gap, h, Text } from "neoteletext-server-ts-ui-components";
 import { type Track, TRACKS } from "./tunes.ts";
 
 export class Radio extends Component {

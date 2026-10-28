@@ -1,7 +1,7 @@
 // The form's second step: what they read.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { CheckboxGroup, type Child, Component, h, Paragraph } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { CheckboxGroup, type Child, Component, h, Paragraph } from "neoteletext-server-ts-ui-components";
 import { READS, type StepProps } from "./form-answers.ts";
 
 export class ReadingStep extends Component<StepProps> {

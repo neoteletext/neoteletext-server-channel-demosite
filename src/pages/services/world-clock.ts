@@ -1,8 +1,8 @@
 // The time in large digits and in each of the world's cities, looked at
 // again each second while anyone watches.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { BigDigits, type Child, Component, h, Table, Text } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { BigDigits, type Child, Component, h, Table, Text } from "neoteletext-server-ts-ui-components";
 
 /** Cities and their hours from UTC, standard time. */
 const CITIES = [

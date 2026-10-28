@@ -1,7 +1,7 @@
 // Page 109, what this is, and the keys.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { Gap, h, KeyHelp, type PageSpec, Paragraph } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { Gap, h, KeyHelp, type PageSpec, Paragraph } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";

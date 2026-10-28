@@ -1,7 +1,7 @@
 // Page 306, the hall of fame: the best scores of the arcade's games, as
 // they are made.
 
-import { type Child, Component, DataTable, h, type PageSpec } from "neottx-server-ts-ui-components";
+import { type Child, Component, DataTable, h, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import type { Unlisten } from "../../parts/listeners.ts";
 import { LOOKS } from "../../site/looks.ts";

@@ -1,8 +1,8 @@
 // Page 103, the markets: prices that move every few seconds while anyone
 // watches, each with its recent history.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { type Child, Component, DataTable, h, type PageSpec, Sparkline } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { type Child, Component, DataTable, h, type PageSpec, Sparkline } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";

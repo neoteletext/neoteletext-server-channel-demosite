@@ -1,6 +1,6 @@
 // The short sounds the pages play: made once, each named once in the channel.
 
-import { noise, sequence, sound, tone } from "neottx-server-ts-ui-components";
+import { noise, sequence, sound, tone } from "neoteletext-server-ts-ui-components";
 
 /** Hz of the notes the effects are made of: C5, E5, G5, C6, and a low A. */
 const C5 = 523;

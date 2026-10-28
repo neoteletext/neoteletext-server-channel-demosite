@@ -1,6 +1,6 @@
 // Each area's look: the colour of its title bands and the text on them.
 
-import { Colour } from "neottx-server-ts-protocol";
+import { Colour } from "neoteletext-server-ts-protocol";
 
 /** A title band's background and the foreground on it. */
 export interface Look {

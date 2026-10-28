@@ -10,8 +10,8 @@
 
 import { parseArgs } from "node:util";
 
-import { runChannel } from "neottx-server-ts-protocol";
-import { ComponentChannel } from "neottx-server-ts-ui-components";
+import { runChannel } from "neoteletext-server-ts-protocol";
+import { ComponentChannel } from "neoteletext-server-ts-ui-components";
 import { pages } from "./pages.ts";
 import { loadPictures } from "./pictures/load-pictures.ts";
 import { makeSite } from "./site/site.ts";

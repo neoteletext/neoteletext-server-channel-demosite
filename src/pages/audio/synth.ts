@@ -1,7 +1,7 @@
 // A synth: a wave, a note and a length chosen, and a button that plays it.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { Button, type Child, Component, h, RadioGroup, Slider, sound, Text, tone, type Wave } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { Button, type Child, Component, h, RadioGroup, Slider, sound, Text, tone, type Wave } from "neoteletext-server-ts-ui-components";
 import { frequencyOf, MIDDLE_C, nameOf } from "./notes.ts";
 
 const WAVES: readonly Wave[] = ["sine", "square", "triangle"];

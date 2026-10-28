@@ -1,8 +1,8 @@
 // Breakout: Left and Right move the bat, the ball breaks the bricks, and
 // three balls are lost before it is over.
 
-import { Colour, Key, type Sixels } from "neottx-server-ts-protocol";
-import { isPress, type KeyEvent } from "neottx-server-ts-ui-components";
+import { Colour, Key, type Sixels } from "neoteletext-server-ts-protocol";
+import { isPress, type KeyEvent } from "neoteletext-server-ts-ui-components";
 import { ArcadeGame, FIELD_ACROSS, type Play } from "./arcade-game.ts";
 
 interface Point {

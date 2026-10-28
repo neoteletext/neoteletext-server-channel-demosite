@@ -1,7 +1,7 @@
 // A countdown to the new year.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { type Child, Component, Countdown, h, Text } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { type Child, Component, Countdown, h, Text } from "neoteletext-server-ts-ui-components";
 
 /** The new year after `epochMs`, UTC. */
 function nextNewYear(epochMs: number): number {

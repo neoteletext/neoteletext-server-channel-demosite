@@ -1,7 +1,7 @@
 // Page 104, the TV guide: tonight's programmes on four channels, a tab each.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { type Child, Component, DataTable, h, type PageSpec, TabView } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { type Child, Component, DataTable, h, type PageSpec, TabView } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";

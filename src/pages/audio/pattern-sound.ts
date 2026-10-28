@@ -1,6 +1,6 @@
 // A pattern of notes as one sound: each step its note, or silence.
 
-import { RATE, sequence, sound, type Sound, tone } from "neottx-server-ts-ui-components";
+import { RATE, sequence, sound, type Sound, tone } from "neoteletext-server-ts-ui-components";
 import { frequencyOf } from "./notes.ts";
 
 const SECOND_MS = 1_000;

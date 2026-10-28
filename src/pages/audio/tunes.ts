@@ -1,7 +1,7 @@
 // The radio's tunes, written in the scale's rows (0 the highest note,
 // null a rest), each played round several times as one long sound.
 
-import { RATE, type StreamSource } from "neottx-server-ts-ui-components";
+import { RATE, type StreamSource } from "neoteletext-server-ts-ui-components";
 import { patternSound } from "./pattern-sound.ts";
 import { SCALE } from "./scale.ts";
 

@@ -2,8 +2,8 @@
 
 import { join } from "node:path";
 
-import { Harness } from "neottx-server-ts-protocol/testing";
-import { ComponentChannel, type PageSpec } from "neottx-server-ts-ui-components";
+import { Harness } from "neoteletext-server-ts-protocol/testing";
+import { ComponentChannel, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { pages } from "../src/pages.ts";
 import { loadPictures } from "../src/pictures/load-pictures.ts";
 import { makeSite } from "../src/site/site.ts";

@@ -1,8 +1,8 @@
 // A form in steps, each a few of the library's controls: a viewer's name
 // and where they watch, what they read, how they read, then what they said.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { type Child, Component, h, Notice, Paragraph, Rows, Table, Wizard } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { type Child, Component, h, Notice, Paragraph, Rows, Table, Wizard } from "neoteletext-server-ts-ui-components";
 import { type FormAnswers, LABEL_CELLS, summaryOf } from "./form-answers.ts";
 import { PagesStep } from "./pages-step.ts";
 import { ReadingStep } from "./reading-step.ts";

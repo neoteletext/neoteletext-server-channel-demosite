@@ -1,6 +1,6 @@
 // The pages of the arcade's own games: Breakout, Invaders and the cave flyer.
 
-import type { PageSpec } from "neottx-server-ts-ui-components";
+import type { PageSpec } from "neoteletext-server-ts-ui-components";
 import { PAGES } from "../../site/page-numbers.ts";
 import { arcadePage } from "./arcade-page.ts";
 import { Breakout } from "./breakout.ts";

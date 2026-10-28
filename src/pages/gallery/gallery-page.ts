@@ -1,6 +1,6 @@
 // Page 600, the gallery: the converted pictures by group.
 
-import { h, type PageSpec } from "neottx-server-ts-ui-components";
+import { h, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import type { Picture } from "../../pictures/picture.ts";
 import { LOOKS } from "../../site/looks.ts";

@@ -1,8 +1,8 @@
 // Page 107, a long read: the story of teletext, over several sub-pages,
 // which the browser turns as a magazine's pages.
 
-import { COLUMNS } from "neottx-server-ts-protocol";
-import { articleLines, type Block, Document, h, type PageSpec } from "neottx-server-ts-ui-components";
+import { COLUMNS } from "neoteletext-server-ts-protocol";
+import { articleLines, type Block, Document, h, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";
 import { servicesPrompts } from "./prompts.ts";

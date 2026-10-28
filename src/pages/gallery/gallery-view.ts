@@ -1,7 +1,7 @@
 // The gallery's contents: a tab for each group of pictures, each a list
 // of their captions; choosing one opens it on 601.
 
-import { type Child, ChoiceList, Component, h, Placeholder, TabView } from "neottx-server-ts-ui-components";
+import { type Child, ChoiceList, Component, h, Placeholder, TabView } from "neoteletext-server-ts-ui-components";
 import { GROUPS } from "../../pictures/groups.ts";
 import type { Picture } from "../../pictures/picture.ts";
 import { PAGES } from "../../site/page-numbers.ts";

@@ -1,7 +1,7 @@
 // The drum pads: a button each, and the digits 1 to 6 play them too.
 
-import { Colour } from "neottx-server-ts-protocol";
-import { Button, type Child, Component, digitOf, Grid, h, type KeyEvent, type PageNeeds, Text } from "neottx-server-ts-ui-components";
+import { Colour } from "neoteletext-server-ts-protocol";
+import { Button, type Child, Component, digitOf, Grid, h, type KeyEvent, type PageNeeds, Text } from "neoteletext-server-ts-ui-components";
 import { KIT } from "./drum-kit.ts";
 
 const PADS_ACROSS = 3;

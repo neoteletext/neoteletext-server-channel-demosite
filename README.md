@@ -10,8 +10,8 @@ JSON on its standard input and output (teletext-server's
 `docs/applications.md`). It is built on two libraries of the server's,
 released into `vendor/`:
 
-- **neottx-server-ts-protocol**, the channel protocol;
-- **neottx-server-ts-ui-components**, the component library its pages
+- **neoteletext-server-ts-protocol**, the channel protocol;
+- **neoteletext-server-ts-ui-components**, the component library its pages
   are made of.
 
 ## Running it

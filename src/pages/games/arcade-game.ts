@@ -3,7 +3,7 @@
 // play again once it is over, and the score posted to the hall of fame.
 // The copy every viewer shares is the title screen; a viewer's own plays.
 
-import { Colour, COLUMNS, Key, Sixels, SIXELS_ACROSS, SIXELS_DOWN } from "neottx-server-ts-protocol";
+import { Colour, COLUMNS, Key, Sixels, SIXELS_ACROSS, SIXELS_DOWN } from "neoteletext-server-ts-protocol";
 import {
   type Canvas,
   cells,
@@ -11,10 +11,11 @@ import {
   type ControlProps,
   isPress,
   type KeyEvent,
+  type KeyHelpEntry,
   type PointerEvent,
   type Size,
   type Sound,
-} from "neottx-server-ts-ui-components";
+} from "neoteletext-server-ts-ui-components";
 import type { HallOfFame } from "./hall-of-fame.ts";
 
 export interface ArcadeProps extends ControlProps {
@@ -93,8 +94,11 @@ export abstract class ArcadeGame<S extends Play> extends Control<ArcadeProps, S>
     }
   }
 
-  protected override keysHint(): string {
-    return "The arrows play; Enter plays again";
+  override keyBindings(): readonly KeyHelpEntry[] {
+    return [
+      ["Arrows", "play"],
+      ["Enter", "plays again"],
+    ];
   }
 
   override measure(space: Size): Size {

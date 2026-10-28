@@ -1,6 +1,6 @@
 // The quiz's questions, on teletext.
 
-import type { Question } from "neottx-server-ts-ui-components";
+import type { Question } from "neoteletext-server-ts-ui-components";
 
 export const QUESTIONS: readonly Question[] = [
   { question: "How many columns does a teletext page have?", answers: ["24", "40", "64", "80"], right: 1 },

@@ -1,6 +1,6 @@
 // A sprite drawn on a field: lines of # for a sixel set, . for clear.
 
-import type { Sixels } from "neottx-server-ts-protocol";
+import type { Sixels } from "neoteletext-server-ts-protocol";
 
 /** The sixel a sprite's line sets. */
 const SET = "#";
