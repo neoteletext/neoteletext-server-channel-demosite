@@ -4,6 +4,7 @@ import type { Area } from "../../site/area.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";
 import { galleryPage } from "./gallery-page.ts";
+import { everyPicturePage } from "./every-picture-page.ts";
 import { picturePage } from "./picture-page.ts";
 
 export const GALLERY: Area = {
@@ -14,5 +15,5 @@ export const GALLERY: Area = {
   // The gallery's own page is its menu: it lists the pictures.
   pages: () => [],
   menuPage: (site) => galleryPage(site.pictures),
-  unlisted: (site) => [picturePage(site.pictures)],
+  unlisted: (site) => [picturePage(site.pictures), everyPicturePage(site.pictures)],
 };

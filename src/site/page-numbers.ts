@@ -42,4 +42,5 @@ export const PAGES = {
   radio: 0x505,
   gallery: 0x600,
   picture: 0x601,
+  everyPicture: 0x602,
 } as const;

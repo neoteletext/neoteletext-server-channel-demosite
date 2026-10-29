@@ -47,7 +47,8 @@ The index is on 100; each area has a magazine, its menu on N00.
 - **Audio** (500): piano (501), drum machine (502), synth (503), tracker
   (504), a radio that streams its tunes (505).
 - **Gallery** (600): the pictures by group, each opened on 601 at its
-  three levels of teletext.
+  three levels of teletext; 602 holds every picture at every level, a
+  sub-page each, some 750 on one page.
 
 The code:
 

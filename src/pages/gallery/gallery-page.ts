@@ -21,6 +21,7 @@ export function galleryPage(pictures: readonly Picture[]): PageSpec {
             ["Index", PAGES.index],
             ["Services", PAGES.services],
             ["Audio", PAGES.audio],
+            ["Every picture", PAGES.everyPicture],
           ],
           hint: "Choose a picture: Enter opens it",
         },
