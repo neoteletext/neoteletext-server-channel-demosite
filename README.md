@@ -48,7 +48,8 @@ The index is on 100; each area has a magazine, its menu on N00.
   (504), a radio that streams its tunes (505).
 - **Gallery** (600): the pictures by group, each opened on 601 at its
   three levels of teletext; 602 holds every picture at every level, a
-  sub-page each, some 750 on one page.
+  sub-page each: 2,223 on one page for the 741 pictures live on 29
+  October 2026.
 
 The code:
 
