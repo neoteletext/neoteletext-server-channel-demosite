@@ -67,7 +67,10 @@ The code:
 `scripts/check.sh stage` runs every check: the type check with every
 strict option, Prettier, oxlint (type-aware, warnings fail), Knip and the
 tests. The git hooks (`core.hooksPath` is `.githooks`) run it on every
-commit, and on a push again on the Linux host.
+commit; a push of `livedevelopment`, where work happens, runs nothing the
+commit already passed, and only a push to `main`, the long integration
+step, runs it again on the Linux host. The day-to-day routine is
+`~/devel/neoteletext-common/DEVELOPMENT.md` section 9.
 
 ## Licence
 
