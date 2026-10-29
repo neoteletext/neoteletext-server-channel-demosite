@@ -5,6 +5,10 @@ the server's channel protocol (neoteletext-server-ts-protocol) and the
 component library (neoteletext-server-ts-ui-components), both released into
 `vendor/`. These rules add to `~/.claude/CLAUDE.md`.
 
+## Gates and the work branch
+
+@~/devel/neoteletext-common/gates.md
+
 ## Working on the code
 
 - **Always leave the code cleaner and better organised than you found
