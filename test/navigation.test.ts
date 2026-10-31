@@ -14,5 +14,5 @@ test("a click on the index's Games link goes to the games' menu", () => {
   const row = rowOf(rows, "Games");
   assert.ok(row !== undefined);
   harness.clickLeft(1, text(rows, row).indexOf("300"), row);
-  assert.deepEqual(harness.gotos(1), [PAGES.games]);
+  assert.deepEqual(harness.redirects(1), [PAGES.games]);
 });

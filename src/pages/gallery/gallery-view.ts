@@ -30,7 +30,7 @@ export class GalleryView extends Component<{ readonly pictures: readonly Picture
           onChoose: (index: number, session: number) => {
             const picture = group.pictures[index];
             if (picture !== undefined) {
-              this.services.goto(session, PAGES.picture, { picture: picture.name });
+              this.services.redirect(session, PAGES.picture, { picture: picture.name });
             }
           },
         }),

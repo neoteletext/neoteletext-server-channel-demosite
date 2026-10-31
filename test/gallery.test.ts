@@ -16,7 +16,7 @@ test("the gallery lists the picture, and Enter opens it on 601 at its three leve
   harness.join(1, PAGES.gallery);
   assert.ok(shows(harness.seen(1, PAGES.gallery).rows, "Prairie dog"));
   harness.press(1, Key.Enter);
-  assert.deepEqual(harness.gotos(1), [PAGES.picture]);
+  assert.deepEqual(harness.redirects(1), [PAGES.picture]);
   harness.open(1, PAGES.picture);
   // A viewer's copy is published only while it differs from everyone's, which shows the first picture too.
   const subPages = harness.ownPages(1, PAGES.picture) ?? harness.sharedPages(PAGES.picture);
