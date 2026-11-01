@@ -60,11 +60,11 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   {
     name: "Mandinka",
     set: "west-african",
-    own: "Mandinkakango",
-    headline: "Kayira dorong",
-    text: "Kori tanante? Tana te. Abaraka.",
+    own: "Mandi'nka kango",
+    headline: "",
+    text: "",
     letters: "Ñ Ŋ ñ ŋ",
-    source: "own",
+    source: "none",
   },
   {
     name: "Krio",

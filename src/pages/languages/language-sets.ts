@@ -4,12 +4,14 @@
 // A page's text is the opening of the Universal Declaration of Human Rights in
 // that language: its title as the headline, then Articles 1 and 3. Where a set
 // lacks a character the text is changed to the nearest it has, as TODO-1162
-// lists. A line break in `text` or `letters` is a Thai or Lao break between
-// words, which have no spaces to break at.
+// lists, and a language with no text of the Declaration to hand shows its name
+// and letters alone. CREDITS.md says where the texts came from. A line break
+// in `text` or `letters` is a Thai or Lao break between words, which have no
+// spaces to break at.
 
 /** Where a page's text came from. */
 type TextSource =
-  /** The UN's translation, from the UDHR in XML project. */
+  /** The UN's translation, from an XML transcription of it. */
   | "un"
   /** The UN's translation, read from the UN's own PDF. */
   | "un-pdf"
@@ -19,8 +21,8 @@ type TextSource =
   | "wikipedia"
   /** The UN's Cyrillic text put into the Latin alphabet, letter by letter: unverified. */
   | "transliterated"
-  /** Written for this page, not from any translation: unverified. */
-  | "own";
+  /** No text of the Declaration was found: the page has no headline or text. */
+  | "none";
 
 /** The sets by name, each with its seven-bit designation, group << 3 | option (the engine's EN 300 706 Table 32 and its own values). */
 export const SET_DESIGNATIONS = {

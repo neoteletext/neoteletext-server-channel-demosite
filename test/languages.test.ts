@@ -101,6 +101,14 @@ const FASTEXT_ROW = 24;
 /** The indexes: whole pages, since a click is only ever found on a page's first sub-page. */
 const INDEX_PAGES = [PAGES.languages, PAGES.moreLanguages] as const;
 
+/** The languages no text of the Declaration was found for. */
+const NO_DECLARATION = ["Mandinka"];
+
+/** The names of the languages `found` picks. */
+function without(found: (language: (typeof LANGUAGES)[number]) => boolean): string[] {
+  return LANGUAGES.filter((language) => found(language)).map((language) => language.name);
+}
+
 /** A row's text as sent. */
 function rowText(row: Parameters<typeof decodeRow>[0] | null): string {
   return row === null ? "" : String.fromCodePoint(...decodeRow(row));
@@ -189,5 +197,20 @@ test("a click on a language in the indexes goes to that language", () => {
   assert.deepEqual(
     clicked,
     EXPECTED.map(([page]) => page),
+  );
+});
+
+test("a page's text is the Declaration: a language without a text of it shows none, and none is written for it", () => {
+  assert.deepEqual(
+    without((language) => language.source === "none"),
+    NO_DECLARATION,
+  );
+  assert.deepEqual(
+    without((language) => language.text === ""),
+    NO_DECLARATION,
+  );
+  assert.deepEqual(
+    without((language) => language.source === "none" && language.headline !== ""),
+    [],
   );
 });
