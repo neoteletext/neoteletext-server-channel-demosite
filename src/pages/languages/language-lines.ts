@@ -2,7 +2,7 @@
 // attributes in front of each line. A row starts at column 0, so a line goes
 // with a stand-in for each attribute cell, which replaces them afterwards.
 
-import { Attribute, Colour, COLUMNS, textColour } from "neoteletext-server-ts-protocol";
+import { Attribute, Colour, COLUMNS, SPACE, textColour } from "neoteletext-server-ts-protocol";
 import type { Language, SetName } from "./language-sets.ts";
 
 /** A line's part of the page. */
@@ -28,6 +28,17 @@ export const STAND_INS: Readonly<Record<WrittenKind, number>> = { band: 0x31, he
 export const KINDS: readonly WrittenKind[] = ["band", "headline", "body", "letters"];
 /** ESC, which switches a row to the second G0 set (EN 300 706 clause 15.3). */
 export const ESC_CODE = 0x1b;
+/** What TTI's escape form adds to a control code (the engine's REQ-INP-013). */
+export const ESCAPE_OFFSET = 0x40;
+
+/** A row's codes as an OL line. */
+export function rowLine(number: number, codes: readonly number[]): string {
+  const text = codes
+    .map((code) => (code < SPACE ? String.fromCodePoint(ESC_CODE, code + ESCAPE_OFFSET) : String.fromCodePoint(code)))
+    .join("")
+    .trimEnd();
+  return `OL,${number},${text}`;
+}
 /** The Lao set has Lao digits at the digits' codes (WST90 Figure 33), and they are what is written to reach them. */
 const LAO_DIGIT_OFFSET = 0x0ed0 - 0x30;
 

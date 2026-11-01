@@ -77,6 +77,16 @@ export const SET_DESIGNATIONS = {
 /** A set's name. */
 export type SetName = keyof typeof SET_DESIGNATIONS;
 
+/** A designation's option bits, below its group. */
+const GROUP_SHIFT = 3;
+/** The groups of neoteletext's own sets, each with Latin English as its second G0 set, which ESC reaches. */
+const SECOND_LATIN_GROUPS: ReadonlySet<number> = new Set([0b0101, 0b0111, 0b1001, 0b1011, 0b1100]);
+
+/** Whether a page in `set` reaches Latin English with ESC. */
+export function hasSecondLatin(set: SetName): boolean {
+  return SECOND_LATIN_GROUPS.has(SET_DESIGNATIONS[set] >> GROUP_SHIFT);
+}
+
 /** One language's page. */
 export interface Language {
   /** Its name in English, for the index and the channel's contents. */

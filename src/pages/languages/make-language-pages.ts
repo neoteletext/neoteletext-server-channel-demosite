@@ -20,23 +20,31 @@ import { parseArgs } from "node:util";
 import { Colour, COLUMNS, pageText, readTtiPages, SPACE, textColour } from "neoteletext-server-ts-protocol";
 import { PAGES } from "../../site/page-numbers.ts";
 import { languageFile, languagePage, TTI_FOLDER } from "./language-files.ts";
-import { attributesOf, ESC_CODE, inputOf, KINDS, type Layout, layoutOf, type Line, linesOf, STAND_INS, type WrittenKind } from "./language-lines.ts";
-import { type Language, SET_DESIGNATIONS, type SetName } from "./language-sets.ts";
+import {
+  attributesOf,
+  ESC_CODE,
+  ESCAPE_OFFSET,
+  inputOf,
+  KINDS,
+  type Layout,
+  layoutOf,
+  type Line,
+  linesOf,
+  rowLine,
+  STAND_INS,
+  type WrittenKind,
+} from "./language-lines.ts";
+import { hasSecondLatin, type Language, SET_DESIGNATIONS, type SetName } from "./language-sets.ts";
 import { LANGUAGES } from "./language-table.ts";
 
-const GROUP_SHIFT = 3;
 const OPTION_MASK = 0b111;
 const DESIGNATION_MASK = 0x7f;
-/** The groups of neoteletext's own sets, each with Latin English as its second G0 set, which ESC reaches. */
-const SECOND_LATIN_GROUPS: ReadonlySet<number> = new Set([0b0101, 0b0111, 0b1001, 0b1011, 0b1100]);
 /** Table 4, triplet 1: the default G0 and G2 designation starts at bit 8. */
 const DESIGNATION_SHIFT = 7;
 /** A triplet's fields (EN 300 706 clause 12.3.1): address 6 bits, mode 5, data 7. */
 const MODE_SHIFT = 6;
 const DATA_SHIFT = 11;
 
-/** What TTI's escape form adds to a control code (the engine's REQ-INP-013). */
-const ESCAPE_OFFSET = 0x40;
 const FIRST_DISPLAY_ROW = 1;
 const FASTEXT_ROW = 24;
 /** The Fastext prompts' columns: each prompt's colour code, from where it starts. */
@@ -64,13 +72,6 @@ function rowCodes(text: string): number[] {
 }
 
 /** A row's codes as an OL line's text, in the escape form: every control code as ESC and the code plus the offset. */
-function rowText(codes: readonly number[]): string {
-  return codes
-    .map((code) => (code < SPACE ? String.fromCodePoint(ESC_CODE, code + ESCAPE_OFFSET) : String.fromCodePoint(code)))
-    .join("")
-    .trimEnd();
-}
-
 /** The neottx this run writes with. */
 function writer(neottx: string, scratch: string): (set: SetName, page: number, lines: readonly string[]) => string {
   const input = join(scratch, "page.txt");
@@ -116,7 +117,7 @@ function writtenLines(lines: readonly Line[]): readonly Line[] {
 
 /** A row of attribution: in the second G0 set's Latin letters, left to right on any page, since a row holds its cells in the order they are shown. */
 function attributionRow(text: string, place: number, layout: Layout, language: Language): number[] {
-  if (layout === "marked" || !SECOND_LATIN_GROUPS.has(SET_DESIGNATIONS[language.set] >> GROUP_SHIFT)) {
+  if (layout === "marked" || !hasSecondLatin(language.set)) {
     throw new Error(`${language.name}: its page cannot hold a row of attribution`);
   }
   const row = [...attributesOf("attribution", place, layout), ...ascii(text)];
@@ -185,7 +186,7 @@ function wordCodes(language: Language, place: number, write: Write): number[] {
 
 /** Row 24: the coloured keys' prompts, in Latin where the page's sets have it: the language before, the one after, the languages' index and the site's. */
 function promptRow(language: Language, place: number, write: Write): number[] {
-  const secondLatin = SECOND_LATIN_GROUPS.has(SET_DESIGNATIONS[language.set] >> GROUP_SHIFT);
+  const secondLatin = hasSecondLatin(language.set);
   const latinWord = language.set === "hebrew" ? HEBREW_INDEX_WORD : INDEX_WORD;
   const word = language.index === undefined ? ascii(latinWord) : wordCodes(language, place, write);
   const before = place === 0 ? PAGES.languages : languagePage(place - 1);
@@ -201,11 +202,6 @@ function promptRow(language: Language, place: number, write: Write): number[] {
   });
   row.push(textColour(Colour.Cyan), ...ascii(pageText(PAGES.index)));
   return row;
-}
-
-/** A row as an OL line. */
-function rowLine(number: number, codes: readonly number[]): string {
-  return `OL,${number},${rowText(codes)}`;
 }
 
 /** Whether a line of TTI is a display row's, not a packed line's. */

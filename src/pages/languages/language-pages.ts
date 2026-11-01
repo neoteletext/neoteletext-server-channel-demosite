@@ -1,12 +1,14 @@
 // The language pages, a page each from PAGES.firstLanguage: the ready-made
 // TTI that make-language-pages.ts writes, since a page's character set is
-// what the component library cannot choose. Each is one RawSubPage.
+// what the component library cannot choose, with a window of every character
+// of its sets (language-page.ts).
 
 import type { FastextLinks } from "neoteletext-server-ts-protocol";
-import { h, type PageSpec, RawSubPage } from "neoteletext-server-ts-ui-components";
+import { h, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { readSmall } from "../../pictures/read-small.ts";
 import { PAGES } from "../../site/page-numbers.ts";
 import { languageFile, languagePage } from "./language-files.ts";
+import { LanguagePage } from "./language-page.ts";
 import { LANGUAGES } from "./language-table.ts";
 
 /** A page of TTI with every enhancement packet is a few kilobytes. */
@@ -26,6 +28,10 @@ export function languagePages(): PageSpec[] {
     if (tti === undefined) {
       throw new Error(`the page of ${language.name} is missing: ${languageFile(place)}`);
     }
-    return { page: languagePage(place), title: language.name, root: () => h(RawSubPage, { tti, fastext: linksOf(place), index: PAGES.index }) };
+    return {
+      page: languagePage(place),
+      title: language.name,
+      root: () => h(LanguagePage, { tti, set: language.set, fastext: linksOf(place), index: PAGES.index }),
+    };
   });
 }
