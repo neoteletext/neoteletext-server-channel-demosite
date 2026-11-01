@@ -101,6 +101,8 @@ const FASTEXT_ROW = 24;
 /** The indexes: whole pages, since a click is only ever found on a page's first sub-page. */
 const INDEX_PAGES = [PAGES.languages, PAGES.moreLanguages] as const;
 
+/** Hebrew's page, whose set holds its letters at the small Latin letters' codes. */
+const HEBREW_PAGE = 0x849;
 /** The languages no text of the Declaration was found for. */
 const NO_DECLARATION = ["Mandinka"];
 
@@ -213,4 +215,11 @@ test("a page's text is the Declaration: a language without a text of it shows no
     without((language) => language.source === "none" && language.headline !== ""),
     [],
   );
+});
+
+test("the Hebrew page's index prompt is in the Latin capitals its set keeps", () => {
+  const { harness } = site(false);
+  harness.join(1, HEBREW_PAGE);
+  const [copy] = harness.channel.copy("channel", HEBREW_PAGE) ?? [];
+  assert.match(rowText(copy?.content.rows[FASTEXT_ROW] ?? null), /INDEX 820/u);
 });

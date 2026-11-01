@@ -47,6 +47,8 @@ const PROMPT_WIDTHS = [8, 8, 15] as const;
 const PROMPT_SIGNS = "-+0123456789";
 /** The word on a page whose sets have Latin letters. */
 const INDEX_WORD = "Index";
+/** The word on the Hebrew page: its letters are at the small Latin letters' codes and it has no second G0 set for ESC to reach, but it keeps the capitals. */
+const HEBREW_INDEX_WORD = "INDEX";
 
 /** A row's codes from an OL line's text, its escapes undone, padded to the row's width. */
 function rowCodes(text: string): number[] {
@@ -160,7 +162,8 @@ function wordCodes(language: Language, place: number, write: Write): number[] {
 /** Row 24: the coloured keys' prompts, in Latin where the page's sets have it: the language before, the one after, the languages' index and the site's. */
 function promptRow(language: Language, place: number, write: Write): number[] {
   const secondLatin = SECOND_LATIN_GROUPS.has(SET_DESIGNATIONS[language.set] >> GROUP_SHIFT);
-  const word = language.index === undefined ? ascii(INDEX_WORD) : wordCodes(language, place, write);
+  const latinWord = language.set === "hebrew" ? HEBREW_INDEX_WORD : INDEX_WORD;
+  const word = language.index === undefined ? ascii(latinWord) : wordCodes(language, place, write);
   const before = place === 0 ? PAGES.languages : languagePage(place - 1);
   const after = place === LANGUAGES.length - 1 ? PAGES.index : languagePage(place + 1);
   const prompts = [
