@@ -1,28 +1,26 @@
 PN,89200
 SC,0000
-PS,C080
+PS,C180
 PF,0,0
-OL,1,E]C
-OL,2,E]CJ`x`F`D
-OL,3,C       W  Y  R U
-OL,4,C}as`Nx`s@ s DsMxN|vABa@N
-OL,5,G     S   SU   S       Q
-OL,6,GBa@NesNB`BxNexFJ`M fFa
-OL,7,G  QSZ R         UR         U
-OL,8,Gxaerp`s@c@K`As N~xs fFa K`AxN
-OL,9,GZ      S  U  R R    ZSZW
-OL,10,GNDCBa@NBxa~xd}NH@Ca(INIHD)
-OL,11,G     Q              P P
-OL,12,G   S      T Z    V W XR
-OL,13,GfFaBBag@KdtA~vA}aJN~@~s@
-OL,14,G     SZ
-OL,15,Gc@K`AJ@vA.
-OL,16,G  W   W SU   W SU  SU   S
-OL,17,GMsL@KsL@BxNNdFAHDN BxNexFJ`M
-OL,18,GQ   Q          W
-OL,19,GfFa LD`B}vNbJc@~D.
-OL,20,F
-OL,21,Fs|LAtxHCN~{K@M}zuJEBqGFDyvI
+OL,1,E]CMYoruba
+OL,2,
+OL,3,
+OL,4,CIKEDE KARIAYE FUN @T[ [M[NIYAN
+OL,5,
+OL,6,GGbogbo eniyan ni a bi ni ominira; iyi
+OL,7,Gati `t{ k{{kan si d{gba. W{n ni `bun ti
+OL,8,Glaakaye ati ti `ri-{kan, o si y` ki w{n
+OL,9,Go maa huwa si ara w{n g`g` bi {m{ iya.
+OL,10,G@ni k{{kan lo ni `t{ lati wa laaye, `t{
+OL,11,Gsi ominira ati `t{ si aabo ara r`.
+OL,12,
+OL,13,F@ [ \ ` { |
 OL,24,[A-891   B+100   CIndex 820     F100
-OL,26,@lD@LOwpD@OOwqD@XOrtD@KOpVOtvD@FOlCC
-OL,28,@@HC`pCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@
+OL,26,@iD@GqzIrplD@AqdCrbHr`JrdMrbPrjSQ`Urm[qd
+OL,26,A]q`nD@HqrJqtLqpUrtXrtZqw\qteqtoD@AqpEQp
+OL,26,BGr}Jq}Kq}QqtTr}[r}_rtaQpcqzpD@BqpCrpEqp
+OL,26,CGqrIqpPQpRrtVqpZrw]qtcrtqD@ArwDrpHqzJqp
+OL,26,DMrtXRpZRp]rtcqterprD@CqtFq}Gq}MrwPrtRQp
+OL,26,ETr}Wrp\qp_rp`qpbqreQpgr}sD@BrtDqwFqtLqp
+OL,26,FPQpRr}UrtWqpXqpZqwaQpCCCCCC
+OL,28,@@\A`pCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@

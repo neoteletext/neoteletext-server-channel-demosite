@@ -39,7 +39,7 @@ All three were read on 1 November 2026. Each revision below is established and
 not assumed: the SHA-1 that Wikipedia gives for that revision equals the SHA-1
 of the wikitext as it was read.
 
-**Kabyle, page 863.** The article "Kabyle language",
+**Kabyle, page 850.** The article "Kabyle language",
 https://en.wikipedia.org/wiki/Kabyle_language, revision 1382739977 of
 30 October 2026, https://en.wikipedia.org/w/index.php?oldid=1382739977 (SHA-1
 46742fffb5c6ffe5cb12fec5b175d11fcaf72f80), read at 11:49 UTC. Taken from it:
@@ -47,7 +47,7 @@ Article 1 of the Declaration, as the article quotes it. Changed: the Greek
 letter `ε` is written `ɛ`, which the page's set has, and the space before a
 semicolon is removed.
 
-**Nuer, page 860.** The article "Nuer language",
+**Nuer, page 864.** The article "Nuer language",
 https://en.wikipedia.org/wiki/Nuer_language, revision 1362123989 of
 2 July 2026, https://en.wikipedia.org/w/index.php?oldid=1362123989 (SHA-1
 9af53469dcccd081e0e955d4460443b58d902a03), read at 11:49 UTC. Taken from it:
@@ -55,7 +55,7 @@ Article 1 of the Declaration, which the article cites from Omniglot,
 http://www.omniglot.com/writing/nuer.htm. Changed: `a̱` is written `a`, because
 the page's set cannot show it.
 
-**Sorani, page 887.** The article "بانگنامەی گەردوونیی مافەکانی مرۆڤ",
+**Sorani, page 877.** The article "بانگنامەی گەردوونیی مافەکانی مرۆڤ",
 https://ckb.wikipedia.org/wiki/بانگنامەی_گەردوونیی_مافەکانی_مرۆڤ, page 76024,
 revision 1459364 of 17 July 2025,
 https://ckb.wikipedia.org/w/index.php?oldid=1459364 (SHA-1
