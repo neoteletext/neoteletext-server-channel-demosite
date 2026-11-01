@@ -1,7 +1,7 @@
 // The language pages, a page each from PAGES.firstLanguage: the ready-made
 // TTI that make-language-pages.ts writes, since a page's character set is
-// what the component library cannot choose, with a window of every character
-// of its sets (language-page.ts).
+// what the component library cannot choose, with everything under its heading
+// in a window (language-page.ts).
 
 import type { FastextLinks } from "neoteletext-server-ts-protocol";
 import { h, type PageSpec } from "neoteletext-server-ts-ui-components";

@@ -53,7 +53,7 @@ The index is on 100; each area has a magazine, its menu on N00.
 - **Languages** (800, and 801 for the rest of the index): magazine 8 alone,
   a page in each language the engine has a set for, 802 to 873, each in its own character
   set, in alphabetical order, showing the Universal Declaration of Human
-  Rights (`CREDITS.md`) and a window of every character of the page's sets,
+  Rights (`CREDITS.md`) and a window holding everything under its heading, every character of the page's sets included,
   moved with the arrows, Page Up, Page Down, Home and End. They are
   ready-made TTI in `src/pages/languages/tti`, which
   `node src/pages/languages/make-language-pages.ts --neottx PATH` makes

@@ -1,12 +1,12 @@
 // A language page: its ready-made TTI (language-pages.ts, make-language-pages.ts)
-// and the window of every character of its sets (character-window.ts), whose
-// place is each viewer's own, moved with the arrows, Page Up, Page Down, Home
-// and End. The library's own scrolling components write English alone, and a
-// page given whole has no cells a wheel or a click can find.
+// with everything under its heading in a window (page-window.ts), whose place
+// is each viewer's own, moved with the arrows, Page Up, Page Down, Home and
+// End. The library's own scrolling components write English alone, and a page
+// given whole has no cells a wheel or a click can find.
 
 import type { FastextLinks } from "neoteletext-server-ts-protocol";
 import { type Child, Component, h, type KeyEvent, listStep, type PageNeeds, RawSubPage } from "neoteletext-server-ts-ui-components";
-import { lastTop, windowOf, withWindow } from "./character-window.ts";
+import { lastTop, ROWS_SHOWN, rowStep, withWindow } from "./page-window.ts";
 import type { SetName } from "./language-sets.ts";
 
 export interface LanguagePageProps {
@@ -36,13 +36,13 @@ export class LanguagePage extends Component<LanguagePageProps, LanguagePageState
 
   override onKey(event: KeyEvent): boolean {
     const { tti, set } = this.props;
-    const step = listStep(event, windowOf(tti).shown);
-    if (step === null) {
+    const moved = listStep(event, ROWS_SHOWN);
+    if (moved === null) {
       return false;
     }
-    const last = lastTop(tti, set);
-    const moved = Number.isFinite(step) ? this.state.top + step : step;
-    this.setState({ top: Math.max(0, Math.min(last, moved)) });
+    const step = rowStep(set);
+    const to = Number.isFinite(moved) ? this.state.top + Math.ceil(Math.abs(moved) / step) * step * Math.sign(moved) : moved;
+    this.setState({ top: Math.max(0, Math.min(lastTop(tti, set), to)) });
     return true;
   }
 }

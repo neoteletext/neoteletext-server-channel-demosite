@@ -31,13 +31,17 @@ export const ESC_CODE = 0x1b;
 /** What TTI's escape form adds to a control code (the engine's REQ-INP-013). */
 export const ESCAPE_OFFSET = 0x40;
 
-/** A row's codes as an OL line. */
-export function rowLine(number: number, codes: readonly number[]): string {
-  const text = codes
+/** A row's codes as an OL line's text. */
+export function rowText(codes: readonly number[]): string {
+  return codes
     .map((code) => (code < SPACE ? String.fromCodePoint(ESC_CODE, code + ESCAPE_OFFSET) : String.fromCodePoint(code)))
     .join("")
     .trimEnd();
-  return `OL,${number},${text}`;
+}
+
+/** A row's codes as an OL line. */
+export function rowLine(number: number, codes: readonly number[]): string {
+  return `OL,${number},${rowText(codes)}`;
 }
 /** The Lao set has Lao digits at the digits' codes (WST90 Figure 33), and they are what is written to reach them. */
 const LAO_DIGIT_OFFSET = 0x0ed0 - 0x30;

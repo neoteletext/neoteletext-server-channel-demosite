@@ -1,15 +1,15 @@
-// The window on each language page: every code of the page's sets can be
-// brought into view, and the keys move one viewer's window alone.
+// The window on each language page: all that is under the heading moves in it,
+// every code of the page's sets can be brought into view, and the keys move
+// one viewer's window alone.
 
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
 import { decodeRow, Key } from "neoteletext-server-ts-protocol";
-import { windowOf } from "../src/pages/languages/character-window.ts";
-import { languageFile, languagePage } from "../src/pages/languages/language-files.ts";
+import { languagePage } from "../src/pages/languages/language-files.ts";
 import { SET_DESIGNATIONS } from "../src/pages/languages/language-sets.ts";
 import { LANGUAGES } from "../src/pages/languages/language-table.ts";
+import { FIRST_ROW, ROWS_SHOWN } from "../src/pages/languages/page-window.ts";
 import { site } from "./site.ts";
 
 /** A code table's every position, 2/0 to 7/F. */
@@ -32,11 +32,6 @@ const SECOND_LATIN = new Set([0b0101, 0b0111, 0b1001, 0b1011, 0b1100]);
 
 type Harness = ReturnType<typeof site>["harness"];
 
-/** The TTI file of the language at `place`, which has no window. */
-function ttiOf(place: number): string {
-  return readFileSync(languageFile(place), "latin1");
-}
-
 function ascending(codes: Iterable<number>): number[] {
   return [...codes].toSorted((a, b) => a - b);
 }
@@ -45,9 +40,8 @@ function ascending(codes: Iterable<number>): number[] {
 function windowShown(harness: Harness, place: number): { rows: number[][]; supplementary: number[]; addresses: number[]; ended: boolean } {
   const page = languagePage(place);
   const [copy] = harness.channel.copy(1, page) ?? harness.channel.copy("channel", page) ?? [];
-  const { first, shown } = windowOf(ttiOf(place));
-  const rows = Array.from({ length: shown }, (_, at) => {
-    const row = copy?.content.rows[first + at] ?? null;
+  const rows = Array.from({ length: ROWS_SHOWN }, (_, at) => {
+    const row = copy?.content.rows[FIRST_ROW + at] ?? null;
     return row === null ? [] : [...decodeRow(row)];
   });
   const triplets = (copy?.content.enhancements ?? []).flatMap((packet) => packet.triplets);
@@ -118,4 +112,49 @@ test("the keys move a viewer's window and no other's, and stop at its ends", () 
   assert.notDeepEqual(harness.seen(1, page).rows, harness.seen(2, page).rows, "the other viewer's window has not moved");
   harness.press(1, Key.Home);
   assert.equal(shown(), top, "Home goes back");
+});
+
+/** The language at `name`'s place. */
+function placeOf(name: string): number {
+  return LANGUAGES.findIndex((language) => language.name === name);
+}
+
+/** The cell text of a window row, as a string. */
+function shownText(row: readonly number[]): string {
+  return String.fromCodePoint(...row.map((code) => Math.max(code, 0x20)));
+}
+
+test("the page's text moves in the window, its marks with it, and the heading stays", () => {
+  const { harness } = site(false);
+  const place = placeOf("Vietnamese");
+  const page = languagePage(place);
+  harness.join(1, page);
+  const rowsOf = (): number[][] => windowShown(harness, place).rows;
+  const heading = (): unknown => {
+    const [copy] = harness.channel.copy(1, page) ?? harness.channel.copy("channel", page) ?? [];
+    return copy?.content.rows[1];
+  };
+  const before = rowsOf();
+  const { addresses } = windowShown(harness, place);
+  const band = heading();
+  assert.ok(addresses.length > 0, "the page's text has marks");
+  harness.press(1, Key.Down);
+  harness.press(1, Key.Down);
+  const after = rowsOf();
+  assert.equal(shownText(after[0] ?? []), shownText(before[2] ?? []), "the text moved up two rows");
+  assert.deepEqual(heading(), band, "the heading stays");
+  const moved = windowShown(harness, place).addresses;
+  const firstMoved = ROW_ADDRESSES_FROM + FIRST_ROW;
+  const headingMarks = addresses.filter((address) => address < firstMoved);
+  const inView = addresses.filter((address) => address >= firstMoved + 2).map((address) => address - 2);
+  assert.deepEqual(moved.slice(0, headingMarks.length + inView.length), [...headingMarks, ...inView], "and its marks went with it");
+});
+
+test("a marked page's window moves by pairs of rows, keeping marks over their letters", () => {
+  const { harness } = site(false);
+  const place = placeOf("Thai");
+  harness.join(1, languagePage(place));
+  const before = windowShown(harness, place).rows;
+  harness.press(1, Key.Down);
+  assert.equal(shownText(windowShown(harness, place).rows[0] ?? []), shownText(before[2] ?? []));
 });
