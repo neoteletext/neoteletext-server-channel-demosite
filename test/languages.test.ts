@@ -98,6 +98,13 @@ const DESIGNATION_MASK = 0x7f;
 const OPTION_MASK = 0b111;
 /** The row of the coloured keys' prompts. */
 const FASTEXT_ROW = 24;
+/** The indexes: whole pages, since a click is only ever found on a page's first sub-page. */
+const INDEX_PAGES = [PAGES.languages, PAGES.moreLanguages] as const;
+
+/** A row's text as sent. */
+function rowText(row: Parameters<typeof decodeRow>[0] | null): string {
+  return row === null ? "" : String.fromCodePoint(...decodeRow(row));
+}
 
 /** The page's own designation, from its packet X/28/0. */
 function designationOf(harness: ReturnType<typeof site>["harness"], page: number): number | undefined {
@@ -148,13 +155,39 @@ test("every language page shows row 24 and links back to the languages' index an
   }
 });
 
-test("the languages' index lists every language with its page, over its sub-pages", () => {
+test("the languages' indexes list every language with its page, and hold no sub-pages", () => {
   const { harness } = site(false);
-  harness.join(1, PAGES.languages);
-  const copies = harness.channel.copy("channel", PAGES.languages) ?? [];
-  const shown = copies.flatMap(({ content }) => content.rows.map((row) => (row === null ? "" : String.fromCodePoint(...decodeRow(row))))).join("\n");
-  assert.ok(copies.length > 1);
+  const shown = INDEX_PAGES.flatMap((index) => {
+    harness.join(1, index);
+    const copies = harness.channel.copy("channel", index) ?? [];
+    assert.equal(copies.length, 1);
+    return copies.flatMap(({ content }) => content.rows.map(rowText));
+  }).join("\n");
   for (const [page, name] of EXPECTED) {
     assert.match(shown, new RegExp(String.raw`${page.toString(16)}.${name}`, "u"));
   }
+});
+
+test("a click on a language in the indexes goes to that language", () => {
+  const { harness } = site(false);
+  const clicked = EXPECTED.map(([page], place) => {
+    const viewer = place + 1;
+    const wanted = page.toString(16);
+    for (const index of INDEX_PAGES) {
+      harness.join(viewer, index);
+      for (const { content } of harness.channel.copy("channel", index) ?? []) {
+        const rows = content.rows.map(rowText);
+        const row = rows.findIndex((text, number) => number > 0 && text.includes(wanted));
+        if (row !== -1) {
+          harness.clickLeft(viewer, rows[row]?.indexOf(wanted) ?? 0, row);
+          return harness.redirects(viewer).at(-1);
+        }
+      }
+    }
+    return null;
+  });
+  assert.deepEqual(
+    clicked,
+    EXPECTED.map(([page]) => page),
+  );
 });

@@ -48,4 +48,6 @@ export const PAGES = {
   /** The languages' index, then a page each: 821, 822, ... (languages/language-files.ts). */
   languages: 0x820,
   firstLanguage: 0x821,
+  /** The index's second page. A page and not a sub-page, since a click is only ever found on a page's first sub-page. */
+  moreLanguages: 0x893,
 } as const;
