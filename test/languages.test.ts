@@ -103,6 +103,15 @@ const INDEX_PAGES = [PAGES.languages, PAGES.moreLanguages] as const;
 
 /** Hebrew's page, whose set holds its letters at the small Latin letters' codes. */
 const HEBREW_PAGE = 0x849;
+/** The pages whose text is Wikipedia's, each with the revision it came from: CC BY-SA 4.0 section 3(a)(1) asks for these on the page. */
+const WIKIPEDIA_PAGES = [
+  [0x860, "en.wikipedia.org/?oldid=1362123989"],
+  [0x863, "en.wikipedia.org/?oldid=1382739977"],
+  [0x887, "ckb.wikipedia.org/?oldid=1459364"],
+] as const;
+/** The credit, the changes and the licence, as the page shows them. */
+const WIKIPEDIA_CREDIT = "Text: Wikipedia, changed. CC BY-SA 4.0";
+const LICENCE_ADDRESS = "creativecommons.org/licenses/by-sa/4.0";
 /** The languages no text of the Declaration was found for. */
 const NO_DECLARATION = ["Mandinka"];
 
@@ -222,4 +231,23 @@ test("the Hebrew page's index prompt is in the Latin capitals its set keeps", ()
   harness.join(1, HEBREW_PAGE);
   const [copy] = harness.channel.copy("channel", HEBREW_PAGE) ?? [];
   assert.match(rowText(copy?.content.rows[FASTEXT_ROW] ?? null), /INDEX 820/u);
+});
+
+test("each page of Wikipedia's text credits it, with its revision and licence, and no other page does", () => {
+  const { harness } = site(false);
+  const credited = EXPECTED.flatMap(([page]) => {
+    harness.join(1, page);
+    const [copy] = harness.channel.copy("channel", page) ?? [];
+    const shown = copy?.content.rows.map(rowText).join("\n") ?? "";
+    const article = WIKIPEDIA_PAGES.find(([wikipedia]) => wikipedia === page)?.[1];
+    if (shown.includes(WIKIPEDIA_CREDIT) || shown.includes(LICENCE_ADDRESS) || shown.includes("wikipedia.org")) {
+      assert.ok(shown.includes(WIKIPEDIA_CREDIT) && shown.includes(LICENCE_ADDRESS) && article !== undefined && shown.includes(article), page.toString(16));
+      return [page];
+    }
+    return [];
+  });
+  assert.deepEqual(
+    credited,
+    WIKIPEDIA_PAGES.map(([page]) => page),
+  );
 });

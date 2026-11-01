@@ -89,6 +89,8 @@ export interface Language {
   /** The alphabet's special letters. */
   readonly letters: string;
   readonly source: TextSource;
+  /** The address of the revision its text came from, on a page of Wikipedia's text: Latin letters, short enough for a row. */
+  readonly article?: string;
   /** The word for an index, on a page whose sets have no Latin letters for one. */
   readonly index?: string;
 }

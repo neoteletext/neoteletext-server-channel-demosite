@@ -20,7 +20,7 @@ import { parseArgs } from "node:util";
 import { Colour, COLUMNS, pageText, readTtiPages, SPACE, textColour } from "neoteletext-server-ts-protocol";
 import { PAGES } from "../../site/page-numbers.ts";
 import { languageFile, languagePage, TTI_FOLDER } from "./language-files.ts";
-import { attributesOf, inputOf, KINDS, type Kind, type Layout, layoutOf, type Line, linesOf, STAND_INS } from "./language-lines.ts";
+import { attributesOf, ESC_CODE, inputOf, KINDS, type Layout, layoutOf, type Line, linesOf, STAND_INS, type WrittenKind } from "./language-lines.ts";
 import { type Language, SET_DESIGNATIONS, type SetName } from "./language-sets.ts";
 import { LANGUAGES } from "./language-table.ts";
 
@@ -35,8 +35,6 @@ const DESIGNATION_SHIFT = 7;
 const MODE_SHIFT = 6;
 const DATA_SHIFT = 11;
 
-/** ESC, which switches a row to the second G0 set (EN 300 706 clause 15.3). */
-const ESC_CODE = 0x1b;
 /** What TTI's escape form adds to a control code (the engine's REQ-INP-013). */
 const ESCAPE_OFFSET = 0x40;
 const FIRST_DISPLAY_ROW = 1;
@@ -106,6 +104,37 @@ function expectLead(row: readonly number[] | undefined, wanted: number, cells: n
   }
 }
 
+/** The codes of ASCII text. */
+function ascii(text: string): number[] {
+  return Array.from(text, (character) => character.codePointAt(0) ?? SPACE);
+}
+
+/** The lines `neottx write-text` is given: it drops blank lines at the end, so what stands after the last line it writes is left out, and `addAttribution` places it. */
+function writtenLines(lines: readonly Line[]): readonly Line[] {
+  return lines.slice(0, lines.findLastIndex((line) => line.kind !== null && line.kind !== "attribution") + 1);
+}
+
+/** A row of attribution: in the second G0 set's Latin letters, left to right on any page, since a row holds its cells in the order they are shown. */
+function attributionRow(text: string, place: number, layout: Layout, language: Language): number[] {
+  if (layout === "marked" || !SECOND_LATIN_GROUPS.has(SET_DESIGNATIONS[language.set] >> GROUP_SHIFT)) {
+    throw new Error(`${language.name}: its page cannot hold a row of attribution`);
+  }
+  const row = [...attributesOf("attribution", place, layout), ...ascii(text)];
+  if (row.length > COLUMNS) {
+    throw new Error(`${language.name}: an attribution does not fit a row: ${text}`);
+  }
+  return row;
+}
+
+/** Places the rows of attribution, each where `lines` puts it. */
+function addAttribution(rows: Map<number, number[]>, lines: readonly Line[], place: number, layout: Layout, language: Language): void {
+  lines.forEach((line, index) => {
+    if (line.kind === "attribution") {
+      rows.set(index + FIRST_DISPLAY_ROW, attributionRow(line.text, place, layout, language));
+    }
+  });
+}
+
 /** Puts the attributes on a left-to-right or right-to-left page, whose lines are its rows. */
 function colourRows(rows: Map<number, number[]>, lines: readonly Line[], place: number, language: Language, layout: Layout): void {
   if (Math.max(...rows.keys()) !== lines.length) {
@@ -113,7 +142,7 @@ function colourRows(rows: Map<number, number[]>, lines: readonly Line[], place: 
   }
   lines.forEach((line, index) => {
     const row = rows.get(index + FIRST_DISPLAY_ROW);
-    if (line.kind === null || row === undefined) {
+    if (line.kind === null || line.kind === "attribution" || row === undefined) {
       return;
     }
     const attributes = attributesOf(line.kind, place, layout);
@@ -130,7 +159,7 @@ function colourMarkedRows(rows: Map<number, number[]>, lines: readonly Line[], p
   if (letterRows.length !== lines.length) {
     throw new Error(`${language.name}: ${lines.length} lines became ${letterRows.length} rows of letters`);
   }
-  let kept: Kind | undefined;
+  let kept: WrittenKind | undefined;
   for (const number of numbers.toReversed()) {
     const row = rows.get(number) ?? [];
     const lead = row[0] ?? SPACE;
@@ -140,11 +169,6 @@ function colourMarkedRows(rows: Map<number, number[]>, lines: readonly Line[], p
     expectLead(row, stands.has(lead) ? STAND_INS[kind] : SPACE, attributes.length, language.name);
     row.splice(0, attributes.length, ...attributes);
   }
-}
-
-/** The codes of ASCII text. */
-function ascii(text: string): number[] {
-  return Array.from(text, (character) => character.codePointAt(0) ?? SPACE);
 }
 
 /** The codes of the language's own word for an index, in a set whose signs for the prompts must have their ASCII codes, or the prompts would not read. */
@@ -212,17 +236,19 @@ function expectDesignation(text: string, language: Language): void {
 function makePage(language: Language, place: number, write: Write): string {
   const layout = layoutOf(language.set);
   const lines = linesOf(language, place, layout);
+  const toWrite = writtenLines(lines);
   const written = write(
     language.set,
     languagePage(place),
-    lines.map((line) => inputOf(line, place, layout, language.set)),
+    toWrite.map((line) => inputOf(line, place, layout, language.set)),
   );
   const rows = displayRows(written);
   if (layout === "marked") {
-    colourMarkedRows(rows, lines, place, language);
+    colourMarkedRows(rows, toWrite, place, language);
   } else {
-    colourRows(rows, lines, place, language, layout);
+    colourRows(rows, toWrite, place, language, layout);
   }
+  addAttribution(rows, lines, place, layout, language);
   const text = finished(written, rows, promptRow(language, place, write));
   expectDesignation(text, language);
   return text;

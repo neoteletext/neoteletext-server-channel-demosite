@@ -101,6 +101,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
     text: "Naath dial diethɛ kɛ a lɔr kä päärkɛ kɛ ciaŋ malä a mäni cuŋkiɛn. Tekɛ kɛ car kɛnɛ nhök ti de lät kɛ raan kɛ dämaan a gɔa.",
     letters: "Ä Ɛ Ë Ɣ Ï Ŋ Ɔ Ö ä ɛ ë ɣ ï ŋ ɔ ö",
     source: "wikipedia",
+    article: "en.wikipedia.org/?oldid=1362123989",
   },
   {
     name: "Fon",
@@ -128,6 +129,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
     text: "Akk imdanen llulen-d d illeliyen d imsawiyen deg ttart d yizerfan. Sɛan taɣẓint d lfeqqa; ilaq ad myiɛawnen gar-asen deg ṛṛuḥ n tegmatt.",
     letters: "Č Ḍ Ɛ Ǧ Ɣ Ḥ Ṛ Ṣ Ṭ Ẓ č ḍ ɛ ǧ ɣ ḥ ṛ ṣ ṭ ẓ",
     source: "wikipedia",
+    article: "en.wikipedia.org/?oldid=1382739977",
   },
   {
     name: "Tamazight",
