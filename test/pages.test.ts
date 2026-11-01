@@ -29,7 +29,7 @@ test("the index lists every area by its menu page", () => {
   const { rows } = harness.seen(1, PAGES.index);
   const shown = Array.from({ length: rows.length }, (_, row) => text(rows, row)).join("\n");
   // A link is its page number, the colour of its label, then the label.
-  for (const link of [/110.Services/u, /200.Interactive/u, /300.Games/u, /400.Adventure/u, /500.Audio/u, /600.Gallery/u]) {
+  for (const link of [/110.Services/u, /200.Interactive/u, /300.Games/u, /400.Adventure/u, /500.Audio/u, /600.Gallery/u, /820.Languages/u]) {
     assert.match(shown, link);
   }
 });
