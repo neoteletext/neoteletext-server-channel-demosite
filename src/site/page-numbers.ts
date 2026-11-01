@@ -2,8 +2,8 @@
 // server in hex: the page keyed 1 0 1 is 0x101. Each area has a magazine
 // of its own, its menu on N00 (the services' on 110, under the index):
 // services 1, interactive 2, games 3, adventure 4, audio 5, gallery 6.
-// The languages are on 820 up, the same numbers as the UI components demo,
-// whose magazine 8 holds pages below them.
+// Magazine 8 is the languages and nothing else, on the same numbers as the UI
+// components demo's.
 
 export const PAGES = {
   index: 0x100,
@@ -45,9 +45,9 @@ export const PAGES = {
   gallery: 0x600,
   picture: 0x601,
   everyPicture: 0x602,
-  /** The languages' index, then a page each: 821, 822, ... (languages/language-files.ts). */
-  languages: 0x820,
-  firstLanguage: 0x821,
-  /** The index's second page. A page and not a sub-page, since a click is only ever found on a page's first sub-page. */
-  moreLanguages: 0x893,
+  /** The languages' index, on magazine 8's first page; its second page: a page and not a sub-page, since a click is only ever found on a page's first sub-page. */
+  languages: 0x800,
+  moreLanguages: 0x801,
+  /** Then a page each, in alphabetical order: 802, 803, ... (languages/language-files.ts). */
+  firstLanguage: 0x802,
 } as const;

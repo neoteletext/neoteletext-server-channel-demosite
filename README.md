@@ -50,8 +50,8 @@ The index is on 100; each area has a magazine, its menu on N00.
   three levels of teletext; 602 holds every picture at every level, a
   sub-page each: 2,223 on one page for the 741 pictures live on 29
   October 2026.
-- **Languages** (820, and 893 for the rest of the index): a page in each
-  language the engine has a set for, 821 to 892, each in its own character
+- **Languages** (800, and 801 for the rest of the index): magazine 8 alone,
+  a page in each language the engine has a set for, 802 to 873, each in its own character
   set, in alphabetical order, showing the Universal Declaration of Human
   Rights (`CREDITS.md`) and a window of every character of the page's sets,
   moved with the arrows, Page Up, Page Down, Home and End. They are
