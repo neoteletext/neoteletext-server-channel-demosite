@@ -17,6 +17,6 @@
   },
   "dependencies": {
     "neoteletext-server-ts-protocol": "file:vendor/neoteletext-server-ts-protocol-8.0.0.tgz",
-    "neoteletext-server-ts-ui-components": "file:vendor/neoteletext-server-ts-ui-components-15.0.0.tgz"
+    "neoteletext-server-ts-ui-components": "file:vendor/neoteletext-server-ts-ui-components-15.1.0.tgz"
   }
 }
