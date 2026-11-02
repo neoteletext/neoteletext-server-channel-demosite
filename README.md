@@ -77,7 +77,7 @@ The code:
 `scripts/check.sh stage` runs every check: the type check with every
 strict option, Prettier, oxlint (type-aware, warnings fail), Knip and the
 tests. The git hooks (`core.hooksPath` is `.githooks`) run the gates;
-`~/devel/neoteletext-common/gates.md` says how the gates and the work branch `livedevelopment` work.
+`~/devel/neoteletext-common/DEVELOPMENT.md` section 9 says how the gates and the work branch `livedevelopment` work.
 
 ## Licence
 
