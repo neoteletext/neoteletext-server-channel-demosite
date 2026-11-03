@@ -42,12 +42,14 @@ class GuestbookView extends Component<{ readonly book: Guestbook }> {
         },
       }),
       // The newest first, each on a line of its own: its writer in yellow, what they said under it.
+      // A message is the viewer's own words, so it is text from outside the program (DEC-2326):
+      // a character its language cannot show becomes a stand-in rather than refusing the page.
       ...book.entries
         .toReversed()
         .slice(0, SHOWN)
         .map((entry, place) => [
           h(Text, { key: `name${place}`, text: entry.name, foreground: Colour.Yellow }),
-          h(Text, { key: `message${place}`, text: `  ${entry.message}` }),
+          h(Text, { key: `message${place}`, text: `  ${entry.message}`, outside: true }),
         ]),
     ];
   }
