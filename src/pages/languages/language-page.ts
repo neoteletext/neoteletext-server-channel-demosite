@@ -18,7 +18,7 @@ import {
   ENGLISH,
   Frame,
   h,
-  lineRows,
+  oneLineRows,
   type Prompts,
   ScrollView,
   Text,
@@ -125,7 +125,7 @@ export class LanguagePage extends Component<LanguagePageProps> {
     const { entry, background, foreground, prompts, index } = this.props;
     // A title band in Thai or Lao takes a row more, its title on the middle of three.
     const attribution = attributionOf(entry);
-    const shown = BODY_ROWS - Math.max(0, lineRows(this.language) - BAND_ROWS) - attribution.length;
+    const shown = BODY_ROWS - Math.max(0, oneLineRows(this.language) - BAND_ROWS) - attribution.length;
     return h(
       Frame,
       { title: entry.own, background, foreground, prompts, index },

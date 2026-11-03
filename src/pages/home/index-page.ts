@@ -1,7 +1,5 @@
 // Page 100, the index: what this is, the page that chooses the viewer's
-// language, and every area (About is on the services' menu). The heading and the ticker are samples:
-// in the viewer's language, its name in itself and the Declaration's
-// sentences (REQ-2218 item 2).
+// language, and every area (About is on the services' menu).
 
 import { Colour } from "neoteletext-server-ts-protocol";
 import { type Child, Clock, Columns, Component, DoubleHeight, h, PageLink, type PageSpec, Rows, Ticker } from "neoteletext-server-ts-ui-components";
@@ -10,7 +8,6 @@ import { PageMenu } from "../../parts/page-menu.ts";
 import type { Area } from "../../site/area.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";
-import { samplerFor } from "../languages/sample-text.ts";
 
 const TICKER_ITEMS = [
   "Every page here is drawn by the component library",
@@ -29,21 +26,14 @@ const LANGUAGE_LINK_CELLS = 14;
 
 class IndexBody extends Component<{ readonly areas: readonly Area[] }> {
   override render(): Child {
-    const sampler = samplerFor(this.services);
     return h(
       Rows,
       {},
-      h(
-        Columns,
-        { widths: [null, CLOCK_CELLS] },
-        h(DoubleHeight, { text: sampler.text("What teletext can be", (sample) => sample.own), foreground: Colour.Yellow, ...sampler.display }),
-        h(Clock, { seconds: true }),
-      ),
+      h(Columns, { widths: [null, CLOCK_CELLS] }, h(DoubleHeight, { text: "What teletext can be", foreground: Colour.Yellow }), h(Clock, { seconds: true })),
       h(
         Columns,
         { widths: [null, LANGUAGE_LINK_CELLS] },
-        // A ticker is one row: Thai and Lao, whose line takes three, keep the English.
-        h(Ticker, { items: sampler.controlList(TICKER_ITEMS, (sample) => sample.sentences), everyMs: TICKER_MS, ...sampler.control }),
+        h(Ticker, { items: TICKER_ITEMS, everyMs: TICKER_MS }),
         h(PageLink, { page: PAGES.chooseLanguage, label: "Language", foreground: Colour.Yellow }),
       ),
       h(PageMenu, { entries: this.props.areas.map((area) => ({ page: area.menu, label: area.name, about: area.about })) }),

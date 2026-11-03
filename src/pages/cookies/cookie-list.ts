@@ -4,7 +4,7 @@
 // they are not here.
 
 import { Colour } from "neoteletext-server-ts-protocol";
-import { Button, type Child, ChoiceList, Component, Gap, h, Paragraph, Rows } from "neoteletext-server-ts-ui-components";
+import { Button, type Child, ChoiceList, Component, ENGLISH, Gap, h, Paragraph, Rows } from "neoteletext-server-ts-ui-components";
 import { SITE_WIDE, shown } from "./cookie-names.ts";
 
 /** The rows the list shows; the rest scroll. */
@@ -35,6 +35,8 @@ export class CookieList extends Component {
         autoFocus: true,
         empty: "No cookies",
         itemKey: ([name]) => name,
+        // Names and values are what the browser holds, read as they are written, never as the language's stand-in.
+        language: ENGLISH,
         text: ([name, value]) => `${shown(name)}=${shown(value)}`,
         onChoose: (index, session) => {
           const chosen = cookies[index];

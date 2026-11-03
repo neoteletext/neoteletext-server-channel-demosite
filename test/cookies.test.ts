@@ -83,7 +83,8 @@ test("the cookie list shows the viewer's cookies, the language cookie included, 
   assert.deepEqual(cookiesSet(harness.sent, 1), [["language", "", 0]]);
   const after = runsText(contentOf(harness, 1, PAGES.cookieList));
   assert.doesNotMatch(after, /language=ru/u);
-  assert.match(after, /English/u, "removing the language cookie puts the site back in English");
+  assert.equal(contentOf(harness, 1, PAGES.cookieList)?.language ?? "en", "en", "removing the language cookie puts the site back in English");
+  assert.match(after, /Your cookies/u);
 });
 
 test("a cookie's value is shown as printable ASCII alone, whatever the viewer sent", () => {

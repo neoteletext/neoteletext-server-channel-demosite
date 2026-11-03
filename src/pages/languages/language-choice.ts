@@ -72,7 +72,7 @@ export class LanguageChoice extends Component<LanguageChoiceProps> {
       Rows,
       {},
       h(Paragraph, {
-        text: "Choose a language for every page's samples. It is kept in a cookie.",
+        text: "Choose the language every page is drawn in. It is kept in a cookie.",
         foreground: Colour.Cyan,
         lines: 2,
       }),

@@ -63,9 +63,13 @@ The index is on 100; each area has a magazine, its menu on N00.
   End, the wheel and the bar.
 - **One site in every language**: 899 chooses your language, kept in the
   `language` cookie (899 with `?language=ru` chooses Russian and goes to
-  the index). Every other page is then drawn for you with its title
-  naming your language and its samples (the index's heading and ticker)
-  in it, from the language pages' own text (`src/pages/languages/sample-text.ts`).
+  the index). Every page is then drawn in your language, its words drawn
+  as text of that language taken from its language page, the Universal
+  Declaration of Human Rights (`src/pages/languages/sample-text.ts`, the
+  library's stand-in text); page numbers and the coloured keys' prompts
+  stay as they are, and 800, 801 and 899 stay English. The language and
+  cookie files are shared word for word with the UI components demo;
+  `test/shared-files.test.ts` fails when they differ.
 
 The code:
 

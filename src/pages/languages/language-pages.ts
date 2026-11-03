@@ -2,7 +2,7 @@
 // language (language-page.ts), and the page that chooses the viewer's
 // language for the rest of the site (language-choice.ts).
 
-import { h, type PageSpec, type Prompts } from "neoteletext-server-ts-ui-components";
+import { ENGLISH, h, type PageSpec, type Prompts } from "neoteletext-server-ts-ui-components";
 import { frame } from "../../parts/frame.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";
@@ -45,6 +45,10 @@ export function languageChoicePage(): PageSpec {
   return {
     page: PAGES.chooseLanguage,
     title: "Choose a language",
+    // The page that chooses a language reads the same whichever is chosen: in English (DEC-2233).
+    language: ENGLISH,
+    // It reads and sets each viewer's own language cookie: a copy of the page each.
+    perViewer: true,
     root: (params) =>
       frame(
         {

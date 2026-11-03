@@ -5,6 +5,7 @@ import { join } from "node:path";
 import type { SubPageContent } from "neoteletext-server-ts-protocol";
 import { Harness, fakeOpus } from "neoteletext-server-ts-protocol/testing";
 import { ComponentChannel, type PageSpec } from "neoteletext-server-ts-ui-components";
+import { standInText } from "../src/pages/languages/sample-text.ts";
 import { pages } from "../src/pages.ts";
 import { loadPictures } from "../src/pictures/load-pictures.ts";
 import type { Picture } from "../src/pictures/picture.ts";
@@ -19,7 +20,7 @@ const STARTED = Date.UTC(2026, 9, 27);
 /** The site with `pictures`, and its pages. */
 export function siteOf(pictures: readonly Picture[]): { harness: Harness; specs: PageSpec[] } {
   const specs = pages(makeSite(pictures));
-  return { harness: new Harness([new ComponentChannel(specs, { opus: fakeOpus() })], { epochMs: STARTED }), specs };
+  return { harness: new Harness([new ComponentChannel(specs, { opus: fakeOpus(), standIn: standInText })], { epochMs: STARTED }), specs };
 }
 
 /** The site with the test's pictures, or none, and its pages; its sounds encoded by the protocol's fake encoder, which runs nothing. */

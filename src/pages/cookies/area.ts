@@ -32,6 +32,8 @@ export const COOKIE_AREA: Area = {
       spec: {
         page,
         title,
+        // Each viewer's own cookies: a copy of the page each.
+        perViewer: true,
         root: () => frame({ look: LOOKS.cookies, title, prompts: areaPrompts(["Cookies", PAGES.cookies], ["Your cookies", PAGES.cookieList]) }, h(body, {})),
       },
     })),
