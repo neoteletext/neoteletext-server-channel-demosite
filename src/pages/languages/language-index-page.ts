@@ -30,8 +30,8 @@ class LanguageIndex extends Component<LanguageIndexProps> {
       {
         look: LOOKS.languages,
         title,
-        prompts: [["Index", PAGES.index], other, ["First", languagePage(0)]],
-        hint: "Key a language's page, or click it",
+        prompts: [["Index", PAGES.index], other, ["First", languagePage(0)], ["Choose", PAGES.chooseLanguage]],
+        hint: "Key a language's page, or click it; 899 chooses yours",
       },
       h(Grid, { columns: INDEX_COLUMNS }, ...links),
     );

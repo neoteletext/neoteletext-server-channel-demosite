@@ -1,9 +1,9 @@
 // Where every page is. A page is keyed in decimal and numbered by the
 // server in hex: the page keyed 1 0 1 is 0x101. Each area has a magazine
 // of its own, its menu on N00 (the services' on 110, under the index):
-// services 1, interactive 2, games 3, adventure 4, audio 5, gallery 6.
-// Magazine 8 is the languages and nothing else, on the same numbers as the UI
-// components demo's.
+// services 1, interactive 2, games 3, adventure 4, audio 5, gallery 6,
+// cookies 7. Magazine 8 is the languages and nothing else, on the same
+// numbers as the UI components demo's.
 
 export const PAGES = {
   index: 0x100,
@@ -45,9 +45,18 @@ export const PAGES = {
   gallery: 0x600,
   picture: 0x601,
   everyPicture: 0x602,
+  /** The cookies' menu, then a page for each thing a cookie does (pages/cookies). */
+  cookies: 0x700,
+  visits: 0x701,
+  lifetimes: 0x702,
+  minute: 0x703,
+  cookieList: 0x704,
+  attributes: 0x705,
   /** The languages' index, on magazine 8's first page; its second page: a page and not a sub-page, since a click is only ever found on a page's first sub-page. */
   languages: 0x800,
   moreLanguages: 0x801,
   /** Then a page each, in alphabetical order: 802, 803, ... (languages/language-files.ts). */
   firstLanguage: 0x802,
+  /** The page that chooses the viewer's language for the whole site, after the languages' last. */
+  chooseLanguage: 0x899,
 } as const;

@@ -1,112 +1,108 @@
 // The language pages: every language the engine has a set for has its page,
-// and each page designates its set. The list here is written out rather than
+// each page is in its language, a heading over a scrolling view of its
+// text and letters (REQ-2155). The list here is written out rather than
 // read from the table, so that a language dropped from the table fails too.
 
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { decodeRow } from "neoteletext-server-ts-protocol";
+import { decodeRow, Key, type LanguageTag } from "neoteletext-server-ts-protocol";
 import { SET_DESIGNATIONS } from "../src/pages/languages/language-sets.ts";
 import { LANGUAGES } from "../src/pages/languages/language-table.ts";
 import { PAGES } from "../src/site/page-numbers.ts";
-import { site } from "./site.ts";
+import { contentOf, runsText, site } from "./site.ts";
 
-/** Each page, its language and its set's designation, group and option. */
-const EXPECTED: readonly (readonly [page: number, name: string, designation: number])[] = [
-  [0x802, "Akan", 0b0101_001],
-  [0x803, "Arabic", 0b1001_111],
-  [0x804, "Arabic T44", 0b1000_111],
-  [0x805, "Armenian", 0b1011_001],
-  [0x806, "Azerbaijani", 0b0101_100],
-  [0x807, "Balochi", 0b1001_110],
-  [0x808, "Bambara", 0b0101_001],
-  [0x809, "Belarusian", 0b0111_001],
-  [0x810, "Bulgarian", 0b0100_100],
-  [0x811, "Croatian", 0b0011_101],
-  [0x812, "Czech", 0b0000_110],
-  [0x813, "Dari", 0b1001_000],
-  [0x814, "Dinka", 0b0101_001],
-  [0x815, "Dyula", 0b0101_001],
-  [0x816, "English", 0b0000_000],
-  [0x817, "Estonian", 0b0100_010],
-  [0x818, "Ewe", 0b0101_010],
-  [0x819, "Finnish", 0b0000_010],
-  [0x820, "Fon", 0b0101_001],
-  [0x821, "French", 0b0000_100],
-  [0x822, "Fula", 0b0101_000],
-  [0x823, "Georgian", 0b1011_000],
-  [0x824, "German", 0b0000_001],
-  [0x825, "Greek", 0b0110_111],
-  [0x826, "Hausa", 0b0101_000],
-  [0x827, "Hebrew", 0b1010_101],
-  [0x828, "Hungarian", 0b0000_010],
-  [0x829, "Igbo", 0b0101_110],
-  [0x830, "Indonesian", 0b0000_000],
-  [0x831, "Italian", 0b0000_011],
-  [0x832, "Japanese", 0b1101_001],
-  [0x833, "Japanese Romaji", 0b1101_000],
-  [0x834, "Kabyle", 0b0101_011],
-  [0x835, "Kanuri", 0b0101_101],
-  [0x836, "Katakana", 0b1101_010],
-  [0x837, "Kazakh", 0b0010_110],
-  [0x838, "Krio", 0b0101_001],
-  [0x839, "Kyrgyz", 0b0111_101],
-  [0x840, "Lao", 0b1100_100],
-  [0x841, "Latvian", 0b0100_011],
-  [0x842, "Lingala", 0b0101_001],
-  [0x843, "Lithuanian", 0b0100_011],
-  [0x844, "Macedonian", 0b0111_010],
-  [0x845, "Mandinka", 0b0101_001],
-  [0x846, "Mende", 0b0101_001],
-  [0x847, "Mongolian", 0b0111_101],
-  [0x848, "Mossi", 0b0101_101],
-  [0x849, "Nuer", 0b0101_001],
-  [0x850, "Pashto", 0b1001_010],
-  [0x851, "Persian", 0b1001_000],
-  [0x852, "Polish", 0b0001_000],
-  [0x853, "Portuguese", 0b0000_101],
-  [0x854, "Romanian", 0b0011_111],
-  [0x855, "Russian", 0b0100_100],
-  [0x856, "Serbian", 0b0111_011],
-  [0x857, "Serbian Latin", 0b0011_101],
-  [0x858, "Serbian T38", 0b0100_000],
-  [0x859, "Sindhi", 0b1001_011],
-  [0x860, "Slovak", 0b0000_110],
-  [0x861, "Slovenian", 0b0011_101],
-  [0x862, "Sorani", 0b1001_100],
-  [0x863, "Spanish", 0b0000_101],
-  [0x864, "Swahili", 0b0000_000],
-  [0x865, "Swedish", 0b0000_010],
-  [0x866, "Tajik", 0b0111_111],
-  [0x867, "Tamazight", 0b0101_011],
-  [0x868, "Tatar", 0b0111_110],
-  [0x869, "Thai", 0b1100_010],
-  [0x870, "Tifinagh", 0b1011_010],
-  [0x871, "Turkish", 0b0010_110],
-  [0x872, "Ukrainian", 0b0111_000],
-  [0x873, "Ukrainian T40", 0b0100_101],
-  [0x874, "Urdu", 0b1001_001],
-  [0x875, "Uyghur", 0b1001_101],
-  [0x876, "Vietnamese", 0b0101_111],
-  [0x877, "Yoruba", 0b0101_110],
+/** Each page, its language's English name and its tag. */
+const EXPECTED: readonly (readonly [page: number, name: string, tag: LanguageTag])[] = [
+  [0x802, "Akan", "ak"],
+  [0x803, "Arabic", "ar"],
+  [0x804, "Arabic T44", "ar"],
+  [0x805, "Armenian", "hy"],
+  [0x806, "Azerbaijani", "az"],
+  [0x807, "Balochi", "bal"],
+  [0x808, "Bambara", "bm"],
+  [0x809, "Belarusian", "be"],
+  [0x810, "Bulgarian", "bg"],
+  [0x811, "Croatian", "hr"],
+  [0x812, "Czech", "cs"],
+  [0x813, "Dari", "prs"],
+  [0x814, "Dinka", "din"],
+  [0x815, "Dyula", "dyu"],
+  [0x816, "English", "en"],
+  [0x817, "Estonian", "et"],
+  [0x818, "Ewe", "ee"],
+  [0x819, "Finnish", "fi"],
+  [0x820, "Fon", "fon"],
+  [0x821, "French", "fr"],
+  [0x822, "Fula", "ff"],
+  [0x823, "Georgian", "ka"],
+  [0x824, "German", "de"],
+  [0x825, "Greek", "el"],
+  [0x826, "Hausa", "ha"],
+  [0x827, "Hebrew", "he"],
+  [0x828, "Hungarian", "hu"],
+  [0x829, "Igbo", "ig"],
+  [0x830, "Indonesian", "id"],
+  [0x831, "Italian", "it"],
+  [0x832, "Japanese", "ja-Hrkt"],
+  [0x833, "Japanese Romaji", "ja-Latn"],
+  [0x834, "Kabyle", "kab"],
+  [0x835, "Kanuri", "kr"],
+  [0x836, "Katakana", "ja-Kana"],
+  [0x837, "Kazakh", "kk"],
+  [0x838, "Krio", "kri"],
+  [0x839, "Kyrgyz", "ky"],
+  [0x840, "Lao", "lo"],
+  [0x841, "Latvian", "lv"],
+  [0x842, "Lingala", "ln"],
+  [0x843, "Lithuanian", "lt"],
+  [0x844, "Macedonian", "mk"],
+  [0x845, "Mandinka", "mnk"],
+  [0x846, "Mende", "men"],
+  [0x847, "Mongolian", "mn"],
+  [0x848, "Mossi", "mos"],
+  [0x849, "Nuer", "nus"],
+  [0x850, "Pashto", "ps"],
+  [0x851, "Persian", "fa"],
+  [0x852, "Polish", "pl"],
+  [0x853, "Portuguese", "pt"],
+  [0x854, "Romanian", "ro"],
+  [0x855, "Russian", "ru"],
+  [0x856, "Serbian", "sr"],
+  [0x857, "Serbian Latin", "sr-Latn"],
+  [0x858, "Serbian T38", "sr"],
+  [0x859, "Sindhi", "sd"],
+  [0x860, "Slovak", "sk"],
+  [0x861, "Slovenian", "sl"],
+  [0x862, "Sorani", "ckb"],
+  [0x863, "Spanish", "es"],
+  [0x864, "Swahili", "sw"],
+  [0x865, "Swedish", "sv"],
+  [0x866, "Tajik", "tg"],
+  [0x867, "Tamazight", "tzm"],
+  [0x868, "Tatar", "tt"],
+  [0x869, "Thai", "th"],
+  [0x870, "Tifinagh", "zgh"],
+  [0x871, "Turkish", "tr"],
+  [0x872, "Ukrainian", "uk"],
+  [0x873, "Ukrainian T40", "uk"],
+  [0x874, "Urdu", "ur"],
+  [0x875, "Uyghur", "ug"],
+  [0x876, "Vietnamese", "vi"],
+  [0x877, "Yoruba", "yo"],
 ];
 
 /** The sets of write_text/sets.rs: the page writer's 50 names. */
 const SET_COUNT = 50;
-/** A triplet's fields (EN 300 706 clause 12.3.1): address 6 bits, mode 5, data 7. */
-const MODE_SHIFT = 6;
-const DATA_SHIFT = 11;
-/** Table 4, triplet 1: the default G0 and G2 designation, seven bits from bit 8. */
-const DESIGNATION_SHIFT = 7;
-const DESIGNATION_MASK = 0x7f;
-const OPTION_MASK = 0b111;
 /** The row of the coloured keys' prompts. */
 const FASTEXT_ROW = 24;
+/** The first row under the title band, where the view starts. */
+const VIEW_ROW = 3;
 /** The indexes: whole pages, since a click is only ever found on a page's first sub-page. */
 const INDEX_PAGES = [PAGES.languages, PAGES.moreLanguages] as const;
-
-/** Hebrew's page, whose set holds its letters at the small Latin letters' codes. */
-const HEBREW_PAGE = 0x827;
+/** The Russian page, its headline and its letters. */
+const RUSSIAN_PAGE = 0x855;
+const RUSSIAN_HEADLINE = "Всеобщая декларация прав человека";
 /** The pages whose text is Wikipedia's, each with the revision it came from: CC BY-SA 4.0 section 3(a)(1) asks for these on the page. */
 const WIKIPEDIA_PAGES = [
   [0x834, "en.wikipedia.org/?oldid=1382739977"],
@@ -132,33 +128,14 @@ function rowText(row: Parameters<typeof decodeRow>[0] | null): string {
   return row === null ? "" : String.fromCodePoint(...decodeRow(row));
 }
 
-/** The page's own designation, from its packet X/28/0. */
-function designationOf(harness: ReturnType<typeof site>["harness"], page: number): number | undefined {
-  const [copy] = harness.channel.copy("channel", page) ?? [];
-  const packet = copy?.content.packets.find((line) => line.packet === "x28" && line.designation === 0);
-  const triplet = packet !== undefined && "triplets" in packet ? packet.triplets[0] : undefined;
-  return triplet === undefined
-    ? undefined
-    : ((triplet.address | (triplet.mode << MODE_SHIFT) | (triplet.data << DATA_SHIFT)) >> DESIGNATION_SHIFT) & DESIGNATION_MASK;
-}
-
-test("every language has its page, under its name, designating its set", () => {
+test("every language has its page, under its name, in its language", () => {
   const { harness } = site(false);
   const found = EXPECTED.map(([page], place) => {
     harness.join(place + 1, page);
-    return [page, harness.title(page), designationOf(harness, page)];
+    return [page, harness.title(page), contentOf(harness, place + 1, page)?.language];
   });
   assert.deepEqual(found, EXPECTED);
   assert.deepEqual(harness.errors, []);
-});
-
-test("a page's header bits agree with its designation", () => {
-  const { harness } = site(false);
-  for (const [page, , designation] of EXPECTED) {
-    harness.join(1, page);
-    const [copy] = harness.channel.copy("channel", page) ?? [];
-    assert.equal(copy?.content.character_set?.national_option, designation & OPTION_MASK);
-  }
 });
 
 test("every one of the page writer's sets has a page", () => {
@@ -173,11 +150,11 @@ test("every language page shows row 24 and links back to the languages' index an
   const { harness } = site(false);
   for (const [page] of EXPECTED) {
     harness.join(1, page);
-    const [copy] = harness.channel.copy("channel", page) ?? [];
-    assert.equal(copy?.content.display_row_24, true);
-    assert.equal(copy?.content.links[2]?.page, PAGES.languages.toString(16));
-    assert.equal(copy?.content.links[3]?.page, PAGES.index.toString(16));
-    assert.notEqual(copy?.content.rows[FASTEXT_ROW], null);
+    const content = contentOf(harness, 1, page);
+    assert.equal(content?.display_row_24, true);
+    assert.equal(content?.links[2]?.page, PAGES.languages.toString(16));
+    assert.equal(content?.links[3]?.page, PAGES.index.toString(16));
+    assert.notEqual(content?.rows[FASTEXT_ROW], null);
   }
 });
 
@@ -185,7 +162,7 @@ test("the languages' indexes list every language with its page, and hold no sub-
   const { harness } = site(false);
   const shown = INDEX_PAGES.flatMap((index) => {
     harness.join(1, index);
-    const copies = harness.channel.copy("channel", index) ?? [];
+    const copies = harness.channel.copy(1, index) ?? harness.channel.copy("channel", index) ?? [];
     assert.equal(copies.length, 1);
     return copies.flatMap(({ content }) => content.rows.map(rowText));
   }).join("\n");
@@ -201,7 +178,7 @@ test("a click on a language in the indexes goes to that language", () => {
     const wanted = page.toString(16);
     for (const index of INDEX_PAGES) {
       harness.join(viewer, index);
-      for (const { content } of harness.channel.copy("channel", index) ?? []) {
+      for (const { content } of harness.channel.copy(viewer, index) ?? harness.channel.copy("channel", index) ?? []) {
         const rows = content.rows.map(rowText);
         const row = rows.findIndex((text, number) => number > 0 && text.includes(wanted));
         if (row !== -1) {
@@ -233,22 +210,19 @@ test("a page's text is the Declaration: a language without a text of it shows no
   );
 });
 
-test("the Hebrew page's index prompt is in the Latin capitals its set keeps", () => {
-  const { harness } = site(false);
-  harness.join(1, HEBREW_PAGE);
-  const [copy] = harness.channel.copy("channel", HEBREW_PAGE) ?? [];
-  assert.match(rowText(copy?.content.rows[FASTEXT_ROW] ?? null), /INDEX 800/u);
-});
-
-test("each page of Wikipedia's text credits it, with its revision and licence, and no other page does", () => {
+test("each page of Wikipedia's text credits it under the view, with its revision and licence, in English, and no other page does", () => {
   const { harness } = site(false);
   const credited = EXPECTED.flatMap(([page]) => {
     harness.join(1, page);
-    const [copy] = harness.channel.copy("channel", page) ?? [];
-    const shown = copy?.content.rows.map(rowText).join("\n") ?? "";
+    // The credit stands under the view, so it is there wherever the view is.
+    harness.press(1, Key.End);
+    const runs = contentOf(harness, 1, page)?.text ?? [];
+    const shown = runs.map((run) => run.text).join("\n");
     const article = WIKIPEDIA_PAGES.find(([wikipedia]) => wikipedia === page)?.[1];
     if (shown.includes(WIKIPEDIA_CREDIT) || shown.includes(LICENCE_ADDRESS) || shown.includes("wikipedia.org")) {
       assert.ok(shown.includes(WIKIPEDIA_CREDIT) && shown.includes(LICENCE_ADDRESS) && article !== undefined && shown.includes(article), page.toString(16));
+      const credit = runs.find((run) => run.text === WIKIPEDIA_CREDIT);
+      assert.equal(credit?.language, "en");
       return [page];
     }
     return [];
@@ -259,7 +233,28 @@ test("each page of Wikipedia's text credits it, with its revision and licence, a
   );
 });
 
-test("magazine 8 holds the languages and nothing else: the index on 800 and 801, then every language", () => {
+test("REQ-2155: a language page scrolls its text by the keys and the wheel, each viewer alone", () => {
+  const { harness } = site(false);
+  const firstRun = (viewer: number): string | undefined => contentOf(harness, viewer, RUSSIAN_PAGE)?.text?.find((run) => run.row === VIEW_ROW)?.text;
+  harness.join(1, RUSSIAN_PAGE);
+  harness.join(2, RUSSIAN_PAGE);
+  assert.equal(firstRun(1), RUSSIAN_HEADLINE);
+  harness.press(1, Key.Down);
+  assert.notEqual(firstRun(1), RUSSIAN_HEADLINE, "Down moved viewer 1's view");
+  assert.equal(firstRun(2), RUSSIAN_HEADLINE, "and not viewer 2's");
+  harness.press(1, Key.Home);
+  assert.equal(firstRun(1), RUSSIAN_HEADLINE);
+  harness.press(1, Key.End);
+  const letters = LANGUAGES.find((language) => language.name === "Russian")?.letters ?? "";
+  assert.ok(runsText(contentOf(harness, 1, RUSSIAN_PAGE)).includes(letters.split(" ")[0] ?? "?"), "End shows the letters");
+  harness.press(1, Key.Home);
+  const NOTCH = 120;
+  harness.wheel(2, NOTCH, 1, VIEW_ROW + 1);
+  assert.notEqual(firstRun(2), RUSSIAN_HEADLINE, "the wheel moved viewer 2's view");
+  assert.deepEqual(harness.errors, []);
+});
+
+test("magazine 8 holds the languages and nothing else: the index on 800 and 801, every language, and the page that chooses one", () => {
   const onMagazine = PAGES_ON_THE_CHANNEL.filter((page) => page >= PAGES.languages).toSorted((a, b) => a - b);
-  assert.deepEqual(onMagazine, [PAGES.languages, PAGES.moreLanguages, ...EXPECTED.map(([page]) => page)]);
+  assert.deepEqual(onMagazine, [PAGES.languages, PAGES.moreLanguages, ...EXPECTED.map(([page]) => page), PAGES.chooseLanguage]);
 });

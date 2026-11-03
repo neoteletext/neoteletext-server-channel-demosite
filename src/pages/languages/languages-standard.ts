@@ -5,6 +5,7 @@ import type { Language } from "./language-sets.ts";
 export const STANDARD_LANGUAGES: readonly Language[] = [
   {
     name: "English",
+    tag: "en",
     set: "english",
     own: "English",
     headline: "Universal Declaration of Human Rights",
@@ -14,6 +15,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Indonesian",
+    tag: "id",
     set: "english",
     own: "Bahasa Indonesia",
     headline: "Pernyataan Umum tentang Hak-Hak Asasi Manusia",
@@ -23,6 +25,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Swahili",
+    tag: "sw",
     set: "english",
     own: "Kiswahili",
     headline: "TAARIFA YA ULIMWENGU JUU YA HAKI ZA BINADAMU",
@@ -32,6 +35,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "German",
+    tag: "de",
     set: "german",
     own: "Deutsch",
     headline: "Die Allgemeine Erklärung der Menschenrechte",
@@ -41,6 +45,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Swedish",
+    tag: "sv",
     set: "swedish-finnish-hungarian",
     own: "Svenska",
     headline: "ALLMÄN FÖRKLARING OM DE MÄNSKLIGA RÄTTIGHETERNA",
@@ -50,6 +55,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Finnish",
+    tag: "fi",
     set: "swedish-finnish-hungarian",
     own: "Suomi",
     headline: "IHMISOIKEUKSIEN YLEISMAAILMALLINEN JULISTUS",
@@ -59,6 +65,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Hungarian",
+    tag: "hu",
     set: "swedish-finnish-hungarian",
     own: "Magyar",
     headline: "Az Emberi Jogok Egyetemes Nyilatkozata",
@@ -68,6 +75,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Italian",
+    tag: "it",
     set: "italian",
     own: "Italiano",
     headline: "DICHIARAZIONE UNIVERSALE DEI DIRITTI UMANI",
@@ -77,6 +85,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "French",
+    tag: "fr",
     set: "french",
     own: "Français",
     headline: "Déclaration universelle des droits de l'homme",
@@ -86,6 +95,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Portuguese",
+    tag: "pt",
     set: "portuguese-spanish",
     own: "Português",
     headline: "Declaração Universal dos Direitos Humanos",
@@ -95,6 +105,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Spanish",
+    tag: "es",
     set: "portuguese-spanish",
     own: "Español",
     headline: "Declaración Universal de Derechos Humanos",
@@ -104,6 +115,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Czech",
+    tag: "cs",
     set: "czech-slovak",
     own: "Čeština",
     headline: "VŠEOBECNÁ DEKLARACE LIDSKÝCH PRÁV",
@@ -113,6 +125,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Slovak",
+    tag: "sk",
     set: "czech-slovak",
     own: "Slovenčina",
     headline: "VŠOBECNÁ DEKLARÁCIA ĽUDSKÝCH PRÁV",
@@ -122,6 +135,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Polish",
+    tag: "pl",
     set: "polish",
     own: "Polski",
     headline: "POWSZECHNA DEKLARACJA PRAW CZŁOWIEKA",
@@ -131,6 +145,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Turkish",
+    tag: "tr",
     set: "turkish",
     own: "Türkçe",
     headline: "İnsan hakları evrensel beyannamesi",
@@ -140,6 +155,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Kazakh",
+    tag: "kk",
     set: "turkish",
     own: "Qazaqşa",
     headline: "ADAM QŪQYQTARYNYÑ JALPYĞA BIRDEİ DEKLARASİİASY",
@@ -149,6 +165,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Serbian Latin",
+    tag: "sr-Latn",
     set: "serbian-croatian-slovenian",
     own: "Srpski",
     headline: "OPŠTA DEKLARACIJA O PRAVIMA ČOVEKA",
@@ -158,6 +175,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Croatian",
+    tag: "hr",
     set: "serbian-croatian-slovenian",
     own: "Hrvatski",
     headline: "OPĆA DEKLARACIJA O PRAVIMA ČOVJEKA",
@@ -167,6 +185,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Slovenian",
+    tag: "sl",
     set: "serbian-croatian-slovenian",
     own: "Slovenščina",
     headline: "Splošna deklaracija človekovih pravic",
@@ -176,6 +195,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Romanian",
+    tag: "ro",
     set: "romanian",
     own: "Română",
     headline: "DECLARAŢIA UNIVERSALĂ A DREPTURILOR OMULUI",
@@ -185,6 +205,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Estonian",
+    tag: "et",
     set: "estonian",
     own: "Eesti",
     headline: "Inimõiguste ülddeklaratsioon",
@@ -194,6 +215,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Latvian",
+    tag: "lv",
     set: "lettish-lithuanian",
     own: "Latviešu",
     headline: "VISPĀRĒJĀ CILVĒKA TIESĪBU DEKLARĀCIJA",
@@ -203,6 +225,7 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Lithuanian",
+    tag: "lt",
     set: "lettish-lithuanian",
     own: "Lietuvių",
     headline: "VISUOTINĖ ŽMOGAUS TEISIŲ DEKLARACIJA",
@@ -212,56 +235,57 @@ export const STANDARD_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Serbian T38",
+    tag: "sr",
     set: "cyrillic-serbian-croatian",
     own: "Српски",
     headline: "ОПШТА ДЕКЛАРАЦИЈА О ПРАВИМА ЧОВЕКА",
     text: "Сва људска бића рађају се слободна и једнака у достојанству и правима. Она су обдарена разумом и свешћу и треба једни према другима да поступају у духу братства. Свако има право на живот, слободу и безбедност личности.",
     letters: "Ђ Ј Љ Њ Ћ Џ ђ ј љ њ ћ",
     source: "un",
-    index: "ИНДЕКС",
   },
   {
     name: "Russian",
+    tag: "ru",
     set: "russian-bulgarian",
     own: "Русский",
     headline: "Всеобщая декларация прав человека",
     text: "Все люди рождаются свободными и равными в своем достоинстве и правах. Они наделены разумом и совестью и должны поступать в отношении друг друга в духе братства. Каждый человек имеет право на жизнь, на свободу и на личную неприкосновенность.",
     letters: "Ё Ж Щ Ъ Ы Э Ю Я ё ж щ ъ ы э ю я",
     source: "un",
-    index: "УКАЗАТЕЛЬ",
   },
   {
     name: "Bulgarian",
+    tag: "bg",
     set: "russian-bulgarian",
     own: "Български",
     headline: "ВСЕОБЩА ДЕКЛАРАЦИЯ ЗА ПРАВАТА НА ЧОВЕКА",
     text: "Всички хора се раждат свободни и равни по достойнство и права. Те са надарени с разум и съвест и следва да се отнасят помежду си в дух на братство. Всеки има право на живот, свобода и лична сигурност.",
     letters: "Ж Щ Ъ Ю Я ж щ ъ ю я",
     source: "un",
-    index: "УКАЗАТЕЛ",
   },
   {
     name: "Ukrainian T40",
+    tag: "uk",
     set: "cyrillic-ukrainian",
     own: "Українська",
     headline: "ЗАГАЛЬНА ДЕКЛАРАЦІЯ ПРАВ ЛЮДИНІ",
     text: "Всі люди народжуються вільними і рівними у своїй гідності та правах. Вони наділені розумом і совістю і повинні діяти у відношенні один до одного в дусі братерства. Кожна людина має право на життя, на свободу і на особисту недоторканність.",
     letters: "Є І Ї є і ї",
     source: "un",
-    index: "ПОКАЖЧИК",
   },
   {
     name: "Greek",
+    tag: "el",
     set: "greek",
     own: "Ελληνικά",
     headline: "ΟΙΚΟΥΜΕΝΙΚΗ ΔΙΑΚΗΡΥΞΗ ΓΙΑ ΤΑ ΑΝΘΡΩΠΙΝΑ ΔΙΚΑΙΩΜΑΤΑ",
     text: "Ολοι οι άνθρωποι γεννιούνται ελεύθεροι και ίσοι στην αξιοπρέπεια και τα δικαιώματα. Είναι προικισμένοι με λογική και συνείδηση, και οφείλουν να συμπεριφέρονται μεταξύ τους με πνεύμα αδελφοσύνης. Κάθε άτομο έχει δικαίωμα στη ζωή, την ελευθερία και την προσωπική του ασφάλεια.",
     letters: "Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω ά έ ή ί ό ύ ώ ς",
     source: "un",
-    index: "ΕΥΡΕΤΗΡΙΟ",
   },
   {
     name: "Hebrew",
+    tag: "he",
     set: "hebrew",
     own: "עברית",
     headline: "הכרזה לכל באי עולם בדבר זכויות האדם",

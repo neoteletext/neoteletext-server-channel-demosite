@@ -50,14 +50,22 @@ The index is on 100; each area has a magazine, its menu on N00.
   three levels of teletext; 602 holds every picture at every level, a
   sub-page each: 2,223 on one page for the 741 pictures live on 29
   October 2026.
+- **Cookies** (700): a visit counter kept in a cookie (701), a session
+  cookie beside a 30-day one (702), a cookie that lapses in 60 seconds,
+  counted down (703), every cookie you have here with a way to remove
+  each (704), and what each attribute does (705).
 - **Languages** (800, and 801 for the rest of the index): magazine 8 alone,
-  a page in each language the engine has a set for, 802 to 873, each in its own character
-  set, in alphabetical order, showing the Universal Declaration of Human
-  Rights (`CREDITS.md`) and a window holding everything under its heading, every character of the page's sets included,
-  moved with the arrows, Page Up, Page Down, Home and End. They are
-  ready-made TTI in `src/pages/languages/tti`, which
-  `node src/pages/languages/make-language-pages.ts --neottx PATH` makes
-  from `language-table.ts`.
+  a page in each language the engine has a set for, 802 to 877, in
+  alphabetical order, each built of the library's components in its own
+  language: its name in itself, then a scrolling view of the Universal
+  Declaration of Human Rights (`CREDITS.md`), its letters and every
+  character of its set, moved with the arrows, Page Up, Page Down, Home,
+  End, the wheel and the bar.
+- **One site in every language**: 899 chooses your language, kept in the
+  `language` cookie (899 with `?language=ru` chooses Russian and goes to
+  the index). Every other page is then drawn for you with its title
+  naming your language and its samples (the index's heading and ticker)
+  in it, from the language pages' own text (`src/pages/languages/sample-text.ts`).
 
 The code:
 
@@ -66,7 +74,7 @@ The code:
 - `src/site/`: the page numbers, the areas, each area's look, and what
   the pages share (the poll, the guestbook, the hall of fame).
 - `src/pages/`: the pages, a folder to each area (home, services,
-  interactive, games, adventure, audio, gallery).
+  interactive, games, adventure, audio, gallery, cookies, languages).
 - `src/parts/`: what the pages share: the frame, the page menus, sounds.
 - `src/pictures/`: the pictures folder, read and checked.
 - `test/`: the tests, with one picture of the gallery's in

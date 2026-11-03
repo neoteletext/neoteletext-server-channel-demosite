@@ -1,5 +1,7 @@
-// What a language page is: what it says, and the set it is written in. The
-// sets are `neottx write-text`'s, from the engine's write_text/sets.rs.
+// What a language page is: what it says, the language it is written in, and
+// the set its text was checked against when the pages were ready-made TTI
+// (`neottx write-text`'s sets, from the engine's write_text/sets.rs). The
+// server now encodes the text for the page's language and chooses the sets.
 //
 // A page's text is the opening of the Universal Declaration of Human Rights in
 // that language: its title as the headline, then Articles 1 and 3. Where a set
@@ -8,6 +10,8 @@
 // and letters alone. CREDITS.md says where the texts came from. A line break
 // in `text` or `letters` is a Thai or Lao break between words, which have no
 // spaces to break at.
+
+import type { LanguageTag } from "neoteletext-server-ts-protocol";
 
 /** Where a page's text came from. */
 type TextSource =
@@ -85,27 +89,13 @@ export const SET_DESIGNATIONS = {
 /** A set's name. */
 export type SetName = keyof typeof SET_DESIGNATIONS;
 
-/** A designation's option bits, below its group. */
-const GROUP_SHIFT = 3;
-/** The groups of neoteletext's own sets, each with Latin English as its second G0 set, which ESC reaches. */
-const SECOND_LATIN_GROUPS: ReadonlySet<number> = new Set([0b0101, 0b0111, 0b1001, 0b1011, 0b1100, 0b1101]);
-/** The kana sets, each the other's second set (the engine's DEC-2187). */
-const KANA: ReadonlySet<SetName> = new Set(["hiragana", "katakana"]);
-
-/** Whether a page in `set` reaches Latin English with ESC: neoteletext's own sets but the kana, and the standard's Arabic set, for which the writer names Latin English (the engine's REQ-2190). */
-export function hasSecondLatin(set: SetName): boolean {
-  return (SECOND_LATIN_GROUPS.has(SET_DESIGNATIONS[set] >> GROUP_SHIFT) && !KANA.has(set)) || set === "arabic-table44";
-}
-
-/** Whether a page in `set` has a second G0 set that ESC reaches. */
-export function hasSecondSet(set: SetName): boolean {
-  return hasSecondLatin(set) || KANA.has(set);
-}
-
 /** One language's page. */
 export interface Language {
   /** Its name in English, for the index and the channel's contents. */
   readonly name: string;
+  /** The language the page is written in, a tag of the server's languages (start.languages): the server chooses the sets for it. */
+  readonly tag: LanguageTag;
+  /** The set its text was checked against: every character is in it (TODO-1162). */
   readonly set: SetName;
   /** Its name in itself. */
   readonly own: string;
@@ -116,6 +106,4 @@ export interface Language {
   readonly source: TextSource;
   /** The address of the revision its text came from, on a page of Wikipedia's text: Latin letters, short enough for a row. */
   readonly article?: string;
-  /** The word for an index, on a page whose sets have no Latin letters for one. */
-  readonly index?: string;
 }

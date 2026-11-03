@@ -5,6 +5,7 @@ import type { Language } from "./language-sets.ts";
 export const AFRICAN_LANGUAGES: readonly Language[] = [
   {
     name: "Hausa",
+    tag: "ha",
     set: "hausa-fula",
     own: "Hausa",
     headline: "Muhimmin Jawabin da Majalisar Ɗinkin Duniya ta bayyana game da Hakkokin Ƴan-adam",
@@ -14,6 +15,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Fula",
+    tag: "ff",
     set: "hausa-fula",
     own: "Fulfulde",
     headline: "NANONDIRAL WINNDEREYANKEEWAL HAKKEEJE AADE",
@@ -23,6 +25,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Akan",
+    tag: "ak",
     set: "west-african",
     own: "Akan",
     headline: "ADASAMMA YIEDIE HO ANODISƐM",
@@ -32,6 +35,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Lingala",
+    tag: "ln",
     set: "west-african",
     own: "Lingála",
     headline: "Lisakoli ya molongo ya makoki ya moto",
@@ -41,6 +45,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Bambara",
+    tag: "bm",
     set: "west-african",
     own: "Bamanankan",
     headline: "Hadamaden josiraw dantigɛkan",
@@ -50,6 +55,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Dyula",
+    tag: "dyu",
     set: "west-african",
     own: "Julakan",
     headline: "DUNYA' MUMƐ MƆGƆYA' HAKƐYAW DANTIGƐLIKAN",
@@ -59,6 +65,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Mandinka",
+    tag: "mnk",
     set: "west-african",
     own: "Mandi'nka kango",
     headline: "",
@@ -68,6 +75,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Krio",
+    tag: "kri",
     set: "west-african",
     own: "Krio",
     headline: "Di Stetmɛnt Bɔt Di Rayt Dɛn We Ɔlman na Di Wɔl Fɔ Gɛt",
@@ -77,6 +85,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Mende",
+    tag: "men",
     set: "west-african",
     own: "Mɛnde",
     headline: "Dunya Lahi Nuvuu Lɔnyisia Va",
@@ -86,6 +95,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Dinka",
+    tag: "din",
     set: "west-african",
     own: "Thuɔŋjäŋ",
     headline: "Yïith e raan ci caal e pinynhöm",
@@ -95,6 +105,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Nuer",
+    tag: "nus",
     set: "west-african",
     own: "Thok Naath",
     headline: "",
@@ -105,6 +116,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Fon",
+    tag: "fon",
     set: "west-african",
     own: "Fɔngbè",
     headline: "GBETA GBƐ Ɔ BI TƆN EE ƉƆ XÓ DÓ ACƐ E GBƐTƆ ƉÓ KPODO SISI E ƉO NA ƉÓ N'I LƐ KPO WU E",
@@ -114,6 +126,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Ewe",
+    tag: "ee",
     set: "ewe",
     own: "Eʋegbe",
     headline: "AMEGBETƆ ƑE ABLƆƉEVINYENYE ŊU KPEƉOƉZINYA",
@@ -123,6 +136,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Kabyle",
+    tag: "kab",
     set: "kabyle-tamazight",
     own: "Taqbaylit",
     headline: "",
@@ -133,6 +147,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Tamazight",
+    tag: "tzm",
     set: "kabyle-tamazight",
     own: "Tamaziɣt",
     headline: "TIṢERRIḤT TAGRAGHLANT IZERFAN N WEMDAN",
@@ -142,6 +157,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Azerbaijani",
+    tag: "az",
     set: "azerbaijani",
     own: "Azərbaycanca",
     headline: "İNSAN HÜQUQLARI HAQQINDA ÜMUMİ BƏYANNAMƏ",
@@ -151,6 +167,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Kanuri",
+    tag: "kr",
     set: "kanuri-mossi",
     own: "Kanuri",
     headline: "Hakkiwa Adamganabe Dunya Ngaro Wowurtǝgǝnama",
@@ -160,6 +177,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Mossi",
+    tag: "mos",
     set: "kanuri-mossi",
     own: "Mòoré",
     headline: "Ninsaal yel-segdɩ noy gãnegr sebre",
@@ -169,6 +187,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Yoruba",
+    tag: "yo",
     set: "yoruba-igbo",
     own: "Yorùbá",
     headline: "ÌKÉDE KÁRÍAYÉ FÚN Ẹ̀TỌ́ ỌMỌNÌYÀN",
@@ -178,6 +197,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Igbo",
+    tag: "ig",
     set: "yoruba-igbo",
     own: "Igbo",
     headline: "NKUWUWAPỤTA ỤWA NILE BANYERE IKIKE MMADỤ NWEGASỊRỊ",
@@ -187,6 +207,7 @@ export const AFRICAN_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Vietnamese",
+    tag: "vi",
     set: "vietnamese",
     own: "Tiếng Việt",
     headline: "Tuyên ngôn toàn thế giới về nhân quyền của Liên Hợp Quốc",

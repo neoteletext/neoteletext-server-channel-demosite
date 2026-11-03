@@ -7,6 +7,7 @@ import type { Language } from "./language-sets.ts";
 export const OTHER_LANGUAGES: readonly Language[] = [
   {
     name: "Ukrainian",
+    tag: "uk",
     set: "ukrainian",
     own: "Українська",
     headline: "ЗАГАЛЬНА ДЕКЛАРАЦІЯ ПРАВ ЛЮДИНІ",
@@ -16,6 +17,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Belarusian",
+    tag: "be",
     set: "belarusian",
     own: "Беларуская",
     headline: "УСЕАГУЛЬНАЯ ДЭКЛАРАЦЫЯ ПРАВОЎ ЧАЛАВЕКА",
@@ -25,6 +27,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Macedonian",
+    tag: "mk",
     set: "macedonian",
     own: "Македонски",
     headline: "УНИВЕРЗАЛНА ДЕКЛАРАЦИЈА ЗА ЧОВЕКОВИТЕ ПРАВА",
@@ -34,6 +37,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Serbian",
+    tag: "sr",
     set: "serbian",
     own: "Српски",
     headline: "ОПШТА ДЕКЛАРАЦИЈА О ПРАВИМА ЧОВЕКА",
@@ -43,6 +47,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Kyrgyz",
+    tag: "ky",
     set: "kyrgyz-mongolian",
     own: "Кыргызча",
     headline: "Адам Укуктарынын Жалпы Декларациясы",
@@ -52,6 +57,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Mongolian",
+    tag: "mn",
     set: "kyrgyz-mongolian",
     own: "Монгол",
     headline: "ХҮНИЙ ЭРХИЙН ТҮГЭЭМЭЛ ТУНХАГЛАЛ",
@@ -61,6 +67,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Tatar",
+    tag: "tt",
     set: "tatar",
     own: "Татарча",
     headline: "Кеше хокукларының гомуни декларациясе",
@@ -70,6 +77,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Tajik",
+    tag: "tg",
     set: "tajik",
     own: "Тоҷикӣ",
     headline: "Эъломияи Умимии Ҳуқуқи Башар",
@@ -79,6 +87,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Georgian",
+    tag: "ka",
     set: "georgian",
     own: "ქართული",
     headline: "ადამიანთა უფლებების საყოველთაო დეკლარაცია",
@@ -88,6 +97,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Armenian",
+    tag: "hy",
     set: "armenian",
     own: "Հայերեն",
     headline: "ՄԱՐԴՈՒ ԻՐԱՎՈՒՆՔՆԵՐԻ ՀԱՄԸՆԴՀԱՆՈՒՐ ՀՌՉԱԿԱԳԻՐ",
@@ -97,6 +107,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Tifinagh",
+    tag: "zgh",
     set: "tifinagh",
     own: "ⵜⴰⵎⴰⵣⵉⵖⵜ",
     headline: "ⴰⵍⵖⵓ ⴰⵎⴰⴹⵍⴰⵏ ⵏ ⵉⵣⵔⴼⴰⵏ ⵏ ⵓⴼⴳⴰⵏ",
@@ -106,6 +117,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Persian",
+    tag: "fa",
     set: "persian",
     own: "فارسی",
     headline: "اعلامیه جهانی حقوق بشر",
@@ -115,6 +127,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Dari",
+    tag: "prs",
     set: "persian",
     own: "دری",
     headline: "اعلامیه جهانی حقوق بشر",
@@ -124,6 +137,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Urdu",
+    tag: "ur",
     set: "urdu",
     own: "اردو",
     headline: "انسانی حقوق کا عالمی منشور",
@@ -133,6 +147,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Pashto",
+    tag: "ps",
     set: "pashto",
     own: "پښتو",
     headline: "دبشر د حقوقو نړيواله اعلاميه",
@@ -142,6 +157,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Sindhi",
+    tag: "sd",
     set: "sindhi",
     own: "سنڌي",
     headline: "انساني حقن جو عالمي پڌرنامو",
@@ -151,6 +167,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Sorani",
+    tag: "ckb",
     set: "sorani",
     own: "کوردی",
     headline: "بانگنامەی گەردوونیی مافەکانی مرۆڤ",
@@ -161,6 +178,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Uyghur",
+    tag: "ug",
     set: "uyghur",
     own: "ئۇيغۇرچە",
     headline: "دۇنيا كىشىلىك ھوقۇقى خىتابنامىسى",
@@ -170,6 +188,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Balochi",
+    tag: "bal",
     set: "balochi",
     own: "بلوچی",
     headline: "بنی آدمی حقانی میان قومی ئین دستور",
@@ -179,6 +198,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Arabic",
+    tag: "ar",
     set: "arabic",
     own: "العربية",
     headline: "الإعلان العالمي لحقوق الإنسان",
@@ -188,6 +208,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Arabic T44",
+    tag: "ar",
     set: "arabic-table44",
     own: "العربية",
     headline: "الإعلان العالمي لحقوق الإنسان",
@@ -197,26 +218,29 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Japanese",
+    tag: "ja-Hrkt",
     set: "hiragana",
     own: "にほんご",
     headline: "せかい じんけん せんげん",
     text: "すべての にんげんは、うまれながらに して じゆうで あり、かつ、そんげんと けんりとに ついて びょうどうで ある。にんげんは、りせいと りょうしんとを さずけられて おり、たがいに どうほうの せいしんを もって こうどう しなければ ならない。すべての ひとは、せいめい、じゆう および しんたいの あんぜんに たいする けんりを ゆうする。",
-    letters: "が ぱ ゃ っ ア ガ パ ァ ャ ッ ー ヴ",
+    // Hiragana alone: the server takes no katakana in ja-Hrkt (measured at 28133db), and Katakana has its own page.
+    letters: "が ぱ ゃ っ",
     source: "kana",
-    index: "もくじ",
   },
   {
     name: "Katakana",
+    tag: "ja-Kana",
     set: "katakana",
     own: "ニホンゴ",
     headline: "セカイ ジンケン センゲン",
     text: "スベテノ ニンゲンハ、ウマレナガラニ シテ ジユウデ アリ、カツ、ソンゲント ケンリトニ ツイテ ビョウドウデ アル。ニンゲンハ、リセイト リョウシントヲ サズケラレテ オリ、タガイニ ドウホウノ セイシンヲ モッテ コウドウ シナケレバ ナラナイ。スベテノ ヒトハ、セイメイ、ジユウ オヨビ シンタイノ アンゼンニ タイスル ケンリヲ ユウスル。",
-    letters: "ァ ィ ゥ ェ ォ ャ ッ ー ヴ が ぱ",
+    // Katakana alone: the server takes no hiragana in ja-Kana (measured at 28133db), and Japanese has its own page.
+    letters: "ァ ィ ゥ ェ ォ ャ ッ ー ヴ",
     source: "kana",
-    index: "もくじ",
   },
   {
     name: "Japanese Romaji",
+    tag: "ja-Latn",
     set: "japanese-romaji",
     own: "Nihongo",
     headline: "Sekai Jinken Sengen",
@@ -226,6 +250,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Thai",
+    tag: "th",
     set: "thai",
     own: "ภาษาไทย",
     headline: "ปฏิญญาสากลว่าด้วยสิทธิมนุษยชน",
@@ -235,6 +260,7 @@ export const OTHER_LANGUAGES: readonly Language[] = [
   },
   {
     name: "Lao",
+    tag: "lo",
     set: "lao",
     own: "ພາສາລາວ",
     headline: "ປະກາດສາກົນ ກ່ຽວກັບສິດຂອງມະນຸດ",

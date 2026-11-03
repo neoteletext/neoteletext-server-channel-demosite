@@ -1,0 +1,141 @@
+// Every character of each set's tables (REQ-2154 item 2, DEC-1987 item 13):
+// the codes 2/0 to 7/F of the set's G0 set, of the second G0 set ESC reaches
+// where it has one, and of its G2 set, in rows of sixteen, as the engine's
+// decoder reads them (EN 300 706 clause 15.6, Tables 35 to 46, and the
+// engine's own sets). Generated once, on 3 November 2026, by drawing each
+// set's ready-made language page (demo site b73874d) at the end of its window
+// and reading it back with the engine's `neottx text`; a code the set leaves
+// empty reads as a space, and so does a character the set's language cannot
+// be sent in (measured on the server at 28133db: the code 7/F, and Arabic's
+// presentation forms, which the server makes from the letters itself). Thai
+// and Lao are not here: their marks take rows of
+// their own, which a table of single cells cannot give them. The kana sets'
+// second G0 set, the other kana, is left out: a run in the other kana's
+// language cannot be sent on the page (measured the same way), and each kana
+// set has its own page. The second G0 set of every other set is Latin
+// English, written in English.
+
+import type { SetName } from "./language-sets.ts";
+
+/** A set's tables, each six rows of sixteen characters with a space between them, a line break after each row. */
+const TABLES: Readonly<Partial<Record<SetName, string>>> = {
+  "west-african":
+    "  ! \" ɖ ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nƐ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ɔ Ŋ Ɲ Ɣ Ɖ\nɛ a b c d e f g h i j k l m n o\np q r s t u v w x y z ɔ ŋ ɲ ɣ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  arabic:
+    '  ! " # $ % « » ( ) * + ، - . /\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ : ؛ < = > ؟\nء آ أ ؤ إ ئ ا ب ة ت ث ج ح خ د ذ\nر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن\nه و ى ي ﻻ ـ                    \n                               \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  "arabic-table44":
+    '  ! "   $ %     ) ( * + ، - . /\n0 1 2 3 4 5 6 7 8 9 : ؛ > = < ؟\n  ء   ب   ت   ا   ة           د\nذ ر ز                         #\nـ               و     ث ج ح خ  \nى       ف   ق ك   ل   م   ن ﻻ  \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  armenian:
+    "  ։ ՝ , - ( ) « » Ա Բ Գ Դ Ե Զ Է\n0 1 2 3 4 5 6 7 8 9 Ը Թ Ժ Ի Լ Խ\nԾ Կ Հ Ձ Ղ Ճ Մ Յ Ն Շ Ո Չ Պ Ջ Ռ Ս\nՎ Տ Ր Ց Ւ Փ Ք Օ Ֆ ա բ գ դ ե զ է\nը թ ժ ի լ խ ծ կ հ ձ ղ ճ մ յ ն շ\nո չ պ ջ ռ ս վ տ ր ց ւ փ ք օ ֆ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α և ՛ ՞ ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ ՜ Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  azerbaijani:
+    "  ! \" ı ü % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nƏ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ğ İ Ç Ö Ş\nə a b c d e f g h i j k l m n o\np q r s t u v w x y z ğ ç ö ş  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  balochi:
+    '  ! " # $ % « » ( ) * + ، - . /\n۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ : ؛ < = > ؟\nء آ ئ ا ب پ ت ٹ ث ج چ ح خ د ڈ ذ\nر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق ک گ\nل م ن و ۏ ه ھ ی ࢩ ے ﻻ ـ        \n                               \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  belarusian:
+    "  ! \" # $ % ы ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nЮ А Б Ц Д Е Ф Г Х І Й К Л М Н О\nП Я Р С Т У Ж В Ь Ё З Ш Э Ў Ч Ы\nю а б ц д е ф г х і й к л м н о\nп я р с т у ж в ь ё з ш э ў ч  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  "russian-bulgarian":
+    "  ! \" # $ % ы ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nЮ А Б Ц Д Е Ф Г Х И Й К Л М Н О\nП Я Р С Т У Ж В Ь Ъ З Ш Э Щ Ч Ы\nю а б ц д е ф г х и й к л м н о\nп я р с т у ж в ь ъ з ш э щ ч  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  "serbian-croatian-slovenian":
+    "  ! \" # Ë % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nČ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ć Ž Đ Š ë\nč a b c d e f g h i j k l m n o\np q r s t u v w x y z ć ž đ š  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  "czech-slovak":
+    "  ! \" # ů % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nč A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ť ž ý í ř\né a b c d e f g h i j k l m n o\np q r s t u v w x y z á ě ú š  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  persian:
+    '  ! " # $ % « » ( ) * + ، - . /\n۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ : ؛ < = > ؟\nء آ أ ؤ إ ئ ا ب پ ت ث ج چ ح خ د\nذ ر ز ژ س ش ص ض ط ظ ع غ ف ق ک گ\nل م ن و ه ی ۀ ة ﻻ ـ            \n                               \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  english:
+    "  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  estonian:
+    "  ! \" # õ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nŠ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ä Ö Ž Ü Õ\nš a b c d e f g h i j k l m n o\np q r s t u v w x y z ä ö ž ü  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  ewe: "  ! \" ʋ ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nƉ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ɛ Ƒ Ɣ Ɔ Ʋ\nɖ a b c d e f g h i j k l m n o\np q r s t u v w x y z ɛ ƒ ɣ ɔ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  "swedish-finnish-hungarian":
+    "  ! \" # ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nÉ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ä Ö Å Ü _\né a b c d e f g h i j k l m n o\np q r s t u v w x y z ä ö å ü  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  french:
+    "  ! \" é ï % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î #\nè a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  "hausa-fula":
+    "  ! \" ɲ ʼ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nƁ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ɗ Ƙ Ƴ Ŋ Ɲ\nɓ a b c d e f g h i j k l m n o\np q r s t u v w x y z ɗ ƙ ƴ ŋ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  georgian:
+    "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ჯ ჰ → ↑ #\nა ბ გ დ ე ვ ზ თ ი კ ლ მ ნ ო პ ჟ\nრ ს ტ უ ფ ქ ღ ყ შ ჩ ც ძ წ ჭ ხ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  german:
+    "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n§ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ä Ö Ü ^ _\n° a b c d e f g h i j k l m n o\np q r s t u v w x y z ä ö ü ß  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  greek:
+    "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; « = » ?\nΐ Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο\nΠ Ρ ΄ Σ Τ Υ Φ Χ Ψ Ω Ϊ Ϋ ά έ ή ί\nΰ α β γ δ ε ζ η θ ι κ λ μ ν ξ ο\nπ ρ ς σ τ υ φ χ ψ ω ϊ ϋ ό ύ ώ  \n  a b £ e h i § : ‘ “ k ← ↑ → ↓\n° ± ² ³ × m n p ÷ ’ ” t ¼ ½ ¾ x\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n? ¹ ® © ™ ♪ € ‰ α Ί Ύ Ώ ⅛ ⅜ ⅝ ⅞\nC D F G J L Q R S U V W Y Z Ά Ή\nc d f g j l q r s u v w y z Έ  ",
+  hebrew:
+    "  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\nא ב ג ד ה ו ז ח ט י ך כ ל ם מ ן\nנ ס ע ף פ ץ צ ק ר ש ת ₪ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ",
+  "yoruba-igbo":
+    "  ! \" ṅ ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nẸ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ọ Ṣ Ị Ụ Ṅ\nẹ a b c d e f g h i j k l m n o\np q r s t u v w x y z ọ ṣ ị ụ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  italian:
+    "  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\né A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ° ç → ↑ #\nù a b c d e f g h i j k l m n o\np q r s t u v w x y z à ò è ì  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  hiragana:
+    "  ! ゅ ゆ ょ よ ら り 「 」 る + 、 - 。 れ\n0 1 2 3 4 5 6 7 8 9 : ろ わ を ん ?\nあ い う え お か が き ぎ く ぐ け げ こ ご さ\nざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ\nて で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ\nぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  "japanese-romaji":
+    "  ! \" ¥ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nĀ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ē Ī Ō Ū #\nā a b c d e f g h i j k l m n o\np q r s t u v w x y z ē ī ō ū  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  "kabyle-tamazight":
+    "  ! \" ṣ ṭ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nƐ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ɣ Č Ǧ ḍ ḥ\nɛ a b c d e f g h i j k l m n o\np q r s t u v w x y z ɣ č ǧ ṛ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  "kanuri-mossi":
+    "  ! \" ŋ ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nƎ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ɍ Ɛ Ɩ Ʋ Ŋ\nǝ a b c d e f g h i j k l m n o\np q r s t u v w x y z ɍ ɛ ɩ ʋ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  katakana:
+    "  ァ ュ ユ ョ ヨ ラ リ ィ ゥ ル ェ 、 ー 。 レ\n0 1 2 3 4 5 6 7 8 9 ォ ロ ワ ヲ ン ヴ\nア イ ウ エ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ\nザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ\nテ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ\nブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  turkish:
+    "  ! \" ₺ ğ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nİ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ş Ö Ç Ü Ğ\nı a b c d e f g h i j k l m n o\np q r s t u v w x y z ş ö ç ü  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  "kyrgyz-mongolian":
+    "  ! \" ң ө ү ы ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nЮ А Б Ц Д Е Ф Г Х И Й К Л М Н О\nП Я Р С Т У Ж В Ө Ң З Ш Э Щ Ч Ү\nю а б ц д е ф г х и й к л м н о\nп я р с т у ж в ь ъ з ш э щ ч  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  "lettish-lithuanian":
+    "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nŠ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ė ę Ž č ū\nš a b c d e f g h i j k l m n o\np q r s t u v w x y z ą ų ž į  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  macedonian:
+    "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nЧ А Б Ц Д Е Ф Г Х И Ј К Л М Н О\nП Ќ Р С Т У В Ѓ Љ Њ З Ћ Ж Ѕ Ш Џ\nч а б ц д е ф г х и ј к л м н о\nп ќ р с т у в ѓ љ њ з џ ж ѕ ш  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  pashto:
+    '  ! " # $ % « » ( ) * + ، - . /\n۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ : ؛ < = > ؟\nء آ أ ؤ ئ ا ب پ ت ټ ث ج ځ چ څ ح\nخ د ډ ذ ر ړ ز ژ ږ س ش ښ ص ض ط ظ\nع غ ف ق ک ګ ل م ن ڼ و ه ی ۍ ې ي\nۀ ة ﻻ ـ                        \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  polish:
+    "  ! \" # ń % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\ną A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ƶ Ś Ł ć ó\nę a b c d e f g h i j k l m n o\np q r s t u v w x y z ż ś ł ź  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  "portuguese-spanish":
+    "  ! \" ç $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n¡ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z á é í ó ú\n¿ a b c d e f g h i j k l m n o\np q r s t u v w x y z ü ñ è à  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  romanian:
+    "  ! \" # ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nŢ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Â Ş Ă Î ı\nţ a b c d e f g h i j k l m n o\np q r s t u v w x y z â ş ă î  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  serbian:
+    "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nЧ А Б Ц Д Е Ф Г Х И Ј К Л М Н О\nП Ќ Р С Т У В Ѓ Љ Њ З Ћ Ж Ђ Ш Џ\nч а б ц д е ф г х и ј к л м н о\nп џ р с т у в ѓ љ њ з ћ ж ђ ш  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  "cyrillic-serbian-croatian":
+    "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nЧ А Б Ц Д Е Ф Г Х И Ј К Л М Н О\nП Ќ Р С Т У В Ѓ Љ Њ З Ћ Ж Ђ Ш Џ\nч а б ц д е ф г х и ј к л м н о\nп   р с т у в ѓ љ њ з ћ ж ђ ш  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  sindhi:
+    '  ! " # $ % « » ( ) * + ، - . /\n۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ : ؛ < = > ؟\nء آ أ ؤ ئ ا ب ٻ ڀ ت ٿ ٽ ٺ ث پ ج\nڄ ڃ چ ڇ ح خ د ڌ ڏ ڊ ڍ ذ ر ڙ ز ژ\nس ش ص ض ط ظ ع غ ف ڦ ق ڪ ک ڳ گ ڱ\nل م ن ڻ و ه ھ ي ۽ ﻻ ـ          \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  sorani:
+    '  ! " # $ % « » ( ) * + ، - . /\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ : ؛ < = > ؟\nء ئ ا ب پ ت ج چ ح خ د ر ڕ ز ژ س\nش ع غ ف ڤ ق ک گ ل ڵ م ن ه ە و ۆ\nی ێ ھ ﻻ ـ                      \n                               \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  tajik:
+    "  ! \" Ҳ ҳ Ҷ қ ' ( ) ҷ Ё , - . /\n0 1 2 3 4 5 6 7 8 9 : ; ё = > ?\nЮ А Б Ғ Д Е Ф Г Х И Й К Л М Н О\nП Я Р С Т У Ж В Ӯ Ъ З Ш Э Ӣ Ч Қ\nю а б ғ д е ф г х и й к л м н о\nп я р с т у ж в ӯ ъ з ш э ӣ ч  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  tatar:
+    '  ! " Ң Һ ә ы Щ ( ) ө ү , - . /\n0 1 2 3 4 5 6 7 8 9 : ; ң һ щ ?\nЮ А Б Ц Д Е Ф Г Х И Й К Л М Н О\nП Я Р С Т У Ж В Ә Ө З Ш Э Җ Ч Ү\nю а б ц д е ф г х и й к л м н о\nп я р с т у ж в ь ъ з ш э җ ч  \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z',
+  tifinagh:
+    "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ⵯ ½ → ↑ #\nⴰ ⴱ ⴳ ⴷ ⴹ ⴻ ⴼ ⴽ ⵀ ⵃ ⵄ ⵅ ⵇ ⵉ ⵊ ⵍ\nⵎ ⵏ ⵓ ⵔ ⵕ ⵖ ⵙ ⵚ ⵛ ⵜ ⵟ ⵡ ⵢ ⵣ ⵥ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  ukrainian:
+    "  ! \" Ґ ґ % ї ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nЮ А Б Ц Д Е Ф Г Х И Й К Л М Н О\nП Я Р С Т У Ж В Ь І З Ш Є Щ Ч Ї\nю а б ц д е ф г х и й к л м н о\nп я р с т у ж в ь і з ш є щ ч  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  "cyrillic-ukrainian":
+    "  ! \" # $ % ї ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nЮ А Б Ц Д Е Ф Г Х И Й К Л М Н О\nП Я Р С Т У Ж В Ь І З Ш Є Щ Ч Ї\nю а б ц д е ф г х и й к л м н о\nп я р с т у ж в ь і з ш є щ ч  \n  ¡ ¢ £ $ ¥   §   ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α Ł ł ß ⅛ ⅜ ⅝ ⅞\nD E F G I J K L N Q R S U V W Z\nd e f g i j k l n q r s u v w z",
+  urdu: '  ! " # $ % « » ( ) * + ، - ۔ /\n۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ : ؛ < = > ؟\nء آ أ ؤ ئ ا ب پ ت ٹ ث ج چ ح خ د\nڈ ذ ر ڑ ز ژ س ش ص ض ط ظ ع غ ف ق\nک گ ل م ن ں و ہ ھ ی ے ۂ ۓ ﻻ ـ  \n                               \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  uyghur:
+    '  ! " # $ % « » ( ) * + ، - . /\n0 1 2 3 4 5 6 7 8 9 : ؛ < = > ؟\nئ ا ە ب پ ت ج چ خ د ر ز ژ س ش غ\nف ق ك گ ڭ ل م ن ھ و ۇ ۆ ۈ ۋ ې ى\nي ﻻ ـ                          \n                               \n  ! " £ $ % & \' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ',
+  vietnamese:
+    "  ! \" ư đ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nĂ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Â Ê Ô Ơ Ư\nă a b c d e f g h i j k l m n o\np q r s t u v w x y z â ê ô ơ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ ˀ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+};
+
+/** A set's tables: its G0 set's rows, its second G0 set's where it has one, then its G2 set's. */
+export interface SetTables {
+  readonly first: readonly string[];
+  /** Latin English, which ESC reaches from neoteletext's own sets. */
+  readonly second: readonly string[];
+  readonly supplementary: readonly string[];
+}
+
+/** A code table's rows: its columns 2 to 7, sixteen codes a row. */
+const ROWS_A_TABLE = 6;
+
+/** The tables of `set`, or null for a set they leave out. */
+export function tablesOf(set: SetName): SetTables | null {
+  const rows = TABLES[set]?.split("\n");
+  if (rows === undefined) {
+    return null;
+  }
+  const withSecond = rows.length > 2 * ROWS_A_TABLE;
+  return {
+    first: rows.slice(0, ROWS_A_TABLE),
+    second: withSecond ? rows.slice(ROWS_A_TABLE, 2 * ROWS_A_TABLE) : [],
+    supplementary: rows.slice(withSecond ? 2 * ROWS_A_TABLE : ROWS_A_TABLE),
+  };
+}

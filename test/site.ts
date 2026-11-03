@@ -2,6 +2,7 @@
 
 import { join } from "node:path";
 
+import type { SubPageContent } from "neoteletext-server-ts-protocol";
 import { Harness, fakeOpus } from "neoteletext-server-ts-protocol/testing";
 import { ComponentChannel, type PageSpec } from "neoteletext-server-ts-ui-components";
 import { pages } from "../src/pages.ts";
@@ -24,4 +25,14 @@ export function siteOf(pictures: readonly Picture[]): { harness: Harness; specs:
 /** The site with the test's pictures, or none, and its pages; its sounds encoded by the protocol's fake encoder, which runs nothing. */
 export function site(withPictures = true): { harness: Harness; specs: PageSpec[] } {
   return siteOf(withPictures ? loadPictures(PICTURES) : []);
+}
+
+/** The latest sub-page `session` was sent of `page`: its own copy, else the channel's. */
+export function contentOf(harness: Harness, session: number, page: number): SubPageContent | undefined {
+  return (harness.channel.copy(session, page) ?? harness.channel.copy("channel", page))?.at(-1)?.content;
+}
+
+/** Every text run of `content`, joined by line breaks: what the server encodes for the page. */
+export function runsText(content: SubPageContent | undefined): string {
+  return (content?.text ?? []).map((run) => run.text).join("\n");
 }
