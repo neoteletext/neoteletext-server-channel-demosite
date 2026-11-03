@@ -1,6 +1,6 @@
 // The NeoTeletext demo site: what a teletext service can be, as one
 // channel built on the component library, which the server starts from
-// its channels.json (teletext-server's docs/applications.md).
+// its channels.json (DOC-1964).
 //
 //   node src/main.ts [--pictures FOLDER]
 //

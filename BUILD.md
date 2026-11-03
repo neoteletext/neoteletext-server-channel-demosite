@@ -52,7 +52,7 @@ Linux host. A hook is never bypassed.
 
 The server starts a channel program from neoteletext-server-channels'
 `channels.json` and talks to it over standard input and output
-(teletext-server's `docs/applications.md`). By hand:
+(DOC-1964). By hand:
 
     node src/main.ts [--pictures FOLDER]
 

@@ -6,8 +6,7 @@ back, games, adventures, music and pictures, every page made of the
 component library's components.
 
 It is a channel program: the server starts it and they talk in lines of
-JSON on its standard input and output (teletext-server's
-`docs/applications.md`). It is built on two libraries of the server's,
+JSON on its standard input and output (DOC-1964). It is built on two libraries of the server's,
 released into `vendor/`:
 
 - **neoteletext-server-ts-protocol**, the channel protocol;

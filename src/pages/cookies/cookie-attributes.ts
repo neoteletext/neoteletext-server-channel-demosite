@@ -1,6 +1,6 @@
 // What each of a cookie's attributes does (RFC 6265bis, as the protocol's
-// `cookie` message carries them, the server's docs/applications.md
-// section 3), and the names the server keeps: text in a scrolling view.
+// `cookie` message carries them, DOC-1970)
+//, and the names the server keeps: text in a scrolling view.
 
 import { Colour, COLUMNS } from "neoteletext-server-ts-protocol";
 import { BAR_CELLS, BODY_ROWS, type Child, Component, type Element, h, ScrollView, Text } from "neoteletext-server-ts-ui-components";
