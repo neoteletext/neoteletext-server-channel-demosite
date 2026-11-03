@@ -157,7 +157,7 @@ test("a page's header bits agree with its designation", () => {
   for (const [page, , designation] of EXPECTED) {
     harness.join(1, page);
     const [copy] = harness.channel.copy("channel", page) ?? [];
-    assert.equal(copy?.content.character_set.national_option, designation & OPTION_MASK);
+    assert.equal(copy?.content.character_set?.national_option, designation & OPTION_MASK);
   }
 });
 

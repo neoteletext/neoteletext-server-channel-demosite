@@ -230,7 +230,7 @@ function expectDesignation(text: string, language: Language): void {
   const triplet = packet !== undefined && "triplets" in packet ? packet.triplets[0] : undefined;
   const value = triplet === undefined ? 0 : triplet.address | (triplet.mode << MODE_SHIFT) | (triplet.data << DATA_SHIFT);
   const wanted = SET_DESIGNATIONS[language.set];
-  if (((value >> DESIGNATION_SHIFT) & DESIGNATION_MASK) !== wanted || page?.content.character_set.national_option !== (wanted & OPTION_MASK)) {
+  if (((value >> DESIGNATION_SHIFT) & DESIGNATION_MASK) !== wanted || page?.content.character_set?.national_option !== (wanted & OPTION_MASK)) {
     throw new Error(`${language.name}: the page does not designate ${language.set}`);
   }
 }
