@@ -48,3 +48,54 @@ test("page 602 holds every picture at every level, a sub-page each, past the 64 
   assert.equal(harness.seen(2, PAGES.gallery).links[3], PAGES.everyPicture, "the gallery's cyan key");
   assert.deepEqual(harness.errors, []);
 });
+
+/** The sub-code of the sub-page a page message carries. */
+function subOf(message: Readonly<Record<string, unknown>> | undefined): string | undefined {
+  const page = message?.["page"];
+  return typeof page === "object" && page !== null && "sub" in page && typeof page.sub === "string" ? page.sub : undefined;
+}
+
+/** The entries of a sub-page list message: each sub-code and its title. */
+function entriesOf(message: Readonly<Record<string, unknown>> | undefined): { readonly sub: string; readonly title: unknown }[] {
+  const list: unknown = message?.["subpages"];
+  if (!Array.isArray(list)) {
+    return [];
+  }
+  return list.flatMap((entry: unknown) =>
+    typeof entry === "object" && entry !== null && "sub" in entry && typeof entry.sub === "string"
+      ? [{ sub: entry.sub, title: "title" in entry ? entry.title : undefined }]
+      : [],
+  );
+}
+
+test("TODO-1486: selecting page 602 answers with its first sub-page alone and a list naming every sub-page; a sub-code with that sub-page alone", () => {
+  const [one] = loadPictures(PICTURES);
+  assert.ok(one !== undefined);
+  const many = Array.from({ length: 40 }, (_, index) => ({ ...one, name: `p${index}`, caption: `Picture ${index}` }));
+  const { harness } = siteOf(many);
+  harness.join(1, PAGES.index);
+  let before = harness.sent.length;
+  harness.open(1, PAGES.everyPicture);
+  const answer = harness.sent.slice(before);
+  const pages = answer.filter((message) => message["type"] === "page");
+  assert.equal(pages.length, 1, "one sub-page answers a page selection");
+  const lists = answer.filter((message) => message["type"] === "subpages");
+  const entries = entriesOf(lists.at(-1));
+  assert.equal(entries.length, many.length * LEVELS.length, "the list holds every sub-page");
+  assert.equal(subOf(pages[0]), entries[0]?.sub, "the first in ascending order answers 3F7F");
+  assert.ok(
+    entries.every((entry) => typeof entry.title === "string" && entry.title.length > 0 && entry.title.length <= 40),
+    "every sub-page is named in the list, in at most 40 characters",
+  );
+  const third = entries[2]?.sub;
+  assert.ok(third !== undefined);
+  before = harness.sent.length;
+  harness.open(1, PAGES.everyPicture, Number.parseInt(third, 16));
+  const stepped = harness.sent.slice(before).filter((message) => message["type"] === "page");
+  assert.deepEqual(
+    stepped.map((message) => subOf(message)),
+    [third],
+    "a sub-code is answered with that sub-page alone",
+  );
+  assert.deepEqual(harness.errors, []);
+});
