@@ -19,14 +19,21 @@ It needs Node 22.18 or later, which runs the `.ts` files as they are, and
 ffmpeg with libopus on the `PATH`, which encodes its sounds as Opus.
 
     npm ci --ignore-scripts --no-audit --no-fund
-    node src/main.ts [--pictures FOLDER]
+    node src/main.ts [--pictures FOLDER] [--state FILE]
 
 FOLDER holds the gallery's converted pictures: `captions.tsv` (a line for
 each: name, group, caption) and each picture's `NAME_l15.tti`,
 `NAME_l25.tti` and `NAME_l35.tti`, as neoteletext-server-channels'
 `scripts/pictures.py` makes them in its `tmp/pictures`. Without it the
-gallery says it has none. `BUILD.md` has the checks; `DEPLOYMENT.md` is
-for the deploy.
+gallery says it has none.
+
+FILE is the SQLite database the site keeps what outlasts the program in:
+the guestbook, the hall of fame, the poll's votes and each viewer's
+ballot, through the component library's `SqliteStateStore`. It is made,
+with its folder, when it is not there. Without it the site keeps them in
+this repository's `tmp/state.sqlite`.
+
+`BUILD.md` has the checks; `DEPLOYMENT.md` is for the deploy.
 
 ## What is in it
 

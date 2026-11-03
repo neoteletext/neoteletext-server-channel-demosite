@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 import type { SubPageContent } from "neoteletext-server-ts-protocol";
 import { Harness, fakeOpus } from "neoteletext-server-ts-protocol/testing";
-import { ComponentChannel, type PageSpec } from "neoteletext-server-ts-ui-components";
+import { ComponentChannel, IN_MEMORY, type PageSpec, SqliteStateStore } from "neoteletext-server-ts-ui-components";
 import { standInText } from "../src/pages/languages/sample-text.ts";
 import { pages } from "../src/pages.ts";
 import { loadPictures } from "../src/pictures/load-pictures.ts";
@@ -17,10 +17,10 @@ export const PICTURES = join(import.meta.dirname, "pictures");
 /** When the tests' channel starts: 27 October 2026, UTC. */
 const STARTED = Date.UTC(2026, 9, 27);
 
-/** The site with `pictures`, and its pages. */
-export function siteOf(pictures: readonly Picture[]): { harness: Harness; specs: PageSpec[] } {
-  const specs = pages(makeSite(pictures));
-  return { harness: new Harness([new ComponentChannel(specs, { opus: fakeOpus(), standIn: standInText })], { epochMs: STARTED }), specs };
+/** The site with `pictures`, and its pages, keeping what lasts in `store`: a database in memory of its own when none is given. */
+export function siteOf(pictures: readonly Picture[], store: SqliteStateStore = new SqliteStateStore(IN_MEMORY)): { harness: Harness; specs: PageSpec[] } {
+  const specs = pages(makeSite(pictures, store));
+  return { harness: new Harness([new ComponentChannel(specs, { opus: fakeOpus(), standIn: standInText, state: store })], { epochMs: STARTED }), specs };
 }
 
 /** The site with the test's pictures, or none, and its pages; its sounds encoded by the protocol's fake encoder, which runs nothing. */

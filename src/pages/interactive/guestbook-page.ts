@@ -6,11 +6,9 @@ import { frame } from "../../parts/frame.ts";
 import type { Unlisten } from "../../parts/listeners.ts";
 import { LOOKS } from "../../site/looks.ts";
 import { PAGES } from "../../site/page-numbers.ts";
-import type { Guestbook } from "./guestbook.ts";
+import { type Guestbook, LONGEST_MESSAGE } from "./guestbook.ts";
 import { interactivePrompts } from "./prompts.ts";
 
-/** The longest message taken. */
-const LONGEST_MESSAGE = 60;
 /** The entries shown at once, two rows each. */
 const SHOWN = 8;
 

@@ -2,25 +2,37 @@
 // channel built on the component library, which the server starts from
 // its channels.json (DOC-1964).
 //
-//   node src/main.ts [--pictures FOLDER]
+//   node src/main.ts [--pictures FOLDER] [--state FILE]
 //
 // FOLDER holds the converted pictures for the gallery: captions.tsv and
 // each picture's NAME_l15.tti, NAME_l25.tti and NAME_l35.tti. Without it
 // the gallery says it has none.
+//
+// FILE is the SQLite database the channel keeps what outlasts it in
+// (REQ-1057): the guestbook, the hall of fame, the poll's votes and each
+// viewer's ballot. It is made, with its folder, when it is not there.
+// Without it, tmp/state.sqlite in this repository, which no deploy copies;
+// a live channel names a file outside the folder a deploy replaces.
 
+import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 
 import { runChannel } from "neoteletext-server-ts-protocol";
-import { ComponentChannel } from "neoteletext-server-ts-ui-components";
+import { ComponentChannel, SqliteStateStore } from "neoteletext-server-ts-ui-components";
 import { standInText } from "./pages/languages/sample-text.ts";
 import { pages } from "./pages.ts";
 import { loadPictures } from "./pictures/load-pictures.ts";
 import { makeSite } from "./site/site.ts";
 
-const { values } = parseArgs({ options: { pictures: { type: "string" } }, strict: true });
+/** Where the channel keeps what outlasts it when no file is named: this repository's ignored tmp/. */
+const LOCAL_STATE = fileURLToPath(new URL("../tmp/state.sqlite", import.meta.url));
+
+const { values } = parseArgs({ options: { pictures: { type: "string" }, state: { type: "string" } }, strict: true });
 const pictures = values.pictures === undefined ? [] : loadPictures(values.pictures);
-const specs = pages(makeSite(pictures));
-process.stderr.write(`demosite: ${specs.length} pages, ${pictures.length} pictures\n`);
+const statePath = values.state ?? LOCAL_STATE;
+const store = new SqliteStateStore(statePath);
+const specs = pages(makeSite(pictures, store));
+process.stderr.write(`demosite: ${specs.length} pages, ${pictures.length} pictures, kept in ${statePath}\n`);
 
 // Every page is drawn in each viewer's language, the site's words as text of it (REQ-2218, DEC-2233).
-await runChannel([new ComponentChannel(specs, { standIn: standInText })]);
+await runChannel([new ComponentChannel(specs, { standIn: standInText, state: store })]);

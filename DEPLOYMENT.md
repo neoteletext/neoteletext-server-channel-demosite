@@ -43,6 +43,18 @@ serves and how many pictures it loaded:
 
     ssh foundintelquiet4060 journalctl --user -u teletext-server --no-pager -n 20 -o cat
 
+## What it keeps
+
+The guestbook, the hall of fame, the poll's votes and each viewer's
+ballot are kept in the SQLite file `--state` names, so that they outlast
+the program. On the live host, neoteletext-app-server's
+`deploy/ionos/deploy.sh` names `/opt/neoteletext/state/demosite.sqlite`,
+outside `/opt/neoteletext/current`, which each deploy replaces, and copies
+the file to `~/demosite.sqlite.bak-DATE` on the host before it replaces
+anything. A copy is made with SQLite's `VACUUM INTO`, consistent while the
+program writes; to put one back, stop the channel's program, copy the
+backup over the file, and remove the file's `-wal` and `-shm` beside it.
+
 ## A new release of a library
 
 `BUILD.md`, "What is needed": the release goes into `vendor/`,
