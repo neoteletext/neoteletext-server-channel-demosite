@@ -17,7 +17,8 @@ export class MinuteCookie extends Component {
 
   /** When the viewer's cookie lapses, or null when they have none that says. */
   get #lapses(): number | null {
-    const { session } = this.services;
+    // Unmounted (the probe of the page's needs), there is no viewer and no service to ask.
+    const session = this.mounted ? this.services.session : null;
     return session === null ? null : numberIn(this.services.cookies(session)[COOKIES.minute]);
   }
 

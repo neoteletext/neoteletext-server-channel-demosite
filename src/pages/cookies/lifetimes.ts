@@ -8,7 +8,8 @@ import { clockOf, COOKIES, SITE_WIDE, shown, THIRTY_DAYS_SECONDS } from "./cooki
 export class Lifetimes extends Component {
   /** What the viewer's cookie `name` holds, as the page shows it. */
   #value(name: string): string {
-    const { session } = this.services;
+    // Unmounted (the probe of the page's needs), there is no viewer and no service to ask.
+    const session = this.mounted ? this.services.session : null;
     const value = session === null ? undefined : this.services.cookies(session)[name];
     return value === undefined ? "not set" : `set at ${shown(value)}`;
   }

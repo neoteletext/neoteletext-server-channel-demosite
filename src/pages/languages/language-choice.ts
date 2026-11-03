@@ -64,10 +64,12 @@ export class LanguageChoice extends Component<LanguageChoiceProps> {
   }
 
   override render(): Child {
-    const { session } = this.services;
-    const tags = offered(this.services.languages().map((language) => language.tag));
+    // Unmounted (the probe of the page's needs), there is no viewer and no service to ask: English, and no languages yet.
+    const session = this.mounted ? this.services.session : null;
+    const languages = this.mounted ? this.services.languages() : [];
+    const tags = offered(languages.map((language) => language.tag));
     const now = session === null ? ENGLISH_TAG : this.services.language(session);
-    const name = this.services.languages().find((language) => language.tag === now)?.name ?? now;
+    const name = languages.find((language) => language.tag === now)?.name ?? now;
     return h(
       Rows,
       {},

@@ -13,7 +13,8 @@ const LIST_ROWS = 12;
 export class CookieList extends Component {
   /** The viewer's cookies, by name. */
   #cookies(): [name: string, value: string][] {
-    const { session } = this.services;
+    // Unmounted (the probe of the page's needs), there is no viewer and no service to ask.
+    const session = this.mounted ? this.services.session : null;
     return session === null ? [] : Object.entries(this.services.cookies(session)).toSorted(([a], [b]) => a.localeCompare(b, "en"));
   }
 
