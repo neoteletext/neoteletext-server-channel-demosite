@@ -55,7 +55,7 @@ The index is on 100; each area has a magazine, its menu on N00.
   counted down (703), every cookie you have here with a way to remove
   each (704), and what each attribute does (705).
 - **Languages** (800, and 801 for the rest of the index): magazine 8 alone,
-  a page in each language the engine has a set for, 802 to 877, in
+  a page in each language the engine has a set for, 802 to 874, in
   alphabetical order, each built of the library's components in its own
   language: its name in itself, then a scrolling view of the Universal
   Declaration of Human Rights (`CREDITS.md`), its letters and every

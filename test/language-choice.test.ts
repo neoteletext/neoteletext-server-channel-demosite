@@ -100,8 +100,8 @@ test("an address naming no language of the server's chooses none", () => {
   assert.deepEqual(harness.redirects(1), []);
 });
 
-test("every page of the site is published without a fault in English, Russian, Greek, Arabic, Hebrew, Thai and Japanese kana", () => {
-  for (const language of ["en", "ru", "el", "ar", "he", "th", "ja-Hrkt"]) {
+test("every page of the site is published without a fault in English, Russian, Greek, Arabic, Hebrew, Vietnamese and Japanese kana", () => {
+  for (const language of ["en", "ru", "el", "ar", "he", "vi", "ja-Hrkt"]) {
     const { harness, specs } = site(false);
     harness.join(1, PAGES.index, [{ name: "language", value: language }]);
     for (const spec of specs) {
@@ -110,15 +110,4 @@ test("every page of the site is published without a fault in English, Russian, G
     }
     assert.deepEqual(harness.errors, [], language);
   }
-});
-
-test("DEC-604: in Thai, the index's heading and its one-row ticker are in Thai, their marks on rows of their own", () => {
-  const { harness } = site(false);
-  harness.join(1, PAGES.index, [{ name: "language", value: "th" }]);
-  const runs = bodyRuns(harness, 1, PAGES.index);
-  const thai = runs.filter(([language, text]) => language === "th" && /[\u0E00-\u0E7F]/u.test(text)).map(([, text]) => text);
-  const ticker = (contentOf(harness, 1, PAGES.index)?.text ?? []).filter((run) => run.language === "th").map((run) => run.row);
-  assert.ok(thai.length >= 2, JSON.stringify(runs));
-  assert.ok(new Set(ticker).size >= 2, "the heading and the ticker, each on a row of its own");
-  assert.deepEqual(harness.errors, []);
 });

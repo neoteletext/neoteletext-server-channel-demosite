@@ -8,8 +8,7 @@
 // lacks a character the text is changed to the nearest it has, as TODO-1162
 // lists, and a language with no text of the Declaration to hand shows its name
 // and letters alone. CREDITS.md says where the texts came from. A line break
-// in `text` or `letters` is a Thai or Lao break between words, which have no
-// spaces to break at.
+// in `text` parts lines.
 
 import type { LanguageTag } from "neoteletext-server-ts-protocol";
 
@@ -59,7 +58,7 @@ export const SET_DESIGNATIONS = {
   "kabyle-tamazight": 0b0101_011,
   azerbaijani: 0b0101_100,
   "kanuri-mossi": 0b0101_101,
-  "yoruba-igbo": 0b0101_110,
+  igbo: 0b0101_110,
   vietnamese: 0b0101_111,
   ukrainian: 0b0111_000,
   belarusian: 0b0111_001,
@@ -79,8 +78,6 @@ export const SET_DESIGNATIONS = {
   uyghur: 0b1001_101,
   balochi: 0b1001_110,
   arabic: 0b1001_111,
-  thai: 0b1100_010,
-  lao: 0b1100_100,
   "japanese-romaji": 0b1101_000,
   hiragana: 0b1101_001,
   katakana: 0b1101_010,

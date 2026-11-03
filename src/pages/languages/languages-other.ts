@@ -1,5 +1,5 @@
 // The languages of neoteletext's Cyrillic, Georgian, Armenian, Tifinagh,
-// Arabic-script, Thai, Lao and Japanese sets, and of the standard's Arabic
+// Arabic-script and Japanese sets, and of the standard's Arabic
 // set of Table 44, which the page writer joins itself.
 
 import type { Language } from "./language-sets.ts";
@@ -247,25 +247,5 @@ export const OTHER_LANGUAGES: readonly Language[] = [
     text: "Subete no ningen wa, umarenagara ni shite jiyū de ari, katsu, songen to kenri to ni tsuite byōdō de aru. Ningen wa, risei to ryōshin to o sazukerarete ori, tagai ni dōhō no seishin o motte kōdō shinakereba naranai. Subete no hito wa, seimei, jiyū oyobi shintai no anzen ni taisuru kenri o yūsuru.",
     letters: "Ā Ē Ī Ō Ū ā ē ī ō ū ¥",
     source: "romanised",
-  },
-  {
-    name: "Thai",
-    tag: "th",
-    set: "thai",
-    own: "ภาษาไทย",
-    headline: "ปฏิญญาสากลว่าด้วยสิทธิมนุษยชน",
-    text: "มนุษย์ทั้งหลายเกิดมามีอิสระและเสมอภาคกัน\nในเกียรติศักดิ์และสิทธิ ต่างมีเหตุผลและมโนธรรม\nและควรปฏิบัติต่อกันด้วยเจตนารมณ์\nแห่งภราดรภาพ\nคนทุกคนมีสิทธิในการดำรงชีวิต เสรีภาพ\nและความมั่นคงแห่งตัวตน",
-    letters: "กขคฆงจฉชซฌญฎฏฐฑฒณดตถทธน\nบปผฝพฟภมยรลวศษสหฬอฮ",
-    source: "un",
-  },
-  {
-    name: "Lao",
-    tag: "lo",
-    set: "lao",
-    own: "ພາສາລາວ",
-    headline: "ປະກາດສາກົນ ກ່ຽວກັບສິດຂອງມະນຸດ",
-    text: "ມະນຸດເກີດມາມີສິດເສລີພາບ ແລະ\nສະເໝີໜ້າກັນໃນທາງກຽດຕິສັກ ແລະ ທາງສິດ\nດ້ວຍມະນຸດມີສະຕິສຳປັດຊັນຍະ(ຮູ້ດີຮູ້ຊົ່ວ)\nແລະມີມະໂນທຳຈື່ງຕ້ອງປະພຶດຕົນຕໍ່ກັນ\nໃນທາງພີ່ນ້ອງ.\nບຸກຄົນທຸກຄົນມີສິດດຳລົງຊີວິດ ມີສິດເສລີພາບ\nແລະ ຄວາມປອດໄພໃນຕົວ.",
-    letters: "ກຂຄງຈສຊຍດຕຖທນບປຜຝພຟມຢຣລວຫອຮ",
-    source: "un",
   },
 ];

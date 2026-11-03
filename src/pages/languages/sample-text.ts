@@ -25,9 +25,9 @@ export function pageOf(tag: LanguageTag): Language | undefined {
   return LANGUAGES.find((language) => language.tag === wanted);
 }
 
-/** The stretches of `text` that may start a line: Thai and Lao at the page's breaks, the rest at spaces. */
-export function breaksOf(text: string, marked: boolean): string[] {
-  return (marked ? text.split("\n") : text.split(/\s+/u)).filter((part) => part !== "");
+/** The words of `text`, the stretches that may start a line. */
+export function breaksOf(text: string): string[] {
+  return text.split(/\s+/u).filter((part) => part !== "");
 }
 
 /**

@@ -7,9 +7,9 @@
 // and reading it back with the engine's `neottx text`; a code the set leaves
 // empty reads as a space, and so does a character the set's language cannot
 // be sent in (measured on the server at 28133db: the code 7/F, and Arabic's
-// presentation forms, which the server makes from the letters itself). Thai
-// and Lao are not here: their marks take rows of
-// their own, which a table of single cells cannot give them. The kana sets'
+// presentation forms, which the server makes from the letters itself). The
+// Igbo set's four positions that held Yoruba's letters are empty since
+// Yoruba was dropped (DEC-2240, the engine's DEC-2244). The kana sets'
 // second G0 set, the other kana, is left out: a run in the other kana's
 // language cannot be sent on the page (measured the same way), and each kana
 // set has its own page. The second G0 set of every other set is Latin
@@ -18,7 +18,7 @@
 import type { SetName } from "./language-sets.ts";
 
 /** A set's tables, each six rows of sixteen characters with a space between them, a line break after each row. */
-const TABLES: Readonly<Partial<Record<SetName, string>>> = {
+const TABLES: Readonly<Record<SetName, string>> = {
   "west-african":
     "  ! \" ɖ ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nƐ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ɔ Ŋ Ɲ Ɣ Ɖ\nɛ a b c d e f g h i j k l m n o\np q r s t u v w x y z ɔ ŋ ɲ ɣ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
   arabic:
@@ -60,8 +60,7 @@ const TABLES: Readonly<Partial<Record<SetName, string>>> = {
     "  ! \" # $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; « = » ?\nΐ Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο\nΠ Ρ ΄ Σ Τ Υ Φ Χ Ψ Ω Ϊ Ϋ ά έ ή ί\nΰ α β γ δ ε ζ η θ ι κ λ μ ν ξ ο\nπ ρ ς σ τ υ φ χ ψ ω ϊ ϋ ό ύ ώ  \n  a b £ e h i § : ‘ “ k ← ↑ → ↓\n° ± ² ³ × m n p ÷ ’ ” t ¼ ½ ¾ x\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n? ¹ ® © ™ ♪ € ‰ α Ί Ύ Ώ ⅛ ⅜ ⅝ ⅞\nC D F G J L Q R S U V W Y Z Ά Ή\nc d f g j l q r s u v w y z Έ  ",
   hebrew:
     "  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\nא ב ג ד ה ו ז ח ט י ך כ ל ם מ ן\nנ ס ע ף פ ץ צ ק ר ש ת ₪ ‖ ¾ ÷  \n  ع آ أ ؤ إ ﺋ ﺊ ﭼ ﭽ چ ﭘ ﭙ پ ژ ﮔ\n٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ﻎ غ ﻼ ﻬ ﻪ ه\nà A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ë ê ù î ﻊ\né a b c d e f g h i j k l m n o\np q r s t u v w x y z â ô û ç  ",
-  "yoruba-igbo":
-    "  ! \" ṅ ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\nẸ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ọ Ṣ Ị Ụ Ṅ\nẹ a b c d e f g h i j k l m n o\np q r s t u v w x y z ọ ṣ ị ụ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
+  igbo: "  ! \" ṅ ¤ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n  A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z Ọ   Ị Ụ Ṅ\n  a b c d e f g h i j k l m n o\np q r s t u v w x y z ọ   ị ụ  \n  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\n@ A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ← ½ → ↑ #\n— a b c d e f g h i j k l m n o\np q r s t u v w x y z ¼ ‖ ¾ ÷  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
   italian:
     "  ! \" £ $ % & ' ( ) * + , - . /\n0 1 2 3 4 5 6 7 8 9 : ; < = > ?\né A B C D E F G H I J K L M N O\nP Q R S T U V W X Y Z ° ç → ↑ #\nù a b c d e f g h i j k l m n o\np q r s t u v w x y z à ò è ì  \n  ¡ ¢ £ $ ¥ # § ¤ ‘ “ « ← ↑ → ↓\n° ± ² ³ × µ ¶ · ÷ ’ ” » ¼ ½ ¾ ¿\n  ` ´ ˆ ˜ ¯ ˘ ˙ ¨ . ˚ ¸ _ ˝ ˛ ˇ\n― ¹ ® © ™ ♪ € ‰ α       ⅛ ⅜ ⅝ ⅞\nΩ Æ Đ ª Ħ   Ĳ Ŀ Ł Ø Œ º Þ Ŧ Ŋ ŉ\nĸ æ đ ð ħ ı ĳ ŀ ł ø œ ß þ ŧ ŋ  ",
   hiragana:
@@ -126,12 +125,9 @@ export interface SetTables {
 /** A code table's rows: its columns 2 to 7, sixteen codes a row. */
 const ROWS_A_TABLE = 6;
 
-/** The tables of `set`, or null for a set they leave out. */
-export function tablesOf(set: SetName): SetTables | null {
-  const rows = TABLES[set]?.split("\n");
-  if (rows === undefined) {
-    return null;
-  }
+/** The tables of `set`. */
+export function tablesOf(set: SetName): SetTables {
+  const rows = TABLES[set].split("\n");
   const withSecond = rows.length > 2 * ROWS_A_TABLE;
   return {
     first: rows.slice(0, ROWS_A_TABLE),

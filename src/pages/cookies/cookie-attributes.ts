@@ -26,7 +26,7 @@ export class CookieAttributes extends Component {
     const units: Element[] = [];
     for (const [place, [name, what]] of ATTRIBUTES.entries()) {
       units.push(h(Text, { key: `name ${place}`, text: name, foreground: Colour.Yellow }));
-      for (const [at, line] of linesOf(what, LINE_CELLS, false).entries()) {
+      for (const [at, line] of linesOf(what, LINE_CELLS).entries()) {
         units.push(h(Text, { key: `what ${place} ${at}`, text: line }));
       }
       units.push(h(Text, { key: `gap ${place}`, text: "" }));

@@ -52,48 +52,45 @@ const EXPECTED: readonly (readonly [page: number, name: string, tag: LanguageTag
   [0x837, "Kazakh", "kk"],
   [0x838, "Krio", "kri"],
   [0x839, "Kyrgyz", "ky"],
-  [0x840, "Lao", "lo"],
-  [0x841, "Latvian", "lv"],
-  [0x842, "Lingala", "ln"],
-  [0x843, "Lithuanian", "lt"],
-  [0x844, "Macedonian", "mk"],
-  [0x845, "Mandinka", "mnk"],
-  [0x846, "Mende", "men"],
-  [0x847, "Mongolian", "mn"],
-  [0x848, "Mossi", "mos"],
-  [0x849, "Nuer", "nus"],
-  [0x850, "Pashto", "ps"],
-  [0x851, "Persian", "fa"],
-  [0x852, "Polish", "pl"],
-  [0x853, "Portuguese", "pt"],
-  [0x854, "Romanian", "ro"],
-  [0x855, "Russian", "ru"],
-  [0x856, "Serbian", "sr"],
-  [0x857, "Serbian Latin", "sr-Latn"],
-  [0x858, "Serbian T38", "sr"],
-  [0x859, "Sindhi", "sd"],
-  [0x860, "Slovak", "sk"],
-  [0x861, "Slovenian", "sl"],
-  [0x862, "Sorani", "ckb"],
-  [0x863, "Spanish", "es"],
-  [0x864, "Swahili", "sw"],
-  [0x865, "Swedish", "sv"],
-  [0x866, "Tajik", "tg"],
-  [0x867, "Tamazight", "tzm"],
-  [0x868, "Tatar", "tt"],
-  [0x869, "Thai", "th"],
-  [0x870, "Tifinagh", "zgh"],
-  [0x871, "Turkish", "tr"],
-  [0x872, "Ukrainian", "uk"],
-  [0x873, "Ukrainian T40", "uk"],
-  [0x874, "Urdu", "ur"],
-  [0x875, "Uyghur", "ug"],
-  [0x876, "Vietnamese", "vi"],
-  [0x877, "Yoruba", "yo"],
+  [0x840, "Latvian", "lv"],
+  [0x841, "Lingala", "ln"],
+  [0x842, "Lithuanian", "lt"],
+  [0x843, "Macedonian", "mk"],
+  [0x844, "Mandinka", "mnk"],
+  [0x845, "Mende", "men"],
+  [0x846, "Mongolian", "mn"],
+  [0x847, "Mossi", "mos"],
+  [0x848, "Nuer", "nus"],
+  [0x849, "Pashto", "ps"],
+  [0x850, "Persian", "fa"],
+  [0x851, "Polish", "pl"],
+  [0x852, "Portuguese", "pt"],
+  [0x853, "Romanian", "ro"],
+  [0x854, "Russian", "ru"],
+  [0x855, "Serbian", "sr"],
+  [0x856, "Serbian Latin", "sr-Latn"],
+  [0x857, "Serbian T38", "sr"],
+  [0x858, "Sindhi", "sd"],
+  [0x859, "Slovak", "sk"],
+  [0x860, "Slovenian", "sl"],
+  [0x861, "Sorani", "ckb"],
+  [0x862, "Spanish", "es"],
+  [0x863, "Swahili", "sw"],
+  [0x864, "Swedish", "sv"],
+  [0x865, "Tajik", "tg"],
+  [0x866, "Tamazight", "tzm"],
+  [0x867, "Tatar", "tt"],
+  [0x868, "Tifinagh", "zgh"],
+  [0x869, "Turkish", "tr"],
+  [0x870, "Ukrainian", "uk"],
+  [0x871, "Ukrainian T40", "uk"],
+  [0x872, "Urdu", "ur"],
+  [0x873, "Uyghur", "ug"],
+  [0x874, "Vietnamese", "vi"],
 ];
 
-/** The sets of write_text/sets.rs: the page writer's 50 names. */
-const SET_COUNT = 50;
+/** The sets of write_text/sets.rs: the page writer's 48 names. */
+const SET_COUNT = 48;
 /** The row of the coloured keys' prompts. */
 const FASTEXT_ROW = 24;
 /** The first row under the title band, where the view starts. */
@@ -101,13 +98,13 @@ const VIEW_ROW = 3;
 /** The indexes: whole pages, since a click is only ever found on a page's first sub-page. */
 const INDEX_PAGES = [PAGES.languages, PAGES.moreLanguages] as const;
 /** The Russian page, its headline and its letters. */
-const RUSSIAN_PAGE = 0x855;
+const RUSSIAN_PAGE = 0x854;
 const RUSSIAN_HEADLINE = "Всеобщая декларация прав человека";
 /** The pages whose text is Wikipedia's, each with the revision it came from: CC BY-SA 4.0 section 3(a)(1) asks for these on the page. */
 const WIKIPEDIA_PAGES = [
   [0x834, "en.wikipedia.org/?oldid=1382739977"],
-  [0x849, "en.wikipedia.org/?oldid=1362123989"],
-  [0x862, "ckb.wikipedia.org/?oldid=1459364"],
+  [0x848, "en.wikipedia.org/?oldid=1362123989"],
+  [0x861, "ckb.wikipedia.org/?oldid=1459364"],
 ] as const;
 /** The credit, the changes and the licence, as the page shows them. */
 const WIKIPEDIA_CREDIT = "Text: Wikipedia, changed. CC BY-SA 4.0";
