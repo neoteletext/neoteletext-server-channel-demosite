@@ -1,21 +1,20 @@
 PN,82900
 SC,0000
-PS,C000
+PS,C180
 PF,0,0
-OL,1,D]CMBahasa Indonesia
+OL,1,D]CMIgbo
 OL,2,
 OL,3,
-OL,4,CPernyataan Umum tentang Hak-Hak Asasi
-OL,5,CManusia
+OL,4,CNKUWUWAP^TA ^WA NILE BANYERE IKIKE
+OL,5,CMMAD^ NWEGAS]R]
 OL,6,
-OL,7,GSemua orang dilahirkan merdeka dan
-OL,8,Gmempunyai martabat dan hak-hak yang
-OL,9,Gsama. Mereka dikaruniai akal dan hati
-OL,10,Gnurani dan hendaknya bergaul satu sama
-OL,11,Glain dalam semangat persaudaraan.
-OL,12,GSetiap orang berhak atas penghidupan,
-OL,13,Gkebebasan dan keselamatan individu.
-OL,14,
-OL,15,FABCDEFGHIJKLMNOPQRSTUVWXYZ
-OL,24,A-828   B+830   CIndex 800     F100
-OL,28,@@@|gpCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@
+OL,7,GA m~r~ mmad~ nile n'ohere nakwa nha
+OL,8,Ganya ugwu na ikike. E nyere ha uche na
+OL,9,Gmm~{ ime ihe ziri ezi nke na ha kwesiri
+OL,10,G}kpaso ibe ha agwa n'obi nwanne na
+OL,11,Gnwanne. Onye { b~la nwere ikike inwe
+OL,12,Gnd~, ohere na nchedo nke onwe ya.
+OL,13,
+OL,14,F] [ ^ _ } { ~ #
+OL,24,[A-828   B+830   CIndex 800     F100
+OL,28,@@\A`pCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@

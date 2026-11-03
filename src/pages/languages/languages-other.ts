@@ -1,5 +1,6 @@
 // The languages of neoteletext's Cyrillic, Georgian, Armenian, Tifinagh,
-// Arabic-script, Thai and Lao sets.
+// Arabic-script, Thai, Lao and Japanese sets, and of the standard's Arabic
+// set of Table 44, which the page writer joins itself.
 
 import type { Language } from "./language-sets.ts";
 
@@ -184,6 +185,44 @@ export const OTHER_LANGUAGES: readonly Language[] = [
     text: "يولد جميع الناس أحرارا متساوين في الكرامة والحقوق. وقد وهبوا عقلا وضميرا وعليهم أن يعامل بعضهم بعضا بروح الإخاء. لكل فرد الحق في الحياة والحرية وسلامة شخصه.",
     letters: "ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي",
     source: "un",
+  },
+  {
+    name: "Arabic T44",
+    set: "arabic-table44",
+    own: "العربية",
+    headline: "الإعلان العالمي لحقوق الإنسان",
+    text: "يولد جميع الناس أحرارا متساوين في الكرامة والحقوق. وقد وهبوا عقلا وضميرا وعليهم أن يعامل بعضهم بعضا بروح الإخاء. لكل فرد الحق في الحياة والحرية وسلامة شخصه.",
+    letters: "ا ب ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ف ق ك ل م ن ه و ي",
+    source: "un",
+  },
+  {
+    name: "Japanese",
+    set: "hiragana",
+    own: "にほんご",
+    headline: "せかい じんけん せんげん",
+    text: "すべての にんげんは、うまれながらに して じゆうで あり、かつ、そんげんと けんりとに ついて びょうどうで ある。にんげんは、りせいと りょうしんとを さずけられて おり、たがいに どうほうの せいしんを もって こうどう しなければ ならない。すべての ひとは、せいめい、じゆう および しんたいの あんぜんに たいする けんりを ゆうする。",
+    letters: "が ぱ ゃ っ ア ガ パ ァ ャ ッ ー ヴ",
+    source: "kana",
+    index: "もくじ",
+  },
+  {
+    name: "Katakana",
+    set: "katakana",
+    own: "ニホンゴ",
+    headline: "セカイ ジンケン センゲン",
+    text: "スベテノ ニンゲンハ、ウマレナガラニ シテ ジユウデ アリ、カツ、ソンゲント ケンリトニ ツイテ ビョウドウデ アル。ニンゲンハ、リセイト リョウシントヲ サズケラレテ オリ、タガイニ ドウホウノ セイシンヲ モッテ コウドウ シナケレバ ナラナイ。スベテノ ヒトハ、セイメイ、ジユウ オヨビ シンタイノ アンゼンニ タイスル ケンリヲ ユウスル。",
+    letters: "ァ ィ ゥ ェ ォ ャ ッ ー ヴ が ぱ",
+    source: "kana",
+    index: "もくじ",
+  },
+  {
+    name: "Japanese Romaji",
+    set: "japanese-romaji",
+    own: "Nihongo",
+    headline: "Sekai Jinken Sengen",
+    text: "Subete no ningen wa, umarenagara ni shite jiyū de ari, katsu, songen to kenri to ni tsuite byōdō de aru. Ningen wa, risei to ryōshin to o sazukerarete ori, tagai ni dōhō no seishin o motte kōdō shinakereba naranai. Subete no hito wa, seimei, jiyū oyobi shintai no anzen ni taisuru kenri o yūsuru.",
+    letters: "Ā Ē Ī Ō Ū ā ē ī ō ū ¥",
+    source: "romanised",
   },
   {
     name: "Thai",

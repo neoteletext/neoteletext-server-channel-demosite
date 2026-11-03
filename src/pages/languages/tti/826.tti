@@ -1,19 +1,24 @@
 PN,82600
 SC,0000
-PS,C280
+PS,C000
 PF,0,0
-OL,1,D]CM                               zixar
+OL,1,D]CMHausa
 OL,2,
 OL,3,
-OL,4,C    mc`d zeiekf xaca mler i`a lkl dfxkd
-OL,5,
-OL,6,Gmkxra mieeye oixeg ipa eclep mc` ipa lk
-OL,7,G,oetvnae dpeaza eppeg mlek .mdizeiekfae
-OL,8,G  gexa edrxa yi` bedpl mdilr daeg jkitl
-OL,9,G     ,miigl zekfd el yi mc` lk .deg` ly
-OL,10,G                    .iyi` oeghale zexgl
-OL,11,
-OL,12,Ft r q o p m n l j k i h g f e d c b a `
-OL,13,F                          z y x w u v s
-OL,24,A-825   B+827   CINDEX 800     F100
-OL,28,@@j~gpCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@
+OL,4,CMuhimmin Jawabin da Majalisar [inkin
+OL,5,CDuniya ta bayyana game da Hakkokin
+OL,6,C]an-adam
+OL,7,
+OL,8,GSu dai 'yan-adam, ana haifuwarsu ne
+OL,9,Gduka 'yantattu, kuma kowannensu na da
+OL,10,Gmutunci da hakkoki daidai da na kowa.
+OL,11,GSuna da hankali da tunani, saboda haka
+OL,12,Gduk abin da za su aikata wa juna, ya
+OL,13,Gkamata su yi shi a cikin 'yan-uwanci.
+OL,14,GKowane mutum na da hakkin rayuwa, da
+OL,15,Gzamantowa cikin 'yanci da samun a
+OL,16,Gkiyaye halittarsa.
+OL,17,
+OL,18,F@ [ \ ] ` { | }
+OL,24,[A-825   B+827   CIndex 800     F100
+OL,28,@@PA`pCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@

@@ -22,7 +22,11 @@ type TextSource =
   /** The UN's Cyrillic text put into the Latin alphabet, letter by letter: unverified. */
   | "transliterated"
   /** No text of the Declaration was found: the page has no headline or text. */
-  | "none";
+  | "none"
+  /** The UN's Japanese text put into kana by hand, a space between words: unverified (DEC-2187). */
+  | "kana"
+  /** The UN's Japanese text put into Hepburn rōmaji by hand: unverified (DEC-2184). */
+  | "romanised";
 
 /** The sets by name, each with its seven-bit designation, group << 3 | option (the engine's EN 300 706 Table 32 and its own values). */
 export const SET_DESIGNATIONS = {
@@ -44,6 +48,7 @@ export const SET_DESIGNATIONS = {
   "cyrillic-ukrainian": 0b0100_101,
   greek: 0b0110_111,
   hebrew: 0b1010_101,
+  "arabic-table44": 0b1000_111,
   "hausa-fula": 0b0101_000,
   "west-african": 0b0101_001,
   ewe: 0b0101_010,
@@ -72,6 +77,9 @@ export const SET_DESIGNATIONS = {
   arabic: 0b1001_111,
   thai: 0b1100_010,
   lao: 0b1100_100,
+  "japanese-romaji": 0b1101_000,
+  hiragana: 0b1101_001,
+  katakana: 0b1101_010,
 } as const;
 
 /** A set's name. */
@@ -80,11 +88,18 @@ export type SetName = keyof typeof SET_DESIGNATIONS;
 /** A designation's option bits, below its group. */
 const GROUP_SHIFT = 3;
 /** The groups of neoteletext's own sets, each with Latin English as its second G0 set, which ESC reaches. */
-const SECOND_LATIN_GROUPS: ReadonlySet<number> = new Set([0b0101, 0b0111, 0b1001, 0b1011, 0b1100]);
+const SECOND_LATIN_GROUPS: ReadonlySet<number> = new Set([0b0101, 0b0111, 0b1001, 0b1011, 0b1100, 0b1101]);
+/** The kana sets, each the other's second set (the engine's DEC-2187). */
+const KANA: ReadonlySet<SetName> = new Set(["hiragana", "katakana"]);
 
-/** Whether a page in `set` reaches Latin English with ESC. */
+/** Whether a page in `set` reaches Latin English with ESC: neoteletext's own sets but the kana, and the standard's Arabic set, for which the writer names Latin English (the engine's REQ-2190). */
 export function hasSecondLatin(set: SetName): boolean {
-  return SECOND_LATIN_GROUPS.has(SET_DESIGNATIONS[set] >> GROUP_SHIFT);
+  return (SECOND_LATIN_GROUPS.has(SET_DESIGNATIONS[set] >> GROUP_SHIFT) && !KANA.has(set)) || set === "arabic-table44";
+}
+
+/** Whether a page in `set` has a second G0 set that ESC reaches. */
+export function hasSecondSet(set: SetName): boolean {
+  return hasSecondLatin(set) || KANA.has(set);
 }
 
 /** One language's page. */

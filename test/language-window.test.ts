@@ -26,9 +26,10 @@ const MODE_SET_ACTIVE_POSITION = 0b00100;
 const MODE_G2 = 0b01111;
 const TERMINATION_ADDRESS = 63;
 const MODE_TERMINATION = 0b11111;
-/** A designation's group, and the groups with a second G0 set of Latin English: the engine's default_second_g0, written out. */
+/** The sets with a second G0 set that ESC reaches, written out: neoteletext's own sets by their groups, as the engine's default_second_g0 gives them (Latin English, or for each kana set the other), and the standard's Arabic set, for which the page writer names Latin English. */
 const GROUP_SHIFT = 3;
-const SECOND_LATIN = new Set([0b0101, 0b0111, 0b1001, 0b1011, 0b1100]);
+const WITH_SECOND = new Set([0b0101, 0b0111, 0b1001, 0b1011, 0b1100, 0b1101]);
+const STANDARD_WITH_SECOND = new Set(["arabic-table44"]);
 
 type Harness = ReturnType<typeof site>["harness"];
 
@@ -86,7 +87,7 @@ test("every language page's window reaches every code of its G0 set, of its seco
       }
       harness.press(1, Key.Down);
     }
-    const hasSecond = SECOND_LATIN.has(SET_DESIGNATIONS[language.set] >> GROUP_SHIFT);
+    const hasSecond = WITH_SECOND.has(SET_DESIGNATIONS[language.set] >> GROUP_SHIFT) || STANDARD_WITH_SECOND.has(language.set);
     assert.deepEqual(ascending(first), ALL_CODES, `${language.name}: its G0 set`);
     assert.deepEqual(ascending(second), hasSecond ? ALL_CODES : [], `${language.name}: its second G0 set`);
     assert.deepEqual(ascending(supplementary), ALL_CODES, `${language.name}: its G2 set`);

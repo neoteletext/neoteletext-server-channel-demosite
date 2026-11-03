@@ -172,10 +172,15 @@ function colourMarkedRows(rows: Map<number, number[]>, lines: readonly Line[], p
   }
 }
 
+/** The set row 24 is written in: the page's own, but for katakana, which keeps no + or - at their ASCII codes, its second set hiragana, which ESC reaches (the engine's DEC-2187). */
+function promptSet(set: SetName): SetName {
+  return set === "katakana" ? "hiragana" : set;
+}
+
 /** The codes of the language's own word for an index, in a set whose signs for the prompts must have their ASCII codes, or the prompts would not read. */
 function wordCodes(language: Language, place: number, write: Write): number[] {
   const word = language.index ?? INDEX_WORD;
-  const text = write(language.set, languagePage(place), [`${word} ${PROMPT_SIGNS}`]);
+  const text = write(promptSet(language.set), languagePage(place), [`${word} ${PROMPT_SIGNS}`]);
   const codes = rowCodes(/^OL,1,(.*)$/mu.exec(text)?.[1] ?? "");
   const cells = Array.from(word).length;
   if (String.fromCodePoint(...codes.slice(cells + 1, cells + 1 + PROMPT_SIGNS.length)) !== PROMPT_SIGNS) {
@@ -187,6 +192,7 @@ function wordCodes(language: Language, place: number, write: Write): number[] {
 /** Row 24: the coloured keys' prompts, in Latin where the page's sets have it: the language before, the one after, the languages' index and the site's. */
 function promptRow(language: Language, place: number, write: Write): number[] {
   const secondLatin = hasSecondLatin(language.set);
+  const viaSecond = secondLatin || promptSet(language.set) !== language.set;
   const latinWord = language.set === "hebrew" ? HEBREW_INDEX_WORD : INDEX_WORD;
   const word = language.index === undefined ? ascii(latinWord) : wordCodes(language, place, write);
   const before = place === 0 ? PAGES.languages : languagePage(place - 1);
@@ -196,7 +202,7 @@ function promptRow(language: Language, place: number, write: Write): number[] {
     [textColour(Colour.Green), ...ascii(`+${pageText(after)}`)],
     [textColour(Colour.Yellow), ...word, SPACE, ...ascii(pageText(PAGES.languages))],
   ];
-  const row = secondLatin ? [ESC_CODE] : [];
+  const row = viaSecond ? [ESC_CODE] : [];
   prompts.forEach((prompt, index) => {
     row.push(...prompt, ...Array.from({ length: (PROMPT_WIDTHS[index] ?? 0) - prompt.length }, () => SPACE));
   });

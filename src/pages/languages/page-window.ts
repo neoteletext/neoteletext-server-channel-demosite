@@ -13,7 +13,7 @@
 import { COLUMNS, Colour, mosaicColour, SPACE, textColour } from "neoteletext-server-ts-protocol";
 import { FULL_BLOCK, thumb } from "neoteletext-server-ts-ui-components";
 import { ESC_CODE, layoutOf, rowText } from "./language-lines.ts";
-import { hasSecondLatin, type SetName } from "./language-sets.ts";
+import { hasSecondSet, type SetName } from "./language-sets.ts";
 
 /** The rows the window takes, and the row of its position under them. */
 export const FIRST_ROW = 3;
@@ -112,7 +112,7 @@ function addressed(row: number, triplets: readonly number[]): number[] {
 
 /** The rows of the code tables, in order. */
 function tableRows(set: SetName): WindowRow[] {
-  const tables: readonly Table[] = hasSecondLatin(set) ? ["first", "second", "supplementary"] : ["first", "supplementary"];
+  const tables: readonly Table[] = hasSecondSet(set) ? ["first", "second", "supplementary"] : ["first", "supplementary"];
   return tables.flatMap((table) =>
     Array.from({ length: ROWS_A_TABLE }, (_, row) => {
       const first = FIRST_CODE + row * CODES_A_ROW;

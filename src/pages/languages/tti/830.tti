@@ -1,22 +1,21 @@
 PN,83000
 SC,0000
-PS,C300
+PS,C000
 PF,0,0
-OL,1,A]GMItaliano
+OL,1,A]GMBahasa Indonesia
 OL,2,
 OL,3,
-OL,4,CDICHIARAZIONE UNIVERSALE DEI DIRITTI
-OL,5,CUMANI
+OL,4,CPernyataan Umum tentang Hak-Hak Asasi
+OL,5,CManusia
 OL,6,
-OL,7,GTutti gli esseri umani nascono liberi
-OL,8,Ged eguali in dignit{ e diritti. Essi
-OL,9,Gsono dotati di ragione e di coscienza e
-OL,10,Gdevono agire gli uni verso gli altri in
-OL,11,Gspirito di fratellanza. Ogni individuo
-OL,12,Gha diritto alla vita, alla libert{ ed
-OL,13,Galla sicurezza della propria persona.
+OL,7,GSemua orang dilahirkan merdeka dan
+OL,8,Gmempunyai martabat dan hak-hak yang
+OL,9,Gsama. Mereka dikaruniai akal dan hati
+OL,10,Gnurani dan hendaknya bergaul satu sama
+OL,11,Glain dalam semangat persaudaraan.
+OL,12,GSetiap orang berhak atas penghidupan,
+OL,13,Gkebebasan dan keselamatan individu.
 OL,14,
-OL,15,FA E E I O U { } @ ~ | `
+OL,15,FABCDEFGHIJKLMNOPQRSTUVWXYZ
 OL,24,A-829   B+831   CIndex 800     F100
-OL,26,@wD@Aq`CqbErbGqdIqgKqjCCCCCC
-OL,28,@@F|gpCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@
+OL,28,@@@|gpCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@

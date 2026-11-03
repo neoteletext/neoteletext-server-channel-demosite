@@ -20,7 +20,18 @@ export interface Line {
   readonly text: string;
 }
 
-const RIGHT_TO_LEFT: ReadonlySet<SetName> = new Set(["hebrew", "persian", "urdu", "pashto", "sindhi", "sorani", "uyghur", "balochi", "arabic"]);
+const RIGHT_TO_LEFT: ReadonlySet<SetName> = new Set([
+  "hebrew",
+  "persian",
+  "urdu",
+  "pashto",
+  "sindhi",
+  "sorani",
+  "uyghur",
+  "balochi",
+  "arabic",
+  "arabic-table44",
+]);
 const MARKED: ReadonlySet<SetName> = new Set(["thai", "lao"]);
 
 /** The stand-in in front of each kind of line, one for each so that a row says what it is: a digit, the one thing every left-to-right set keeps at its ASCII code (punctuation can go, and is then reached by ESC). */

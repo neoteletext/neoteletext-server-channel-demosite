@@ -1,28 +1,18 @@
 PN,83600
 SC,0000
-PS,C080
+PS,C100
 PF,0,0
-OL,1,A]G
-OL,2,A]GJ`x`F`D
-OL,3,C       W  Y  R U
-OL,4,C}as`Nx`s@ s DsMxN|vABa@N
-OL,5,G     S   SU   S       Q
-OL,6,GBa@NesNB`BxNexFJ`M fFa
-OL,7,G  QSZ R         UR         U
-OL,8,Gxaerp`s@c@K`As N~xs fFa K`AxN
-OL,9,GZ      S  U  R R    ZSZW
-OL,10,GNDCBa@NBxa~xd}NH@Ca(INIHD)
-OL,11,G     Q              P P
-OL,12,G   S      T Z    V W XR
-OL,13,GfFaBBag@KdtA~vA}aJN~@~s@
-OL,14,G     SZ
-OL,15,Gc@K`AJ@vA.
-OL,16,G  W   W SU   W SU  SU   S
-OL,17,GMsL@KsL@BxNNdFAHDN BxNexFJ`M
-OL,18,GQ   Q          W
-OL,19,GfFa LD`B}vNbJc@~D.
-OL,20,F
-OL,21,Fs|LAtxHCN~{K@M}zuJEBqGFDyvI
-OL,24,[A-835   B+837   CIndex 800     F100
-OL,26,@lD@LOwpD@OOwqD@XOrtD@KOpVOtvD@FOlCC
-OL,28,@@HC`pCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@
+OL,1,A]GMeu>N
+OL,2,
+OL,3,
+OL,4,CUEA R>K> U>L>
+OL,5,
+OL,6,GSs`h e>L>i,Bx/dF&e Q` R#Ba @',E^,W>L>b
+OL,7,GK>'be ^A` m$BcBa @*.e>L>i,'UAb '$BQ>b=
+OL,8,GOTK&/` D',YFAe cBuBh UAQ>= |]` MBcB
+OL,9,GQdK/j d&dA.Ss`h lbi,UA{A,R#B D%m Q>YAh
+OL,10,G@>V>e YAS* K>'= #BS*.
+OL,11,
+OL,12,F! ( ) + : } ] - ?[F k
+OL,24,[A-835   B+837   C|IR 800       F100
+OL,28,@@TgfpCu_@|wKpZA`UB_wLs_w}ww]_}_wM@@

@@ -13,11 +13,13 @@ came from:
 
 | `source` | Pages | Where the text came from |
 |---|---|---|
-| `un` | 65 | The UN's translations as transcribed by the UDHR in XML project, github.com/eric-muller/udhr, commit 588b3f4, because the UN's own site refuses automated fetches |
+| `un` | 66 | The UN's translations as transcribed by the UDHR in XML project, github.com/eric-muller/udhr, commit 588b3f4, because the UN's own site refuses automated fetches. Arabic and Arabic T44 show the same text, in two sets |
 | `un-pdf` | 1, Sindhi | The UN's PDF, `snd.pdf`, read through web.archive.org |
 | `un-scan` | 1, Balochi | The UN's scanned PDF, `bgp.pdf`, read through web.archive.org by eye: unverified |
 | `wikipedia` | 3, Kabyle, Nuer, Sorani | Wikipedia, as "The texts from Wikipedia" below sets out: unverified against the UN |
 | `transliterated` | 1, Kazakh | The UN's Cyrillic text put letter by letter into Kazakhstan's Latin alphabet for these pages: unverified, and not a published text |
+| `kana` | 2, Japanese, Katakana | The UN's Japanese text from the same project (`udhr_jpn.xml`, read on 3 November 2026), its kanji written in kana with a space between words for these pages, since the pages' sets hold no kanji (the engine's DEC-2187): the readings are unverified by a reader of Japanese. Katakana's page shows the same kana in katakana |
+| `romanised` | 1, Japanese Romaji | The same Japanese text written in Hepburn rōmaji for these pages: unverified by a reader of Japanese |
 | `none` | 1, Mandinka | No text of the Declaration in Mandinka was found, so the page shows the language's name and letters alone. The name is spelled as Omniglot spells it |
 
 The texts differ from their sources where a character set lacks a character and
@@ -39,7 +41,7 @@ All three were read on 1 November 2026. Each revision below is established and
 not assumed: the SHA-1 that Wikipedia gives for that revision equals the SHA-1
 of the wikitext as it was read.
 
-**Kabyle, page 831.** The article "Kabyle language",
+**Kabyle, page 834.** The article "Kabyle language",
 https://en.wikipedia.org/wiki/Kabyle_language, revision 1382739977 of
 30 October 2026, https://en.wikipedia.org/w/index.php?oldid=1382739977 (SHA-1
 46742fffb5c6ffe5cb12fec5b175d11fcaf72f80), read at 11:49 UTC. Taken from it:
@@ -47,7 +49,7 @@ Article 1 of the Declaration, as the article quotes it. Changed: the Greek
 letter `ε` is written `ɛ`, which the page's set has, and the space before a
 semicolon is removed.
 
-**Nuer, page 845.** The article "Nuer language",
+**Nuer, page 849.** The article "Nuer language",
 https://en.wikipedia.org/wiki/Nuer_language, revision 1362123989 of
 2 July 2026, https://en.wikipedia.org/w/index.php?oldid=1362123989 (SHA-1
 9af53469dcccd081e0e955d4460443b58d902a03), read at 11:49 UTC. Taken from it:
@@ -55,7 +57,7 @@ Article 1 of the Declaration, which the article cites from Omniglot,
 http://www.omniglot.com/writing/nuer.htm. Changed: `a̱` is written `a`, because
 the page's set cannot show it.
 
-**Sorani, page 858.** The article "بانگنامەی گەردوونیی مافەکانی مرۆڤ",
+**Sorani, page 862.** The article "بانگنامەی گەردوونیی مافەکانی مرۆڤ",
 https://ckb.wikipedia.org/wiki/بانگنامەی_گەردوونیی_مافەکانی_مرۆڤ, page 76024,
 revision 1459364 of 17 July 2025,
 https://ckb.wikipedia.org/w/index.php?oldid=1459364 (SHA-1
