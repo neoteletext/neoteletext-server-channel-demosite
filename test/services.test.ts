@@ -3,7 +3,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { shows } from "neoteletext-server-ts-protocol/testing";
+import { serverStats, shows } from "neoteletext-server-ts-protocol/testing";
 import { PAGES } from "../src/site/page-numbers.ts";
 import { site } from "./site.ts";
 
@@ -19,10 +19,11 @@ test("behind the scenes shows the server's figures when they arrive", () => {
   const { harness } = site();
   harness.join(1, PAGES.behind);
   assert.ok(shows(harness.seen(1, PAGES.behind).rows, "Waiting for the server's figures"));
-  harness.stats({ server: { viewers: 3 }, channel: { most_opened: { "100": 5 } } });
+  harness.stats(serverStats({ server: { connections: 3, memory_kb: null }, channel: { viewers: 3, most_opened: [{ page: "100", opens: 5 }] } }));
   const { rows } = harness.seen(1, PAGES.behind);
   assert.ok(shows(rows, "viewers"));
   assert.ok(shows(rows, "Page 100"));
+  assert.ok(!shows(rows, "memory"), "no memory where the server's system says none");
 });
 
 test("a news story's page has the story's headline", () => {
