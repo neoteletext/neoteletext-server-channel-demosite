@@ -28,8 +28,26 @@ const STEP_CELLS = 2;
 const STATUS_ROW = SCALE.length + 1;
 /** The steps of a beat: every fourth is marked. */
 const BEAT = 4;
-/** A step's note: not #, which the English character set shows as a pound sign. */
-const NOTE_MARK = "*";
+/**
+ * A step's marks are mosaics, which every set shows alike (EN 300 706
+ * clause 15.7.1, Table 47; REQ-2152 item 6), so the grid reads the same in
+ * every language and is no text: a sixel's bit in a G1 code, from 0x20, is
+ * 0x01 top left, 0x02 top right, 0x04 middle left, 0x08 middle right, 0x10
+ * bottom left and 0x40 bottom right.
+ */
+const MOSAIC_BASE = 0x20;
+const SIXEL_MIDDLE_LEFT = 0x04;
+const SIXEL_MIDDLE_RIGHT = 0x08;
+const SIXEL_BOTTOM_LEFT = 0x10;
+const SIXEL_BOTTOM_RIGHT = 0x40;
+/** A note: the whole cell. */
+const NOTE_MARK = 0x7f;
+/** The cursor on an empty step: a bar across the middle. */
+const CURSOR_MARK = MOSAIC_BASE | SIXEL_MIDDLE_LEFT | SIXEL_MIDDLE_RIGHT;
+/** The first step of a beat: a bar along the bottom. */
+const BEAT_MARK = MOSAIC_BASE | SIXEL_BOTTOM_LEFT | SIXEL_BOTTOM_RIGHT;
+/** Any other empty step: a dot at the bottom. */
+const STEP_MARK = MOSAIC_BASE | SIXEL_BOTTOM_LEFT;
 
 /** Where the cursor is: a step, and a note by its place in the scale. */
 interface Cursor {
@@ -47,14 +65,14 @@ interface TrackerState {
 const START: readonly (number | null)[] = [7, null, 5, null, 3, null, 5, null, 7, 7, 7, null, 6, 6, 6, null];
 
 /** A step's cell: its note, the cursor on an empty one, or the beat's mark. */
-function cellMark(set: boolean, here: boolean, step: number): string {
+function cellMark(set: boolean, here: boolean, step: number): number {
   if (set) {
     return NOTE_MARK;
   }
   if (here) {
-    return "+";
+    return CURSOR_MARK;
   }
-  return step % BEAT === 0 ? ":" : ".";
+  return step % BEAT === 0 ? BEAT_MARK : STEP_MARK;
 }
 
 function cellColour(set: boolean, here: boolean): Colour {
@@ -107,7 +125,7 @@ export class Tracker extends Control<ControlProps, TrackerState> {
         const set = this.state.steps[step] === row;
         const here = this.focused && this.state.cursor.step === step && this.state.cursor.row === row;
         const column = NAME_CELLS + step * STEP_CELLS;
-        canvas.coloured(row, column, cellColour(set, here), cellMark(set, here, step));
+        canvas.mosaics(row, column, cellColour(set, here), [cellMark(set, here, step)]);
         canvas.region(`${step}:${row}`, row, column + 1, 1);
       }
     });
