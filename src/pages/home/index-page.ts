@@ -42,7 +42,8 @@ class IndexBody extends Component<{ readonly areas: readonly Area[] }> {
       h(
         Columns,
         { widths: [null, LANGUAGE_LINK_CELLS] },
-        h(Ticker, { items: sampler.list(TICKER_ITEMS, (sample) => sample.sentences), everyMs: TICKER_MS, ...sampler.display }),
+        // A ticker is one row: Thai and Lao, whose line takes three, keep the English.
+        h(Ticker, { items: sampler.controlList(TICKER_ITEMS, (sample) => sample.sentences), everyMs: TICKER_MS, ...sampler.control }),
         h(PageLink, { page: PAGES.chooseLanguage, label: "Language", foreground: Colour.Yellow }),
       ),
       h(PageMenu, { entries: this.props.areas.map((area) => ({ page: area.menu, label: area.name, about: area.about })) }),

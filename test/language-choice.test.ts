@@ -98,3 +98,14 @@ test("every page of the site is published without a fault in English, Russian, G
     assert.deepEqual(harness.errors, [], language);
   }
 });
+
+test("in Thai, whose line takes three rows, the index's one-row ticker keeps its English, and the heading is in Thai", () => {
+  const { harness } = site(false);
+  harness.join(1, PAGES.index, [{ name: "language", value: "th" }]);
+  const runs = runsSeen(harness, 1, PAGES.index);
+  assert.ok(runs.some(([language, text]) => language === "th" && text === "ภาษาไทย"));
+  assert.ok(
+    runs.some(([, text]) => text.startsWith("Every page here")),
+    JSON.stringify(runs),
+  );
+});
