@@ -93,6 +93,11 @@ linux_steps() {
     need_host
     # By content, with the host's own times (DEVELOPMENT.md section 9.3).
     rsync -a --no-times --checksum --delete --exclude tmp --exclude .git --exclude node_modules ./ "$linux_host:$here-check/"
+    # The shared-files test compares this channel's copies with its sister's
+    # working tree beside it (DEC-2233 item 4), so the sister goes too, to
+    # where the test looks for it from the copy above.
+    [ -d "../neoteletext-server-channel-uicomponentsdemo" ] || fail "the sister channel is not checked out at ../neoteletext-server-channel-uicomponentsdemo: the shared files cannot be compared"
+    rsync -a --no-times --checksum --delete --exclude tmp --exclude .git --exclude node_modules "../neoteletext-server-channel-uicomponentsdemo/" "$linux_host:neoteletext-server-channel-uicomponentsdemo/"
     ssh "$linux_host" "set -e; cd $here-check && scripts/check.sh stage"
 }
 
