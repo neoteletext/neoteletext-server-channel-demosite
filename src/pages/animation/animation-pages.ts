@@ -55,7 +55,7 @@ export class AnimationPages implements Application {
     // One frame (ANIM-2): the sprites and the table that moves them are in place on one tick.
     context.frame(to, number, SUB, () => {
       context.sprites(to, number, SUB, page.sprites);
-      context.rules(to, number, page.table);
+      context.rules(to, number, SUB, page.table);
     });
   }
 

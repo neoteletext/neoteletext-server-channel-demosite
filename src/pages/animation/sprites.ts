@@ -7,7 +7,7 @@ import { Colour, namedKey } from "neoteletext-server-ts-protocol";
 import type { KeyName, PageRule } from "neoteletext-server-ts-protocol/protocol";
 
 import { PAGES } from "../../site/page-numbers.ts";
-import { type AnimationPage, sprite } from "./animation-page.ts";
+import { animate, type AnimationPage, sprite } from "./animation-page.ts";
 import { FIRST_BODY_ROW, LAST_BODY_ROW, put, sheet } from "./sheet.ts";
 import { enhanced, lettered } from "./triplets.ts";
 
@@ -21,7 +21,11 @@ const WORDS = "the page beneath is never sent again";
 const { enhancements, frames } = enhanced([], [[lettered(Colour.Yellow, Colour.Red, "<**>"), lettered(Colour.White, Colour.Red, " II ")]]);
 
 function moveRule(name: string, key: KeyName, x: number, y: number): PageRule {
-  return { name, on: { event: "key", keys: [namedKey(key)], repeat: true }, do: [{ action: "move", target: { object: ROCKET }, x, y, relative: true }] };
+  return {
+    name,
+    on: { event: "key", keys: [namedKey(key)], repeat: true },
+    do: [animate({ action: "move", target: { object: ROCKET }, x, y, relative: true })],
+  };
 }
 
 function drawn(): AnimationPage["content"] {
@@ -55,7 +59,7 @@ export const SPRITES_PAGE: AnimationPage = {
       {
         name: "home",
         on: { event: "key", keys: [namedKey("Home")] },
-        do: [{ action: "move", target: { object: ROCKET }, x: HOME[1], y: HOME[0], relative: false }],
+        do: [animate({ action: "move", target: { object: ROCKET }, x: HOME[1], y: HOME[0], relative: false })],
       },
     ],
   },

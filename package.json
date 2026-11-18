@@ -16,7 +16,7 @@
     "typescript": "7.0.2"
   },
   "dependencies": {
-    "neoteletext-server-ts-protocol": "file:vendor/neoteletext-server-ts-protocol-16.0.0.tgz",
-    "neoteletext-server-ts-ui-components": "file:vendor/neoteletext-server-ts-ui-components-24.0.0.tgz"
+    "neoteletext-server-ts-protocol": "file:vendor/neoteletext-server-ts-protocol-17.0.0.tgz",
+    "neoteletext-server-ts-ui-components": "file:vendor/neoteletext-server-ts-ui-components-25.0.0.tgz"
   }
 }

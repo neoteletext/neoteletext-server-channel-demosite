@@ -4,10 +4,10 @@
 // is never a DRCS character (the engine's REQ-2196).
 
 import { characterKey, Colour } from "neoteletext-server-ts-protocol";
-import type { PageRule, RuleAction } from "neoteletext-server-ts-protocol/protocol";
+import type { AnimationOp, PageRule } from "neoteletext-server-ts-protocol/protocol";
 
 import { PAGES } from "../../site/page-numbers.ts";
-import { type AnimationPage, sprite } from "./animation-page.ts";
+import { animate, type AnimationPage, sprite } from "./animation-page.ts";
 import { FIRST_BODY_ROW, put, sheet } from "./sheet.ts";
 import { enhanced, lettered, mosaics } from "./triplets.ts";
 
@@ -42,13 +42,13 @@ const barObjects = Array.from({ length: BAR_FRAMES }, (_unused, filled) => {
 });
 const { enhancements, frames } = enhanced([], [...arrowObjects, ...barObjects]);
 
-const RUNNING: readonly RuleAction[] = [
+const RUNNING: readonly AnimationOp[] = [
   { action: "cycle", target: { object: ARROW }, first: 0, last: ARROW_CELLS - 1, period: ARROW_TICKS, once: false },
   { action: "cycle", target: { object: BAR }, first: 0, last: BAR_FRAMES - 1, period: BAR_TICKS, once: false },
 ];
 
-function keyRule(name: string, key: string, actions: readonly RuleAction[]): PageRule {
-  return { name, on: { event: "key", keys: [characterKey(key)] }, do: actions };
+function keyRule(name: string, key: string, ops: readonly AnimationOp[]): PageRule {
+  return { name, on: { event: "key", keys: [characterKey(key)] }, do: [animate(...ops)] };
 }
 
 function drawn(): AnimationPage["content"] {
@@ -58,7 +58,7 @@ function drawn(): AnimationPage["content"] {
     how: [
       "Each sprite lists several objects as",
       "its frames. The rule of the page's",
-      "opening has the action cycle, and the",
+      "opening animates them with cycle: the",
       "browser shows each frame in its turn.",
     ],
   });
@@ -73,7 +73,7 @@ export const CYCLING_PAGE: AnimationPage = {
   about: "Frames of characters and of mosaics",
   table: {
     rules: [
-      { name: "run", on: { event: "open" }, do: RUNNING },
+      { name: "run", on: { event: "open" }, do: [animate(...RUNNING)] },
       keyRule("stop", "s", [
         { action: "stop_cycle", target: { object: ARROW } },
         { action: "stop_cycle", target: { object: BAR } },

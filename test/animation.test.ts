@@ -45,7 +45,7 @@ function rowsOf(message: Sent | undefined): string {
 
 // The limits of a rule table (page-rules.md RULE-57) and of a sub-page's sprites (animation.md ANIM-7).
 const MAX_RULES = 64;
-const MAX_ACTIONS = 16;
+const MAX_GROUP_COMMANDS = 32;
 const MAX_SPRITES = 32;
 const MAX_PACKETS = 16;
 /** The rows a sprite may write: 1 to 23 (ANIM-8). */
@@ -131,14 +131,15 @@ test("a viewer who opens a page is sent one frame, its sprites and its table; ev
     assert.equal(new Set(names).size, names.length, `${number}: each rule's name is its own`);
     for (const rule of page.table.rules) {
       assert.match(rule.name, NAME);
-      assert.ok(rule.do.length > 0 && rule.do.length <= MAX_ACTIONS, `${number}: ${rule.name}`);
+      const own = rule.do?.length ?? 0;
+      assert.ok(own > 0 && own <= MAX_GROUP_COMMANDS, `${number}: ${rule.name}`);
     }
   }
   assert.deepEqual(harness.errors, []);
 });
 
 test("only the swap page has a rule that sends: the others send the channel nothing", () => {
-  const sending = ALL.filter((page) => page.table.rules.some((rule) => rule.echo === true || rule.do.some((action) => action.action === "send")));
+  const sending = ALL.filter((page) => page.table.rules.some((rule) => rule.echo === true || (rule.do ?? []).some((command) => command.type === "report")));
   assert.deepEqual(
     sending.map(({ page }) => page),
     [PAGES.swap],
@@ -186,9 +187,14 @@ test("the flash page has a flashing word and three counters whose frames are dig
       name: "count",
       on: { event: "open" },
       do: [
-        { action: "cycle", target: { object: 1 }, first: 0, last: 3, period: 19, once: false },
-        { action: "cycle", target: { object: 2 }, first: 0, last: 9, period: 6, once: false },
-        { action: "cycle", target: { object: 3 }, first: 0, last: 9, period: 60, once: false },
+        {
+          type: "animate",
+          ops: [
+            { action: "cycle", target: { object: 1 }, first: 0, last: 3, period: 19, once: false },
+            { action: "cycle", target: { object: 2 }, first: 0, last: 9, period: 6, once: false },
+            { action: "cycle", target: { object: 3 }, first: 0, last: 9, period: 60, once: false },
+          ],
+        },
       ],
     },
   ]);
@@ -198,7 +204,7 @@ test("the sprites page moves its rocket a cell at a time, and the cycling page's
   assert.deepEqual(SPRITES_PAGE.table.rules[0], {
     name: "left",
     on: { event: "key", keys: [{ name: "ArrowLeft" }], repeat: true },
-    do: [{ action: "move", target: { object: 10 }, x: -1, y: 0, relative: true }],
+    do: [{ type: "animate", ops: [{ action: "move", target: { object: 10 }, x: -1, y: 0, relative: true }] }],
   });
   assert.deepEqual(
     CYCLING_PAGE.sprites.map((sprite) => [sprite.number, sprite.frames.length]),
@@ -222,11 +228,11 @@ test("the controls page declares three controls, and its rules hide, show and fo
       [3, 12],
     ],
   );
-  const targets = CONTROLS_PAGE.table.rules.map((rule) => [
-    rule.name,
-    rule.do[0]?.action,
-    rule.do[0] !== undefined && "target" in rule.do[0] ? rule.do[0].target : null,
-  ]);
+  const targets = CONTROLS_PAGE.table.rules.map((rule) => {
+    const [command] = rule.do ?? [];
+    const [op] = command?.type === "animate" ? command.ops : [];
+    return [rule.name, op?.action, op?.target ?? null];
+  });
   assert.deepEqual(targets, [
     ["hide", "hide", { control: 2 }],
     ["show", "show", { control: 2 }],

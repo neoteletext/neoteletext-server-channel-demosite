@@ -1,14 +1,14 @@
 // Controls hidden and shown by rules (animation.md ANIM-6; page-rules.md
-// RULE-12, RULE-20): three controls, which the page's packet X/26/0
+// RULE-12, RULE-119): three controls, which the page's packet X/26/0
 // declares with NeoTeletext's control triplet. Rules hide and show the
 // second and force its looks from keys, and hide the third while the
 // pointer is pressed on the first, all in the viewer's browser.
 
 import { characterKey, Colour } from "neoteletext-server-ts-protocol";
-import type { LookName, PageRule, RuleAction } from "neoteletext-server-ts-protocol/protocol";
+import type { AnimationOp, LookName, PageRule } from "neoteletext-server-ts-protocol/protocol";
 
 import { PAGES } from "../../site/page-numbers.ts";
-import type { AnimationPage } from "./animation-page.ts";
+import { animate, type AnimationPage } from "./animation-page.ts";
 import { FIRST_BODY_ROW, put, sheet } from "./sheet.ts";
 import { control, enhanced } from "./triplets.ts";
 
@@ -31,8 +31,8 @@ const { enhancements } = enhanced(
   [],
 );
 
-function keyRule(name: string, key: string, action: RuleAction): PageRule {
-  return { name, on: { event: "key", keys: [characterKey(key)] }, do: [action] };
+function keyRule(name: string, key: string, op: AnimationOp): PageRule {
+  return { name, on: { event: "key", keys: [characterKey(key)] }, do: [animate(op)] };
 }
 
 function lookRule(key: string, look: LookName): PageRule {
@@ -71,8 +71,8 @@ export const CONTROLS_PAGE: AnimationPage = {
       lookRule("2", "hover"),
       lookRule("3", "pressed"),
       // Button 0: the main button, a touch or a pen. The release fires wherever the pointer then is (RULE-9).
-      { name: "alpha_down", on: { event: "press", target: { control: ALPHA }, button: 0 }, do: [{ action: "hide", target: { control: CHARLIE } }] },
-      { name: "alpha_up", on: { event: "release", target: { control: ALPHA }, button: 0 }, do: [{ action: "show", target: { control: CHARLIE } }] },
+      { name: "alpha_down", on: { event: "press", target: { control: ALPHA }, button: 0 }, do: [animate({ action: "hide", target: { control: CHARLIE } })] },
+      { name: "alpha_up", on: { event: "release", target: { control: ALPHA }, button: 0 }, do: [animate({ action: "show", target: { control: CHARLIE } })] },
     ],
   },
   content: drawn(),

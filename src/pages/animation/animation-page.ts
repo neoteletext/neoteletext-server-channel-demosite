@@ -4,7 +4,7 @@
 // own rule table, so that it sends the channel only what its rules send.
 
 import type { Context, Input, SubPageContent } from "neoteletext-server-ts-protocol";
-import type { RuleTable, Sprite, SpriteFrame } from "neoteletext-server-ts-protocol/protocol";
+import type { AnimationOp, RuleCommand, RuleTable, Sprite, SpriteFrame } from "neoteletext-server-ts-protocol/protocol";
 
 export interface AnimationPage {
   readonly page: number;
@@ -36,4 +36,9 @@ export function sprite(
   frames: readonly SpriteFrame[],
 ): Sprite {
   return { number, shown: true, detectable: false, layer: SPRITE_LAYER, order: 0, column, row, width, height, frames };
+}
+
+/** A group's `animate` command of the operations `ops` (page-rules.md RULE-119; animation.md ANIM-6): what every rule of these pages but the swap's runs. */
+export function animate(...ops: readonly AnimationOp[]): RuleCommand {
+  return { type: "animate", ops };
 }

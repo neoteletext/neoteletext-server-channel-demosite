@@ -5,10 +5,10 @@
 // turns every 19 ticks, so the word is dark for one digit in four.
 
 import { Attribute, Colour } from "neoteletext-server-ts-protocol";
-import type { RuleAction } from "neoteletext-server-ts-protocol/protocol";
+import type { AnimationOp } from "neoteletext-server-ts-protocol/protocol";
 
 import { PAGES } from "../../site/page-numbers.ts";
-import { type AnimationPage, sprite } from "./animation-page.ts";
+import { animate, type AnimationPage, sprite } from "./animation-page.ts";
 import { FIRST_BODY_ROW, put, sheet } from "./sheet.ts";
 import { enhanced, lettered } from "./triplets.ts";
 
@@ -37,7 +37,7 @@ const { enhancements, frames: digitFrames } = enhanced(
   Array.from({ length: DIGITS }, (_unused, digit) => [lettered(Colour.Yellow, Colour.Blue, ` ${digit} `)]),
 );
 
-function cycling(number: number, last: number, period: number): RuleAction {
+function cycling(number: number, last: number, period: number): AnimationOp {
   return { action: "cycle", target: { object: number }, first: 0, last, period, once: false };
 }
 
@@ -70,7 +70,9 @@ export const FLASH_PAGE: AnimationPage = {
       {
         name: "count",
         on: { event: "open" },
-        do: [cycling(QUARTERS, QUARTER_FRAMES - 1, QUARTER_TICKS), cycling(TENTHS, DIGITS - 1, TENTH_TICKS), cycling(SECONDS, DIGITS - 1, SECOND_TICKS)],
+        do: [
+          animate(cycling(QUARTERS, QUARTER_FRAMES - 1, QUARTER_TICKS), cycling(TENTHS, DIGITS - 1, TENTH_TICKS), cycling(SECONDS, DIGITS - 1, SECOND_TICKS)),
+        ],
       },
     ],
   },

@@ -55,7 +55,7 @@ function drawn(side: Side): { readonly content: AnimationPage["content"]; readon
 const DRAWN = [drawn(SIDES[0]), drawn(SIDES[1])] as const;
 
 function sendRule(name: string, key: string): PageRule {
-  return { name, on: { event: "key", keys: [characterKey(key)] }, do: [{ action: "send" }] };
+  return { name, on: { event: "key", keys: [characterKey(key)] }, do: [{ type: "report" }] };
 }
 
 class Swap implements AnimationPage {
