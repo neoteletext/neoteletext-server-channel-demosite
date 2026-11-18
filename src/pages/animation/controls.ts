@@ -23,7 +23,7 @@ const NOTE_COLUMN = 17;
 const CONTROLS: readonly (readonly [row: number, name: string, note: string])[] = [
   [FIRST_BODY_ROW + 1, "ALPHA", "hold: hides Charlie"],
   [FIRST_BODY_ROW + 4, "BRAVO", "H hides it, S shows"],
-  [FIRST_BODY_ROW + 7, "CHARLIE", "hidden while Alpha"],
+  [FIRST_BODY_ROW + 7, "CHARLIE", "hidden: Alpha is held"],
 ];
 
 const { enhancements } = enhanced(
