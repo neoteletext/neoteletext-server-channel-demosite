@@ -20,6 +20,7 @@ import { parseArgs } from "node:util";
 
 import { runChannel } from "neoteletext-server-ts-protocol";
 import { ComponentChannel, SqliteStateStore } from "neoteletext-server-ts-ui-components";
+import { AnimationPages } from "./pages/animation/animation-pages.ts";
 import { standInText } from "./pages/languages/sample-text.ts";
 import { pages } from "./pages.ts";
 import { loadPictures } from "./pictures/load-pictures.ts";
@@ -41,4 +42,5 @@ process.stderr.write(`demosite: ${specs.length} pages, ${pictures.length} pictur
 // server's default table, by `"default_rules": "send_all"` in the channel's
 // entry of channels.json, and is sent every input as before protocol 14
 // (DEC-6525 item 9; page-rules.md RULE-53). TODO-6544 gives the pages their own tables.
-await runChannel([new ComponentChannel(specs, { ruleTables: "none", standIn: standInText, state: store }), REFUSALS]);
+// The animation pages are the channel's own, beside the library's, and each gives its own table.
+await runChannel([new ComponentChannel(specs, { ruleTables: "none", standIn: standInText, state: store }), new AnimationPages(), REFUSALS]);

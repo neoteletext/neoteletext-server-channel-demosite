@@ -1,5 +1,6 @@
 // The areas, in the index's order.
 
+import { ANIMATION_AREA } from "../pages/animation/area.ts";
 import { ADVENTURE } from "../pages/adventure/area.ts";
 import { AUDIO } from "../pages/audio/area.ts";
 import { VIEWER_AREA } from "../pages/viewer/area.ts";
@@ -10,4 +11,4 @@ import { LANGUAGE_AREA } from "../pages/languages/area.ts";
 import { SERVICES } from "../pages/services/area.ts";
 import type { Area } from "./area.ts";
 
-export const AREAS: readonly Area[] = [SERVICES, INTERACTIVE, GAMES, ADVENTURE, AUDIO, GALLERY, VIEWER_AREA, LANGUAGE_AREA];
+export const AREAS: readonly Area[] = [SERVICES, INTERACTIVE, GAMES, ADVENTURE, AUDIO, GALLERY, VIEWER_AREA, LANGUAGE_AREA, ANIMATION_AREA];

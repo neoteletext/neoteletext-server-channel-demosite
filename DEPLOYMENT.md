@@ -42,7 +42,9 @@ this repository beside it, and the pictures from that repository:
 `src/main.ts`: the library writes no rule table, every page has the
 server's default table, and the channel is sent every input as before
 program protocol 14 (DEC-6525 item 9; page-rules.md RULE-53). Without it
-the channel is sent no input at all.
+the channel is sent no input at all. The animation pages, 151 to 155,
+are the channel's own and each gives its own table, which takes the
+default's place on that page.
 
 On start the program writes to the service's journal how many pages it
 serves and how many pictures it loaded:

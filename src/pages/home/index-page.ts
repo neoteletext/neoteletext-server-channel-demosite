@@ -24,6 +24,9 @@ const CLOCK_CELLS = 10;
 /** The link to the page that chooses a language, beside the ticker: its page number, a space and its label, with a cell for its colour. */
 const LANGUAGE_LINK_CELLS = 14;
 
+/** The areas the page has two rows for, a link and a few words: those after them are a link alone. */
+const AREAS_WITH_WORDS = 7;
+
 class IndexBody extends Component<{ readonly areas: readonly Area[] }> {
   override render(): Child {
     return h(
@@ -36,7 +39,9 @@ class IndexBody extends Component<{ readonly areas: readonly Area[] }> {
         h(Ticker, { items: TICKER_ITEMS, everyMs: TICKER_MS }),
         h(PageLink, { page: PAGES.chooseLanguage, label: "Language", foreground: Colour.Yellow }),
       ),
-      h(PageMenu, { entries: this.props.areas.map((area) => ({ page: area.menu, label: area.name, about: area.about })) }),
+      h(PageMenu, {
+        entries: this.props.areas.map((area, place) => ({ page: area.menu, label: area.name, ...(place < AREAS_WITH_WORDS ? { about: area.about } : {}) })),
+      }),
     );
   }
 }

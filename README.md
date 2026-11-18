@@ -62,6 +62,15 @@ The index is on 100; each area has a magazine, its menu on N00.
   remember you (702), a visit counter kept for you, shared by your tabs
   (703), forget me, which deletes all the channel keeps for you (704), and
   what it keeps, for how long and why (705). There are no cookies.
+- **Animation** (150): what a teletext page does by itself in the viewer's
+  browser (neoteletext-common's `docs/animation.md` and
+  `docs/page-rules.md`): flash on the browser's clock beside counters that
+  are sprites (151), a sprite the arrow keys move (152), sprites whose
+  frames are characters and mosaics (153), controls that rules hide, show
+  and light (154), and a whole page swapped in on one tick (155). These
+  five are the channel's own pages, written with the protocol kit beside
+  the component library's; each gives the browser its own rule table, and
+  only 155 sends the channel anything, two keys.
 - **Languages** (800, and 801 for the rest of the index): magazine 8 alone,
   a page in each language the engine has a set for, 802 to 874, in
   alphabetical order, each built of the library's components in its own
@@ -86,7 +95,8 @@ The code:
 - `src/site/`: the page numbers, the areas, each area's look, and what
   the pages share (the poll, the guestbook, the hall of fame).
 - `src/pages/`: the pages, a folder to each area (home, services,
-  interactive, games, adventure, audio, gallery, viewer, languages).
+  interactive, games, adventure, audio, gallery, viewer, languages,
+  animation).
 - `src/parts/`: what the pages share: the frame, the page menus, sounds.
 - `src/pictures/`: the pictures folder, read and checked.
 - `test/`: the tests, with one picture of the gallery's in

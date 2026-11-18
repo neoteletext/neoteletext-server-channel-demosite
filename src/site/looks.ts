@@ -17,5 +17,6 @@ export const LOOKS = {
   audio: { background: Colour.Cyan, foreground: Colour.Blue },
   gallery: { background: Colour.Yellow, foreground: Colour.Blue },
   viewer: { background: Colour.Magenta, foreground: Colour.Yellow },
+  animation: { background: Colour.Red, foreground: Colour.White },
   languages: { background: Colour.White, foreground: Colour.Blue },
 } as const satisfies Readonly<Record<string, Look>>;

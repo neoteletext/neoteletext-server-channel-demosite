@@ -19,6 +19,13 @@ export const PAGES = {
   /** The services menu, then the news stories, a page each: 111, 112, ... */
   services: 0x110,
   firstStory: 0x111,
+  /** The animation pages' menu, then a page each: the channel's own pages, not the component library's (pages/animation). */
+  animation: 0x150,
+  flash: 0x151,
+  sprites: 0x152,
+  cycling: 0x153,
+  controls: 0x154,
+  swap: 0x155,
   interactive: 0x200,
   calculator: 0x201,
   form: 0x202,
