@@ -37,4 +37,8 @@ const specs = pages(makeSite(pictures, store));
 process.stderr.write(`demosite: ${specs.length} pages, ${pictures.length} pictures, kept in ${statePath}\n`);
 
 // Every page is drawn in each viewer's language, the site's words as text of it (REQ-2218, DEC-2233).
-await runChannel([new ComponentChannel(specs, { standIn: standInText, state: store }), REFUSALS]);
+// The library writes no rule table (`ruleTables: "none"`): every page has the
+// server's default table, by `"default_rules": "send_all"` in the channel's
+// entry of channels.json, and is sent every input as before protocol 14
+// (DEC-6525 item 9; page-rules.md RULE-53). TODO-6544 gives the pages their own tables.
+await runChannel([new ComponentChannel(specs, { ruleTables: "none", standIn: standInText, state: store }), REFUSALS]);

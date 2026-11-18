@@ -20,7 +20,10 @@ const STARTED = Date.UTC(2026, 9, 27);
 /** The site with `pictures`, and its pages, keeping what lasts in `store`: a database in memory of its own when none is given. */
 export function siteOf(pictures: readonly Picture[], store: SqliteStateStore = new SqliteStateStore(IN_MEMORY)): { harness: Harness; specs: PageSpec[] } {
   const specs = pages(makeSite(pictures, store));
-  return { harness: new Harness([new ComponentChannel(specs, { opus: fakeOpus(), standIn: standInText, state: store })], { epochMs: STARTED }), specs };
+  return {
+    harness: new Harness([new ComponentChannel(specs, { opus: fakeOpus(), ruleTables: "none", standIn: standInText, state: store })], { epochMs: STARTED }),
+    specs,
+  };
 }
 
 /** The site with the test's pictures, or none, and its pages; its sounds encoded by the protocol's fake encoder, which runs nothing. */

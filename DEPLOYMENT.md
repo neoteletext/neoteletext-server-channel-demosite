@@ -36,7 +36,13 @@ neoteletext-server-channels' `channels.json` names it. A relative
 `directory` is taken from that file's own folder, so the entry names
 this repository beside it, and the pictures from that repository:
 
-    {"folder":"demosite","name":"NeoTeletext demo site","command":["node","src/main.ts","--pictures","../neoteletext-server-channels/tmp/pictures"],"directory":"../neoteletext-server-channel-demosite"}
+    {"folder":"demosite","name":"NeoTeletext demo site","command":["node","src/main.ts","--pictures","../neoteletext-server-channels/tmp/pictures"],"directory":"../neoteletext-server-channel-demosite","default_rules":"send_all"}
+
+`"default_rules": "send_all"` goes with `ruleTables: "none"` in
+`src/main.ts`: the library writes no rule table, every page has the
+server's default table, and the channel is sent every input as before
+program protocol 14 (DEC-6525 item 9; page-rules.md RULE-53). Without it
+the channel is sent no input at all.
 
 On start the program writes to the service's journal how many pages it
 serves and how many pictures it loaded:
