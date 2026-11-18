@@ -47,7 +47,7 @@ export function languageChoicePage(): PageSpec {
     title: "Choose a language",
     // The page that chooses a language reads the same whichever is chosen: in English (DEC-2233).
     language: ENGLISH,
-    // It reads and sets each viewer's own language cookie: a copy of the page each.
+    // It reads and sets each viewer's own language: a copy of the page each.
     perViewer: true,
     root: (params) =>
       frame(
@@ -57,7 +57,7 @@ export function languageChoicePage(): PageSpec {
           prompts: [
             ["Index", PAGES.index],
             ["Languages", PAGES.languages],
-            ["Cookies", PAGES.cookies],
+            ["You here", PAGES.viewer],
           ],
         },
         h(LanguageChoice, { home: PAGES.index, ...(params === undefined ? {} : { params }) }),

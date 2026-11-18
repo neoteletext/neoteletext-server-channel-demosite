@@ -2,7 +2,7 @@
 //
 // One copy of the site serves every language (REQ-2218): a page names no
 // language of its own, so the library draws it in each viewer's, from the
-// `language` cookie the page on 899 sets, the site's words as text of that
+// language they choose on 899, kept for them, the site's words as text of that
 // language (main.ts, the library's stand-in). A language page is in its own
 // language, one copy for everyone.
 

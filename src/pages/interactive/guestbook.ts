@@ -13,7 +13,7 @@ export interface Signature {
 const MOST_ENTRIES = 50;
 /** The longest message taken, as the page's field takes it. */
 export const LONGEST_MESSAGE = 60;
-/** The longest name: "Viewer " and a session's number, which has at most 16 digits (below 2 to the 53rd). */
+/** The longest name: "Viewer " and a connection's number, which has at most 16 digits (below 2 to the 53rd). */
 const LONGEST_NAME = "Viewer ".length + 16;
 /** What the entries are kept under, and the version of their shape: raised when it changes, which drops what was kept. */
 const KEPT_NAME = "guestbook";

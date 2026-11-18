@@ -34,10 +34,10 @@ class GuestbookView extends Component<{ readonly book: Guestbook }> {
         longest: LONGEST_MESSAGE,
         placeholder: "your message",
         autoFocus: true,
-        onSubmit: (message: string, session: number) => {
+        onSubmit: (message: string, connection: number) => {
           const trimmed = message.trim();
           if (trimmed !== "") {
-            book.sign({ name: `Viewer ${session}`, message: trimmed });
+            book.sign({ name: `Viewer ${connection}`, message: trimmed });
           }
         },
       }),

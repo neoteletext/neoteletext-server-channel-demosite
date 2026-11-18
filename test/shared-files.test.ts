@@ -1,6 +1,6 @@
 // The files this channel and its sister share, word for word (DEC-2233
 // item 4): the language pages' table, text and characters, the language
-// page and the page that chooses a language, and the cookie pages' bodies.
+// page and the page that chooses a language, and the viewer pages' bodies.
 // The two channels share no code but the released kits (DEC-1987 item 8),
 // so each keeps a copy, and this test fails when the copies drift: change
 // both together. It reads the sister's working tree beside this one, and
@@ -16,12 +16,6 @@ const HERE = new URL("../", import.meta.url);
 
 /** The files both keep, from each repository's root. */
 const SHARED = [
-  "src/pages/cookies/cookie-attributes.ts",
-  "src/pages/cookies/cookie-list.ts",
-  "src/pages/cookies/cookie-names.ts",
-  "src/pages/cookies/lifetimes.ts",
-  "src/pages/cookies/minute-cookie.ts",
-  "src/pages/cookies/visit-counter.ts",
   "src/pages/languages/character-tables.ts",
   "src/pages/languages/language-choice.ts",
   "src/pages/languages/language-files.ts",
@@ -32,6 +26,12 @@ const SHARED = [
   "src/pages/languages/languages-other.ts",
   "src/pages/languages/languages-standard.ts",
   "src/pages/languages/sample-text.ts",
+  "src/pages/viewer/forget-me.ts",
+  "src/pages/viewer/kept-here.ts",
+  "src/pages/viewer/remember-me.ts",
+  "src/pages/viewer/viewer-words.ts",
+  "src/pages/viewer/visit-counter.ts",
+  "src/pages/viewer/what-we-know.ts",
 ] as const;
 
 test("DEC-2233 item 4: the files shared with the sister channel are the same in both", () => {

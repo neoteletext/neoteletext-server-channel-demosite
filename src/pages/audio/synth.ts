@@ -23,10 +23,10 @@ interface SynthState {
 export class Synth extends Component<object, SynthState> {
   override state: SynthState = { wave: 0, note: MIDDLE_C, length: START_MS };
 
-  #play(session: number): void {
+  #play(connection: number): void {
     const wave = WAVES[this.state.wave] ?? "sine";
     const { note, length } = this.state;
-    this.services.play(sound(`synth-${wave}-${note}-${length}`, tone(frequencyOf(note), length, wave)), session);
+    this.services.play(sound(`synth-${wave}-${note}-${length}`, tone(frequencyOf(note), length, wave)), connection);
   }
 
   override render(): Child {
@@ -67,8 +67,8 @@ export class Synth extends Component<object, SynthState> {
         key: "play",
         label: "Play",
         background: Colour.Magenta,
-        onPress: (session: number) => {
-          this.#play(session);
+        onPress: (connection: number) => {
+          this.#play(connection);
         },
       }),
     ];

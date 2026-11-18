@@ -56,10 +56,12 @@ The index is on 100; each area has a magazine, its menu on N00.
   three levels of teletext; 602 holds every picture at every level, a
   sub-page each: 2,223 on one page for the 741 pictures live on 29
   October 2026.
-- **Cookies** (700): a visit counter kept in a cookie (701), a session
-  cookie beside a 30-day one (702), a cookie that lapses in 60 seconds,
-  counted down (703), every cookie you have here with a way to remove
-  each (704), and what each attribute does (705).
+- **You here** (700): what the channel knows of you (viewer-state.md
+  VS-401 to VS-409): whether this tab carries a viewer, and whether you
+  chose to be remembered (701), a visit or remembered and the offer to
+  remember you (702), a visit counter kept for you, shared by your tabs
+  (703), forget me, which deletes all the channel keeps for you (704), and
+  what it keeps, for how long and why (705). There are no cookies.
 - **Languages** (800, and 801 for the rest of the index): magazine 8 alone,
   a page in each language the engine has a set for, 802 to 874, in
   alphabetical order, each built of the library's components in its own
@@ -67,14 +69,14 @@ The index is on 100; each area has a magazine, its menu on N00.
   Declaration of Human Rights (`CREDITS.md`), its letters and every
   character of its set, moved with the arrows, Page Up, Page Down, Home,
   End, the wheel and the bar.
-- **One site in every language**: 899 chooses your language, kept in the
-  `language` cookie (899 with `?language=ru` chooses Russian and goes to
+- **One site in every language**: 899 chooses your language, kept for you
+  under your viewer handle (899 with `?language=ru` chooses Russian and goes to
   the index). Every page is then drawn in your language, its words drawn
   as text of that language taken from its language page, the Universal
   Declaration of Human Rights (`src/pages/languages/sample-text.ts`, the
   library's stand-in text); page numbers and the coloured keys' prompts
   stay as they are, and 800, 801 and 899 stay English. The language and
-  cookie files are shared word for word with the UI components demo;
+  viewer pages' files are shared word for word with the UI components demo;
   `test/shared-files.test.ts` fails when they differ.
 
 The code:
@@ -84,7 +86,7 @@ The code:
 - `src/site/`: the page numbers, the areas, each area's look, and what
   the pages share (the poll, the guestbook, the hall of fame).
 - `src/pages/`: the pages, a folder to each area (home, services,
-  interactive, games, adventure, audio, gallery, cookies, languages).
+  interactive, games, adventure, audio, gallery, viewer, languages).
 - `src/parts/`: what the pages share: the frame, the page menus, sounds.
 - `src/pictures/`: the pictures folder, read and checked.
 - `test/`: the tests, with one picture of the gallery's in

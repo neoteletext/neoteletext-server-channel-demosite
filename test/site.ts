@@ -28,9 +28,9 @@ export function site(withPictures = true): { harness: Harness; specs: PageSpec[]
   return siteOf(withPictures ? loadPictures(PICTURES) : []);
 }
 
-/** The latest sub-page `session` was sent of `page`: its own copy, else the channel's. */
-export function contentOf(harness: Harness, session: number, page: number): SubPageContent | undefined {
-  return (harness.channel.copy(session, page) ?? harness.channel.copy("channel", page))?.at(-1)?.content;
+/** The latest sub-page `connection` was sent of `page`: its own copy, else the channel's. */
+export function contentOf(harness: Harness, connection: number, page: number): SubPageContent | undefined {
+  return (harness.channel.copy(connection, page) ?? harness.channel.copy("channel", page))?.at(-1)?.content;
 }
 
 /** Every text run of `content`, joined by line breaks: what the server encodes for the page. */

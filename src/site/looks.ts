@@ -16,6 +16,6 @@ export const LOOKS = {
   adventure: { background: Colour.Magenta, foreground: Colour.White },
   audio: { background: Colour.Cyan, foreground: Colour.Blue },
   gallery: { background: Colour.Yellow, foreground: Colour.Blue },
-  cookies: { background: Colour.Magenta, foreground: Colour.Yellow },
+  viewer: { background: Colour.Magenta, foreground: Colour.Yellow },
   languages: { background: Colour.White, foreground: Colour.Blue },
 } as const satisfies Readonly<Record<string, Look>>;

@@ -28,10 +28,10 @@ export class DrumPads extends Component<object, DrumPadsState> {
     return "1-6 or a click plays a drum";
   }
 
-  #hit(index: number, session: number): void {
+  #hit(index: number, connection: number): void {
     const drum = KIT[index];
     if (drum !== undefined) {
-      this.services.play(drum.sound, session);
+      this.services.play(drum.sound, connection);
       this.setState({ hit: drum.name });
     }
   }
@@ -41,7 +41,7 @@ export class DrumPads extends Component<object, DrumPadsState> {
     if (digit === null || digit < 1 || digit > KIT.length) {
       return false;
     }
-    this.#hit(digit - 1, event.session);
+    this.#hit(digit - 1, event.connection);
     return true;
   }
 
@@ -56,8 +56,8 @@ export class DrumPads extends Component<object, DrumPadsState> {
             label: `${index + 1} ${drum.name}`,
             width: PAD_CELLS,
             background: PAD_COLOURS[index] ?? Colour.Blue,
-            onPress: (session: number) => {
-              this.#hit(index, session);
+            onPress: (connection: number) => {
+              this.#hit(index, connection);
             },
           }),
         ),

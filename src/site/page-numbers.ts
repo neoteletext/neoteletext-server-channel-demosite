@@ -2,7 +2,7 @@
 // server in hex: the page keyed 1 0 1 is 0x101. Each area has a magazine
 // of its own, its menu on N00 (the services' on 110, under the index):
 // services 1, interactive 2, games 3, adventure 4, audio 5, gallery 6,
-// cookies 7. Magazine 8 is the languages and nothing else, on the same
+// you here 7. Magazine 8 is the languages and nothing else, on the same
 // numbers as the UI components demo's.
 
 export const PAGES = {
@@ -45,13 +45,13 @@ export const PAGES = {
   gallery: 0x600,
   picture: 0x601,
   everyPicture: 0x602,
-  /** The cookies' menu, then a page for each thing a cookie does (pages/cookies). */
-  cookies: 0x700,
-  visits: 0x701,
-  lifetimes: 0x702,
-  minute: 0x703,
-  cookieList: 0x704,
-  attributes: 0x705,
+  /** What the channel knows of the viewer: its menu, then a page each (pages/viewer). */
+  viewer: 0x700,
+  known: 0x701,
+  remembered: 0x702,
+  counter: 0x703,
+  forget: 0x704,
+  kept: 0x705,
   /** The languages' index, on magazine 8's first page; its second page: a page and not a sub-page, since a click is only ever found on a page's first sub-page. */
   languages: 0x800,
   moreLanguages: 0x801,

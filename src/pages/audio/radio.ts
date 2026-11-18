@@ -15,10 +15,10 @@ export class Radio extends Component {
         text: (track: Track) => track.name,
         shown: TRACKS.length,
         autoFocus: true,
-        onChoose: (index: number, session: number) => {
+        onChoose: (index: number, connection: number) => {
           const track = TRACKS[index];
           if (track !== undefined) {
-            this.services.stream(track.source(), session);
+            this.services.stream(track.source(), connection);
           }
         },
       }),

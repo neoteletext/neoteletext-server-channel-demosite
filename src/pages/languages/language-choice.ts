@@ -1,25 +1,12 @@
 // The body of the page that chooses the viewer's language (REQ-2218 items 1
-// and 3): the library's LanguagePicker, which keeps the choice in the
-// `language` cookie and draws every page the viewer has open again in it.
-// The page answers an address that names a language too: selected with the
-// query `language=TAG`, it sets the cookie and goes to the site's index, so
-// a link can open the site in one language.
+// and 3): the library's LanguagePicker, which keeps the choice for the
+// viewer (viewer-state.md VS-408) and draws every page they have open again
+// in it. The page answers an address that names a language too: selected
+// with the query `language=TAG`, it sets the language and goes to the
+// site's index, so a link can open the site in one language.
 
 import { Colour } from "neoteletext-server-ts-protocol";
-import {
-  BODY_ROWS,
-  type Child,
-  Component,
-  Gap,
-  h,
-  LANGUAGE_COOKIE,
-  LANGUAGE_COOKIE_SECONDS,
-  LanguagePicker,
-  type PageParams,
-  Paragraph,
-  Rows,
-  Text,
-} from "neoteletext-server-ts-ui-components";
+import { BODY_ROWS, type Child, Component, Gap, h, LanguagePicker, type PageParams, Paragraph, Rows, Text } from "neoteletext-server-ts-ui-components";
 import type { LanguageTag } from "neoteletext-server-ts-protocol";
 import { ENGLISH_TAG, pageOf } from "./sample-text.ts";
 
@@ -54,27 +41,27 @@ export class LanguageChoice extends Component<LanguageChoiceProps> {
   }
 
   override componentDidMount(): void {
-    const { session } = this.services;
+    const { connection } = this.services;
     const named = this.#named;
-    if (session === null || named === null) {
+    if (connection === null || named === null) {
       return;
     }
-    this.services.setCookie(session, LANGUAGE_COOKIE, named, { path: "/", maxAge: LANGUAGE_COOKIE_SECONDS, sameSite: "Lax" });
-    this.services.redirect(session, this.props.home);
+    this.services.setLanguage(connection, named);
+    this.services.redirect(connection, this.props.home);
   }
 
   override render(): Child {
     // Unmounted (the probe of the page's needs), there is no viewer and no service to ask: English, and no languages yet.
-    const session = this.mounted ? this.services.session : null;
+    const connection = this.mounted ? this.services.connection : null;
     const languages = this.mounted ? this.services.languages() : [];
     const tags = offered(languages.map((language) => language.tag));
-    const now = session === null ? ENGLISH_TAG : this.services.language(session);
+    const now = connection === null ? ENGLISH_TAG : this.services.language(connection);
     const name = languages.find((language) => language.tag === now)?.name ?? now;
     return h(
       Rows,
       {},
       h(Paragraph, {
-        text: "Choose the language every page is drawn in. It is kept in a cookie.",
+        text: "Choose the language every page is drawn in. It is kept for you.",
         foreground: Colour.Cyan,
         lines: 2,
       }),

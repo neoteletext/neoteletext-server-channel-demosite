@@ -67,10 +67,10 @@ export class Piano extends Control<ControlProps, PianoState> {
     ];
   }
 
-  #play(index: number, session: number): void {
+  #play(index: number, connection: number): void {
     const note = NOTES[index];
     if (note !== undefined) {
-      this.services.play(note, session);
+      this.services.play(note, connection);
       this.setState({ played: index });
     }
   }
@@ -107,7 +107,7 @@ export class Piano extends Control<ControlProps, PianoState> {
     if (index < 0) {
       return false;
     }
-    this.#play(index, event.session);
+    this.#play(index, event.connection);
     return true;
   }
 
@@ -115,7 +115,7 @@ export class Piano extends Control<ControlProps, PianoState> {
     if (event.region === undefined) {
       return false;
     }
-    this.#play(Number(event.region), event.session);
+    this.#play(Number(event.region), event.connection);
     return true;
   }
 }

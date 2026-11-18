@@ -27,10 +27,10 @@ export class GalleryView extends Component<{ readonly pictures: readonly Picture
           text: (picture: Picture) => picture.caption,
           shown: SHOWN,
           autoFocus: true,
-          onChoose: (index: number, session: number) => {
+          onChoose: (index: number, connection: number) => {
             const picture = group.pictures[index];
             if (picture !== undefined) {
-              this.services.redirect(session, PAGES.picture, { picture: picture.name });
+              this.services.redirect(connection, PAGES.picture, { picture: picture.name });
             }
           },
         }),

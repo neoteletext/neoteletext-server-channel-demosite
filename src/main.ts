@@ -9,8 +9,9 @@
 // the gallery says it has none.
 //
 // FILE is the SQLite database the channel keeps what outlasts it in
-// (REQ-1057): the guestbook, the hall of fame, the poll's votes and each
-// viewer's ballot. It is made, with its folder, when it is not there.
+// (REQ-1057): the guestbook, the hall of fame, the poll's votes, and each
+// viewer's ballot, visit count and language, under the viewer's handle. It
+// is made, with its folder, when it is not there.
 // Without it, tmp/state.sqlite in this repository, which no deploy copies;
 // a live channel names a file outside the folder a deploy replaces.
 
@@ -22,6 +23,7 @@ import { ComponentChannel, SqliteStateStore } from "neoteletext-server-ts-ui-com
 import { standInText } from "./pages/languages/sample-text.ts";
 import { pages } from "./pages.ts";
 import { loadPictures } from "./pictures/load-pictures.ts";
+import { REFUSALS } from "./refusals.ts";
 import { makeSite } from "./site/site.ts";
 
 /** Where the channel keeps what outlasts it when no file is named: this repository's ignored tmp/. */
@@ -35,4 +37,4 @@ const specs = pages(makeSite(pictures, store));
 process.stderr.write(`demosite: ${specs.length} pages, ${pictures.length} pictures, kept in ${statePath}\n`);
 
 // Every page is drawn in each viewer's language, the site's words as text of it (REQ-2218, DEC-2233).
-await runChannel([new ComponentChannel(specs, { standIn: standInText, state: store })]);
+await runChannel([new ComponentChannel(specs, { standIn: standInText, state: store }), REFUSALS]);

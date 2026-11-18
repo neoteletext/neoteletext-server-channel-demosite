@@ -67,7 +67,7 @@ export abstract class ArcadeGame<S extends Play> extends Control<ArcadeProps, S>
 
   override componentDidMount(): void {
     super.componentDidMount();
-    if (this.services.session !== null) {
+    if (this.services.connection !== null) {
       this.#timer = this.setInterval(() => {
         this.#frame();
       }, this.frameMs);
@@ -85,11 +85,11 @@ export abstract class ArcadeGame<S extends Play> extends Control<ArcadeProps, S>
     }
     const next = this.step(state);
     this.setState(next);
-    const session = this.services.session;
-    if (next.over && session !== null) {
-      this.props.hall.post({ game: this.game, score: next.score, player: session });
+    const connection = this.services.connection;
+    if (next.over && connection !== null) {
+      this.props.hall.post({ game: this.game, score: next.score, player: connection });
       if (this.props.crash !== undefined) {
-        this.services.play(this.props.crash, session);
+        this.services.play(this.props.crash, connection);
       }
     }
   }

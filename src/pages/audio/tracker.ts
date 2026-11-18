@@ -103,14 +103,14 @@ export class Tracker extends Control<ControlProps, TrackerState> {
     this.setState({ steps, cursor });
   }
 
-  #play(session: number): void {
+  #play(connection: number): void {
     this.services.play(
       patternSound(
         "tracker",
         this.state.steps.map((row) => (row === null ? null : (SCALE[row] ?? null))),
         STEP_MS,
       ),
-      session,
+      connection,
     );
   }
 
@@ -151,7 +151,7 @@ export class Tracker extends Control<ControlProps, TrackerState> {
       return true;
     }
     if (typedText(event)?.toLowerCase() === "p") {
-      this.#play(event.session);
+      this.#play(event.connection);
       return true;
     }
     return false;
@@ -159,7 +159,7 @@ export class Tracker extends Control<ControlProps, TrackerState> {
 
   override onClick(event: PointerEvent): boolean {
     if (event.region === "play") {
-      this.#play(event.session);
+      this.#play(event.connection);
       return true;
     }
     const [step, row] = (event.region ?? "").split(":").map(Number);

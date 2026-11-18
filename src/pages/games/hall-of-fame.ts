@@ -7,7 +7,7 @@ import { Listeners, type Unlisten } from "../../parts/listeners.ts";
 export interface Score {
   readonly game: string;
   readonly score: number;
-  /** The viewer's session, as they have no name here. */
+  /** The viewer's connection, as they have no name here. */
   readonly player: number;
 }
 
